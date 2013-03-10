@@ -21,7 +21,7 @@ package
 				creature.doAi();
 				
 			var alive:Array = [];
-			for each (var creature:Creature in creatures)
+			for each (creature in creatures)
 			{
 				if (creature.hp > 0)
 					alive.push(creature);

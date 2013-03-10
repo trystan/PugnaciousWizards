@@ -9,6 +9,9 @@ package
 		public var y:int;
 		public var world:World;
 		
+		public var meleeAttack:int = 10;
+		public var meleeDefence:int = 0;
+		
 		public var hp:int;
 		
 		public function Creature(glyph:String, fg:int, x:int, y:int) 
@@ -49,7 +52,9 @@ package
 		
 		public function attack(other:Creature):void
 		{
-			other.hp = 0;
+			var amount:int = Math.max(meleeAttack - other.meleeDefence, 1);
+			
+			other.hp -= amount;
 		}
 		
 		public function wander():void

@@ -27,16 +27,17 @@ package
 				
 				terminal.clear();
 				
+				var t:Tile;
 				for (var x:int = 0; x < 80; x++)
 				for (var y:int = 0; y < 80; y++)
 				{
-					var t:Tile = world.getTile(x, y);
+					t = world.getTile(x, y);
 					terminal.write(t.glyph, x, y, t.fg, t.bg);
 				}
 				
 				for each (var creature:Creature in world.creatures)
 				{
-					var t:Tile = world.getTile(creature.x, creature.y);
+					t = world.getTile(creature.x, creature.y);
 					terminal.write(creature.glyph, creature.x, creature.y, creature.fg, t.bg);
 				}
 				

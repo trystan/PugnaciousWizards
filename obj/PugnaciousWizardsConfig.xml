@@ -8,27 +8,25 @@
   <compiler>
     <define append="true">
       <name>CONFIG::debug</name>
-      <value>false</value>
+      <value>true</value>
     </define>
     <define append="true">
       <name>CONFIG::release</name>
-      <value>true</value>
+      <value>false</value>
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
       <value>'3/10/2013'</value>
     </define>
-    <optimize>true</optimize>
-    <omit-trace-statements>true</omit-trace-statements>
-    <verbose-stacktraces>false</verbose-stacktraces>
+    <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>Z:\Projects\flash\PugnaciousWizards\PugnaciousWizards\src</path-element>
-      <path-element>Z:\Projects\flash\PugnaciousWizards\PugnaciousWizards\lib</path-element>
+      <path-element>Z:\Projects\flash\PugnaciousWizards\src</path-element>
+      <path-element>Z:\Projects\flash\PugnaciousWizards\lib</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
-    <path-element>Z:\Projects\flash\PugnaciousWizards\PugnaciousWizards\src\Main.as</path-element>
+    <path-element>Z:\Projects\flash\PugnaciousWizards\src\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
