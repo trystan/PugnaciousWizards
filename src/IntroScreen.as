@@ -23,7 +23,7 @@ package
 				if (intervalTimeout == 0)
 				{
 					var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 16, event);	
+					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1/60, event);	
 				}
 				
 				terminal.clear();
