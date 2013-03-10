@@ -23,7 +23,7 @@ package
 			this.hp = 100;
 		}
 		
-		public function doAi():void
+		public function update():void
 		{
 			
 		}

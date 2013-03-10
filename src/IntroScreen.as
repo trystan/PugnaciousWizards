@@ -35,6 +35,12 @@ package
 					terminal.write(t.glyph, x, y, t.fg, t.bg);
 				}
 				
+				for each (var item:PileOfBones in world.items)
+				{
+					t = world.getTile(item.x, item.y);
+					terminal.write(item.glyph, item.x, item.y, item.fg, t.bg);
+				}
+				
 				for each (var creature:Creature in world.creatures)
 				{
 					t = world.getTile(creature.x, creature.y);

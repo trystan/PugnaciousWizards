@@ -6,6 +6,7 @@ package
 		private var tiles:Array;
 		
 		public var creatures:Array = [];
+		public var items:Array = [];
 		
 		public function World() 
 		{
@@ -17,14 +18,19 @@ package
 		
 		public function update():void
 		{
+			for each (var item:PileOfBones in items)
+				item.update();
+				
 			for each (var creature:Creature in creatures)
-				creature.doAi();
+				creature.update();
 				
 			var alive:Array = [];
 			for each (creature in creatures)
 			{
 				if (creature.hp > 0)
 					alive.push(creature);
+				else
+					addItem(new PileOfBones(creature.x, creature.y));
 			}
 			creatures = alive;
 		}
@@ -46,6 +52,19 @@ package
 		{
 			creatures.push(creature);
 			creature.world = this;
+		}
+		
+		public function addItem(item:PileOfBones):void
+		{
+			items.push(item);
+			item.world = this;
+		}
+		
+		public function removeItem(item:PileOfBones):void
+		{
+			items = items.filter(function(value:PileOfBones, index:int, array:Array):Boolean {
+				return value != item;
+			});
 		}
 		
 		private function makeCastleWalls():void 

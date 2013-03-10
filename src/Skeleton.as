@@ -1,14 +1,14 @@
 package  
 {
-	public class Guard extends Creature 
+	public class Skeleton extends Creature 
 	{
-		public function Guard(x:int, y:int) 
+		public function Skeleton(x:int, y:int) 
 		{
-			super("g", Color.hsv(90, 50, 50), x, y);
+			super("s", Color.hsv(90, 00, 66), x, y);
 			
 			meleeAttack = 10;
-			meleeDefence = 5;
-			hp = 50;
+			meleeDefence = 0;
+			hp = 5;
 		}
 		
 		override public function update():void
