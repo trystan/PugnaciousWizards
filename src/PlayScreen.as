@@ -35,6 +35,11 @@ package
 			bind("b", "move se", walk,  1,  1);
 			bind("n", "move sw", walk, -1,  1);
 			bind(".", "step", walk, 0, 0);
+			
+			bind("1", "magic 1", function ():void {
+				new MagicBlink().apply(game.hero);
+				step();
+			});
 		}
 		
 		public function walk(mx:int, my:int):void
