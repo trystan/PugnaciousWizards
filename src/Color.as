@@ -34,5 +34,19 @@ package
 		{
 			return (255 << 24) | (r << 16) | (g << 8) | b;
 		}
+		
+		public static function lerp(c1:int, c2:int, percent:Number):int
+		{
+			var r1:int = (c1 >> 16) & 0xFF;
+			var g1:int = (c1 >> 8) & 0xFF;
+			var b1:int = c1 & 0xFF;
+			var r2:int = (c2 >> 16) & 0xFF;
+			var g2:int = (c2 >> 8) & 0xFF;
+			var b2:int = c2 & 0xFF;
+			
+			var inverse:Number = 1 - percent;
+			
+			return rgb(r1 * percent + r2 * inverse, g1 * percent + g2 * inverse, b1 * percent + b2 * inverse);
+		}
 	}
 }

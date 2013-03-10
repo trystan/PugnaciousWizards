@@ -30,7 +30,7 @@ package
 					targetY += oy;
 					
 					var t:Tile = world.getTile(targetX, targetY);
-					if (!t.isWalkable || t == Tile.closedDoor)
+					if (!t.allowsVision)
 						break;
 					
 					var target:Creature = world.getCreature(targetX, targetY);

@@ -11,6 +11,7 @@ package
 	
 	public class IntroScreen extends BaseScreen 
 	{
+		private var fieldOfView:FieldOfView;
 		private var world:World;
 		private var hero:Hero;
 		public var intervalTimeout:uint = 0;
@@ -32,20 +33,36 @@ package
 				for (var x:int = 0; x < 80; x++)
 				for (var y:int = 0; y < 80; y++)
 				{
-					t = world.getTile(x, y);
-					terminal.write(t.glyph, x, y, t.fg, t.bg);
+					if (fieldOfView.isVisibleNow(x, y))
+					{
+						t = world.getTile(x, y);
+						terminal.write(t.glyph, x, y, t.fg, t.bg);
+					}
+					else if (fieldOfView.wasVisible(x, y))
+					{
+						var memoryFg:int = Color.hsv(250, 100, 20);
+						var memoryBg:int = Color.hsv(250, 100, 5);
+						t = world.getTile(x, y);
+						terminal.write(t.glyph, x, y, Color.lerp(t.fg, memoryFg, 0.33), Color.lerp(t.bg, memoryBg, 0.33));
+					}
 				}
 				
 				for each (var item:Item in world.items)
 				{
-					t = world.getTile(item.x, item.y);
-					terminal.write(item.glyph, item.x, item.y, item.fg, t.bg);
+					if (fieldOfView.isVisibleNow(item.x, item.y))
+					{
+						t = world.getTile(item.x, item.y);
+						terminal.write(item.glyph, item.x, item.y, item.fg, t.bg);
+					}
 				}
 				
 				for each (var creature:Creature in world.creatures)
 				{
-					t = world.getTile(creature.x, creature.y);
-					terminal.write(creature.glyph, creature.x, creature.y, creature.fg, t.bg);
+					if (fieldOfView.isVisibleNow(creature.x, creature.y))
+					{
+						t = world.getTile(creature.x, creature.y);
+						terminal.write(creature.glyph, creature.x, creature.y, creature.fg, t.bg);
+					}
 				}
 				/*
 				// show distance from starting room
@@ -68,6 +85,9 @@ package
 					startDemo();
 					
 				world.update();
+				fieldOfView.calculateVisibility(hero.x, hero.y, 9, function(vx:int, vy:int):Boolean {
+					return world.getTile(vx, vy).allowsVision;
+				});
 				
 				while (world.animations.length > 0)
 				{
@@ -82,6 +102,7 @@ package
 		
 		private function startDemo():void
 		{
+			fieldOfView = new FieldOfView();
 			world = new World();
 			hero = new Hero(1, 30);
 			world.addCreature(hero);
