@@ -45,12 +45,12 @@ package
 					if (!t.isWalkable || t == Tile.closedDoor)
 						break;
 					
-					var other:Creature = world.getCreature(targetX, targetY);
+					var target:Creature = world.getCreature(targetX, targetY);
 					
-					if (other == null)
+					if (target == null)
 						continue;
 					
-					if (other.glyph == "@")
+					if (target.glyph == "@")
 						fireArrow(ox, oy);
 					
 					return;

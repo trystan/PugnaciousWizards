@@ -46,6 +46,15 @@ package
 					t = world.getTile(creature.x, creature.y);
 					terminal.write(creature.glyph, creature.x, creature.y, creature.fg, t.bg);
 				}
+				/*
+				// show distance from starting room
+				for each (var room:Room in world.rooms)
+				{
+					var x:int = room.x * 8 + 6;
+					var y:int = room.y * 8 + 6;
+					
+					terminal.write(room.dist + "", x, y);
+				}*/
 				
 				terminal.writeCenter("Pugnacious Wizards", 1);
 				terminal.writeCenter("a 2013 7DRL by Trystan Spangler", 3);
@@ -74,31 +83,36 @@ package
 			hero = new Hero(1, 30);
 			world.addCreature(hero);
 			
-			for (var i:int = 0; i < 30; i++)
+			for each (var room:Room in world.rooms)
 			{
-				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
-				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
+				if (Math.random() < 0.5)
+					continue;
 				
-				if (world.getTile(x, y).isWalkable)
-					world.addCreature(new Guard(x, y));
-			}
-			
-			for (var i:int = 0; i < 20; i++)
-			{
-				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
-				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
+				var points:int = room.dist;
 				
-				if (world.getTile(x, y).isWalkable)
-					world.addCreature(new Archer(x, y));
-			}
-			
-			for (var i:int = 0; i < 10; i++)
-			{
-				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
-				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
-				
-				if (world.getTile(x, y).isWalkable)
-					world.addCreature(new Knight(x, y));
+				while (points > 0)
+				{
+					var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 7);
+					var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 7);	
+					
+					var t:int = Math.random();
+					
+					if (t < 0.20 && points > 12)
+					{
+						points -= 12;
+						world.addCreature(new Knight(x, y));
+					}
+					else if (t < 0.40 && points > 6)
+					{
+						points -= 6;
+						world.addCreature(new Archer(x, y));
+					}
+					else
+					{
+						points -= 4;
+						world.addCreature(new Guard(x, y));
+					}
+				}
 			}
 		}
 	}

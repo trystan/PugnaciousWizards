@@ -8,6 +8,7 @@ package
 		public var creatures:Array = [];
 		public var items:Array = [];
 		public var animations:Array = [];
+		public var rooms:Array = [];
 		
 		public function World() 
 		{
@@ -15,6 +16,39 @@ package
 			makeMaze();
 			addRandomDoors();
 			setTile(4, 40, Tile.closedDoor);
+			
+			addRoom(new Room(0, 4, 0));
+		}
+		
+		private function addRoom(room:Room):void
+		{
+			var existing:Array = rooms.filter(function (value:Room, index:int, array:Array):Boolean {
+				return value.x == room.x && value.y == room.y;
+			});
+			
+			if (existing.length > 0)
+			{
+				if (room.dist >= existing[0].dist)
+					return;
+				
+				existing[0].dist = room.dist;
+			}
+			else
+			{
+				rooms.push(room);
+			}
+					
+			if (room.y > 0 && getTile(room.x * 8 + 4 + 4, room.y * 8 + 4) == Tile.closedDoor)
+				addRoom(new Room(room.x, room.y - 1, room.dist + 1));
+				
+			if (room.y < 8 && getTile(room.x * 8 + 4 + 4, room.y * 8 + 4 + 8) == Tile.closedDoor)
+				addRoom(new Room(room.x, room.y + 1, room.dist + 1));
+			
+			if (room.x > 0 && getTile(room.x * 8 + 4, room.y * 8 + 4 + 4) == Tile.closedDoor)
+				addRoom(new Room(room.x - 1, room.y, room.dist + 1));
+				
+			if (room.x < 8 && getTile(room.x * 8 + 4 + 8, room.y * 8 + 4 + 4) == Tile.closedDoor)
+				addRoom(new Room(room.x + 1, room.y, room.dist + 1));
 		}
 		
 		public function update():void

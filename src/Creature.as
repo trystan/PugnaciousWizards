@@ -41,13 +41,19 @@ package
 			}
 			else if (world.getTile(x + mx, y + my) == Tile.closedDoor)
 			{
-				world.setTile(x + mx, y + my, Tile.openDoor);
+				if (canOpenDoors())
+					world.setTile(x + mx, y + my, Tile.openDoor);
 			}
 			else if (world.getTile(x + mx, y + my).isWalkable)
 			{
 				x += mx;
 				y += my;
 			}
+		}
+		
+		public function canOpenDoors():Boolean
+		{
+			return glyph == "@";
 		}
 		
 		public function attack(other:Creature):void
