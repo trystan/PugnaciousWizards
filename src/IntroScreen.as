@@ -69,13 +69,22 @@ package
 			hero = new Hero(1, 30);
 			world.addCreature(hero);
 			
-			for (var i:int = 0; i < 30; i++)
+			for (var i:int = 0; i < 50; i++)
 			{
 				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
 				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
 				
 				if (world.getTile(x, y).isWalkable)
 					world.addCreature(new Guard(x, y));
+			}
+			
+			for (var i:int = 0; i < 10; i++)
+			{
+				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
+				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
+				
+				if (world.getTile(x, y).isWalkable)
+					world.addCreature(new Knight(x, y));
 			}
 		}
 	}
