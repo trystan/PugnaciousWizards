@@ -53,7 +53,7 @@ package
 		
 		public function isEnemy(other:Creature):Boolean 
 		{
-			return other is Hero || other is Skeleton;
+			return other is Player || other is Skeleton;
 		}
 		
 		public function canOpenDoors():Boolean

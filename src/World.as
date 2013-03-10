@@ -92,7 +92,7 @@ package
 		
 		public function addCreature(creature:Creature):void
 		{
-			if (creature is Hero)
+			if (creature is Player)
 				hero = creature;
 			
 			creatures.push(creature);

@@ -2,22 +2,15 @@ package
 {
 	import flash.geom.Point;
 	
-	public class Hero extends Creature
+	public class Hero extends Player
 	{
-		public var piecesOfAmulet:int = 0;
-		
 		public function Hero(x:int, y:int)
 		{
-			super("@", Color.hsv(0, 0, 90), x, y);
+			super(x, y);
 			
 			meleeAttack = 20;
 			meleeDefence = 5;
 			hp = 5000;
-		}
-		
-		override public function isEnemy(other:Creature):Boolean
-		{
-			return true;
 		}
 		
 		override public function update():void
