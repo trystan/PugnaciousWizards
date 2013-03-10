@@ -11,6 +11,14 @@ package
 			this.x = x;
 			this.y = y;
 			this.dist = dist;
-		}		
+		}
+		
+		public function contains(creature:Creature):Boolean
+		{
+			var mapX:int = x * 8 + 4;
+			var mapY:int = y * 8 + 4;
+			
+			return creature.x >= mapX && creature.x < mapX + 8 && creature.y >= mapY && creature.y < mapY + 8;
+		}
 	}
 }

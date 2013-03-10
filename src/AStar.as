@@ -108,7 +108,7 @@ package
 		
 		private function getHCost(from:Point, to:Point):int
 		{
-			return Math.abs(from.x - to.x) + Math.abs(from.y - to.y);
+			return (Math.abs(from.x - to.x) + Math.abs(from.y - to.y)) / 2
 		}
 		
 		private function getFromList(list:Array, loc:Point):AStarNode

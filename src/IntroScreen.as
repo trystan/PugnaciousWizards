@@ -64,6 +64,8 @@ package
 			bind(".", "step", function():void {
 				if (hero.hp < 1)
 					startDemo();
+				else if (world.getRoom(hero.x, hero.y) == null && hero.piecesOfAmulet == 3)
+					startDemo();
 					
 				world.update();
 				

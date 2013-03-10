@@ -13,19 +13,17 @@ package
 		
 		override public function update():void
 		{
-			for (var ox:int = -1; ox < 2; ox++)
-			for (var oy:int = -1; oy < 2; oy++)
+			if (world.getRoom(x, y).contains(world.hero))
 			{
-				var other:Creature = world.getCreature(x + ox, y + oy);
+				var mx:int = x < world.hero.x ? 1 : (x > world.hero.x ? -1 : 0);
+				var my:int = y < world.hero.y ? 1 : (y > world.hero.y ? -1 : 0);
 				
-				if (other != null && other.glyph == "@")
-				{
-					walk(other.x - x, other.y - y);
-					return;
-				}
+				walk(mx, my);
 			}
-			
-			wander();
+			else
+			{
+				wander();
+			}
 		}
 	}
 }

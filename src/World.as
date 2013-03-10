@@ -5,6 +5,8 @@ package
 	{
 		private var tiles:Array;
 		
+		public var hero:Creature;
+		
 		public var creatures:Array = [];
 		public var items:Array = [];
 		public var animations:Array = [];
@@ -90,6 +92,9 @@ package
 		
 		public function addCreature(creature:Creature):void
 		{
+			if (creature is Hero)
+				hero = creature;
+			
 			creatures.push(creature);
 			creature.world = this;
 		}
@@ -105,6 +110,19 @@ package
 			items = items.filter(function(value:Item, index:int, array:Array):Boolean {
 				return value != item;
 			});
+		}
+		
+		public function getRoom(x:int, y:int):Room
+		{
+			x = (x - 4) / 8;
+			y = (y - 4) / 8;
+			
+			for each (var room:Room in rooms)
+			{
+				if (room.x == x && room.y == y)
+					return room;
+			}
+			return null;
 		}
 		
 		public function getItem(x:int, y:int):Item
