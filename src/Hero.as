@@ -4,13 +4,20 @@ package
 	
 	public class Hero extends Creature
 	{
+		public var piecesOfAmulet:int = 0;
+		
 		public function Hero(x:int, y:int)
 		{
 			super("@", Color.hsv(0, 0, 90), x, y);
 			
 			meleeAttack = 20;
 			meleeDefence = 5;
-			hp = 100;
+			hp = 1000000;
+		}
+		
+		override public function isEnemy(other:Creature):Boolean
+		{
+			return true;
 		}
 		
 		override public function update():void
@@ -27,29 +34,98 @@ package
 				}
 			}
 			
-			var nextStep:Point = findNearestDoor();
+			var itemHere:Item = world.getItem(x, y);
 			
-			if (nextStep == null)
-				wander();
+			if (itemHere is PieceOfAmulet)
+			{
+				piecesOfAmulet++;
+				world.removeItem(itemHere);
+			}
+			else if (piecesOfAmulet == 3)
+			{
+				exitCastle();
+			}
 			else
-				walk(nextStep.x - x, nextStep.y - y);
+			{
+				var nextStep:Point = findNearestAmuletPiece();
+				
+				if (nextStep == null)
+					nextStep = findNearestDoor();
+				
+				if (nextStep == null)
+					wander();
+				else
+					walk(nextStep.x - x, nextStep.y - y);
+			}
 		}
 		
-		private var pathToDoor:Array = null;
+		public function exitCastle():void 
+		{
+			if (pathToTarget == null
+				|| pathToTarget.length == 0
+				|| pathToTarget[pathToTarget.length - 1].x != 2 
+				|| pathToTarget[pathToTarget.length - 1].y != 40)
+			{
+				pathToTarget = AStar.pathTo(
+					function(px:int, py:int):Boolean { return world.getTile(px, py).isWalkable; }, 
+					new Point(x, y),
+					new Point(2, 40),
+					true);
+			}
+
+			if (pathToTarget != null && pathToTarget.length > 0)
+			{
+				var nextStep:Point = pathToTarget.shift();
+				walk(nextStep.x - x, nextStep.y - y);
+			}
+		}
+		
+		private var pathToTarget:Array = null;
+		public function findNearestAmuletPiece():Point
+		{
+			if (pathToTarget == null || pathToTarget.length == 0)
+			{
+				for each (var item:Item in world.items)
+				{
+					if (!(item is PieceOfAmulet))
+						continue;
+					
+					var path:Array = Line.betweenCoordinates(x, y, item.x, item.y).points;
+					var failed = false;
+					for each (var point:Point in path)
+					{
+						if (!world.getTile(point.x, point.y).isWalkable)
+							failed = true;
+					}
+					
+					if (failed)
+						continue;
+						
+					pathToTarget = path;
+					return pathToTarget.shift();
+				}
+			}
+			
+			if (pathToTarget == null || pathToTarget.length == 0)
+				return null;
+				
+			return pathToTarget.shift();
+		}
+		
 		public function findNearestDoor():Point
 		{
-			if (pathToDoor == null || pathToDoor.length == 0)
+			if (pathToTarget == null || pathToTarget.length == 0)
 			{
-				pathToDoor = Dijkstra.pathTo(
+				pathToTarget = Dijkstra.pathTo(
 					new Point(x, y), 
 					function(px:int,py:int):Boolean { return world.getTile(px, py).isWalkable; },
 					function(px:int,py:int):Boolean { return world.getTile(px, py) == Tile.closedDoor; } );
 			}
 			
-			if (pathToDoor == null || pathToDoor.length == 0)
+			if (pathToTarget == null || pathToTarget.length == 0)
 				return null;
 				
-			return pathToDoor.shift();
+			return pathToTarget.shift();
 		}
 	}
 }

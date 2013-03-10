@@ -35,7 +35,7 @@ package
 			
 			var other:Creature = world.getCreature(x + mx, y + my);
 			
-			if (other != null)
+			if (other != null && isEnemy(other))
 			{
 				attack(other);
 			}
@@ -49,6 +49,11 @@ package
 				x += mx;
 				y += my;
 			}
+		}
+		
+		public function isEnemy(other:Creature):Boolean 
+		{
+			return other is Hero || other is Skeleton;
 		}
 		
 		public function canOpenDoors():Boolean

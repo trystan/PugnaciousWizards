@@ -53,7 +53,7 @@ package
 		
 		public function update():void
 		{
-			for each (var item:PileOfBones in items)
+ 			for each (var item:Item in items)
 				item.update();
 				
 			for each (var creature:Creature in creatures)
@@ -94,17 +94,27 @@ package
 			creature.world = this;
 		}
 		
-		public function addItem(item:PileOfBones):void
+		public function addItem(item:Item):void
 		{
 			items.push(item);
 			item.world = this;
 		}
 		
-		public function removeItem(item:PileOfBones):void
+		public function removeItem(item:Item):void
 		{
-			items = items.filter(function(value:PileOfBones, index:int, array:Array):Boolean {
+			items = items.filter(function(value:Item, index:int, array:Array):Boolean {
 				return value != item;
 			});
+		}
+		
+		public function getItem(x:int, y:int):Item
+		{
+			for each (var item:Item in items)
+			{
+				if (item.x == x && item.y == y)
+					return item;
+			}
+			return null;
 		}
 		
 		private function makeCastleWalls():void 

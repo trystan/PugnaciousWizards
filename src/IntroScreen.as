@@ -1,6 +1,7 @@
 package  
 {
 	import com.headchant.asciipanel.AsciiPanel;
+	import flash.geom.Point;
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
@@ -22,7 +23,7 @@ package
 				if (intervalTimeout == 0)
 				{
 					var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 50, event);	
+					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 16, event);	
 				}
 				
 				terminal.clear();
@@ -35,7 +36,7 @@ package
 					terminal.write(t.glyph, x, y, t.fg, t.bg);
 				}
 				
-				for each (var item:PileOfBones in world.items)
+				for each (var item:Item in world.items)
 				{
 					t = world.getTile(item.x, item.y);
 					terminal.write(item.glyph, item.x, item.y, item.fg, t.bg);
@@ -83,8 +84,11 @@ package
 			hero = new Hero(1, 30);
 			world.addCreature(hero);
 			
+			var maxDistance:int = 0;
 			for each (var room:Room in world.rooms)
 			{
+				maxDistance = Math.max(maxDistance, room.dist);
+				
 				if (Math.random() < 0.5)
 					continue;
 				
@@ -112,6 +116,29 @@ package
 						points -= 4;
 						world.addCreature(new Guard(x, y));
 					}
+				}
+			}
+			
+			var candidates:Array = world.rooms.filter(function (value:Room, index:int, array:Array):Boolean {
+				return value.dist > maxDistance / 2;
+			});
+			
+			if (candidates.length < 3)
+			{
+				startDemo();
+			}
+			else
+			{
+				for (var i:int = 0; i < 3; i++)
+				{
+					var room:Room = candidates[Math.floor(Math.random() * candidates.length)];
+					
+					candidates.splice(candidates.indexOf(room), 1);
+					
+					var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 7);
+					var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 7);
+					
+					world.addItem(new PieceOfAmulet(x, y));
 				}
 			}
 		}

@@ -11,6 +11,11 @@ package
 			hp = 5;
 		}
 		
+		override public function isEnemy(other:Creature):Boolean
+		{
+			return !(other is Skeleton);
+		}
+		
 		override public function update():void
 		{
 			for (var ox:int = -1; ox < 2; ox++)
