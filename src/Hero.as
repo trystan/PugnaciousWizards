@@ -20,7 +20,7 @@ package
 			{
 				var other:Creature = world.getCreature(x + ox, y + oy);
 				
-				if (other != null && other.glyph != "@")
+				if (other != null && other.glyph != "@" && other.glyph != "k")
 				{
 					walk(other.x - x, other.y - y);
 					return;

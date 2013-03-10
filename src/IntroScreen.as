@@ -22,7 +22,7 @@ package
 				if (intervalTimeout == 0)
 				{
 					var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 100, event);	
+					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 50, event);	
 				}
 				
 				terminal.clear();
@@ -56,6 +56,11 @@ package
 					startDemo();
 					
 				world.update();
+				
+				while (world.animations.length > 0)
+				{
+					enterScreen(world.animations.shift());
+				}
 			});
 			
 			bind("enter", "start", function():void {
@@ -69,13 +74,22 @@ package
 			hero = new Hero(1, 30);
 			world.addCreature(hero);
 			
-			for (var i:int = 0; i < 50; i++)
+			for (var i:int = 0; i < 30; i++)
 			{
 				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
 				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
 				
 				if (world.getTile(x, y).isWalkable)
 					world.addCreature(new Guard(x, y));
+			}
+			
+			for (var i:int = 0; i < 20; i++)
+			{
+				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
+				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
+				
+				if (world.getTile(x, y).isWalkable)
+					world.addCreature(new Archer(x, y));
 			}
 			
 			for (var i:int = 0; i < 10; i++)

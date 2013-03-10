@@ -7,6 +7,7 @@ package
 		
 		public var creatures:Array = [];
 		public var items:Array = [];
+		public var animations:Array = [];
 		
 		public function World() 
 		{
@@ -41,6 +42,11 @@ package
 				return Tile.outOfBounds;
 				
 			return tiles[x][y];
+		}
+		
+		public function addAnimation(animation:ArrowAnimation):void
+		{
+			animations.push(animation);
 		}
 		
 		public function setTile(x:int, y:int, t:Tile):void
