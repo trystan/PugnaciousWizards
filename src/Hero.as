@@ -12,7 +12,7 @@ package
 			
 			meleeAttack = 20;
 			meleeDefence = 5;
-			hp = 1000000;
+			hp = 5000;
 		}
 		
 		override public function isEnemy(other:Creature):Boolean

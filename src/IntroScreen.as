@@ -24,7 +24,7 @@ package
 				if (intervalTimeout == 0)
 				{
 					var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1/60, event);	
+					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1/30, event);	
 				}
 				
 				terminal.clear();
@@ -158,8 +158,8 @@ package
 					
 					candidates.splice(candidates.indexOf(room), 1);
 					
-					var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 7);
-					var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 7);
+					var x:int = room.x * 8 + 5 + 3;
+					var y:int = room.y * 8 + 5 + 3;
 					
 					world.addItem(new PieceOfAmulet(x, y));
 				}
