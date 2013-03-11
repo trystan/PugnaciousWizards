@@ -30,13 +30,21 @@ package
 				for each (var p:Point in previousFireTiles)
 				{
 					var t:Tile = world.getTile(p.x, p.y);
-					terminal.write(t.glyph, p.x, p.y, Color.lerp(t.fg, fire, 0.43), Color.lerp(t.bg, fire, 0.43));
+					var glyph:String = t.glyph;
+					var c:Creature = world.getCreature(p.x, p.y);
+					if (c != null)
+						glyph = c.glyph;
+					terminal.write(glyph, p.x, p.y, Color.lerp(t.fg, fire, 0.50), Color.lerp(t.bg, fire, 0.75));
 				}
 				
 				for each (var p:Point in currentFireTiles)
 				{
 					var t:Tile = world.getTile(p.x, p.y);
-					terminal.write(t.glyph, p.x, p.y, Color.lerp(t.fg, fire, 0.10), Color.lerp(t.bg, fire, 0.10));
+					var glyph:String = t.glyph;
+					var c:Creature = world.getCreature(p.x, p.y);
+					if (c != null)
+						glyph = c.glyph;
+					terminal.write(glyph, p.x, p.y, Color.lerp(t.fg, fire, 0.10), Color.lerp(t.bg, fire, 0.50));
 				}
 			});
 			

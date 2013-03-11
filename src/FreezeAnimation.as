@@ -16,7 +16,6 @@ package
 		public var ox:int;
 		public var oy:int;
 		public var countDown:int;
-		public var glyph:String;
 		public var path:Array;
 		
 		public var intervalTimeout:int = 0;
@@ -24,23 +23,31 @@ package
 		public function FreezeAnimation(world:World, sx:int, sy:int, ox:int, oy:int) 
 		{
 			this.world = world;
-			this.x = sx + ox;
-			this.y = sy + oy;
+			this.x = sx;
+			this.y = sy;
 			this.ox = ox;
 			this.oy = oy;
 			this.countDown = 9;
-			this.glyph = "*";
 			this.path = [];
 			
 			display(function(terminal:AsciiPanel):void {
+				var ice:int = Color.hsv(215, 70, 95);
 				for each (var p:Point in path)
 				{
+					var glyph:String = " ";
+					var c:Creature = world.getCreature(p.x, p.y);
+					if (c != null)
+						glyph = c.glyph;
 					var t:Tile = world.getTile(p.x, p.y);
-					terminal.write(glyph, p.x, p.y, Color.hsv(250, 60, 80), t.bg);
+					terminal.write(glyph, p.x, p.y, ice, Color.lerp(ice, t.bg, 0.25));
 				}
 				
+				var glyph:String = " ";
+				var c:Creature = world.getCreature(x, y);
+				if (c != null)
+					glyph = c.glyph;
 				var t:Tile = world.getTile(x, y);
-				terminal.write(glyph, x, y, Color.hsv(250, 90, 80), t.bg);
+				terminal.write(glyph, x, y, ice, Color.lerp(ice, t.bg, 0.90));
 			});
 			
 			bind(".", "step", function():void {
