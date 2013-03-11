@@ -40,14 +40,14 @@ package
 			}
 			
 			return new MagicAction(directionX == 0 && directionY == 0 ? 0 : 15, function(c:Creature):void {
-				c.world.addAnimation(new ArrowAnimation(c.world, c.x, c.y, directionX, directionY));
+				c.world.addAnimation(new MagicMissileAnimation(c.world, c.x, c.y, directionX, directionY, c.viewDistance));
 			});
 		}
 		
 		public function playerCast(creature:Creature):void
 		{
 			RL.enterScreen(new TargetDirectionScreen(function(mx:int, my:int):void {
-				creature.world.addAnimation(new ArrowAnimation(creature.world, creature.x, creature.y, mx, my));
+				creature.world.addAnimation(new MagicMissileAnimation(creature.world, creature.x, creature.y, mx, my, creature.viewDistance));
 			}));
 		}
 	}
