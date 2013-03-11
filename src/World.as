@@ -308,13 +308,13 @@ package
 				addBloodOnce(x, y-1);
 			if (Math.random() < 0.15)
 				addBloodOnce(x, y+1);
-			if (Math.random() < 0.05)
+			if (Math.random() < 0.075)
 				addBloodOnce(x-1, y-1);
-			if (Math.random() < 0.05)
+			if (Math.random() < 0.075)
 				addBloodOnce(x+1, y-1);
-			if (Math.random() < 0.05)
+			if (Math.random() < 0.075)
 				addBloodOnce(x-1, y+1);
-			if (Math.random() < 0.05)
+			if (Math.random() < 0.075)
 				addBloodOnce(x+1, y+1);
 		}
 		
