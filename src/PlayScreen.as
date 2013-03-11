@@ -43,6 +43,10 @@ package
 			bind("2", "magic 2", function ():void {
 				new MagicMissile().apply(game.hero);
 			});
+			bind("3", "magic 3", function ():void {
+				new MagicHeal().apply(game.hero);
+				step();
+			});
 		}
 		
 		public function walk(mx:int, my:int):void
