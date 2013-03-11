@@ -8,15 +8,13 @@ package
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class ExplodeAnimation extends BaseScreen
+	public class ExplodeAnimation extends AnimatedScreen
 	{
 		public var world:World;
 		public var amount:int;
 		
 		public var previousFireTiles:Array = [];
 		public var currentFireTiles:Array = [];
-		
-		public var intervalTimeout:int = 0;
 		
 		public function ExplodeAnimation(world:World, sx:int, sy:int, amount:int) 
 		{
@@ -48,7 +46,7 @@ package
 				}
 			});
 			
-			bind(".", "step", function():void {
+			bind(".", "animate", function():void {
 				var nextFireTiles:Array = [];
 				
 				for each (var p:Point in previousFireTiles)
@@ -121,19 +119,10 @@ package
 				currentFireTiles = nextFireTiles;
 				
 				if (currentFireTiles.length == 0 || amount < 0)
-				{
-					clearInterval(intervalTimeout);
 					exitScreen();
-				}
 			});
 			
-			BeginQuickTime();
-		}
-		
-		private function BeginQuickTime():void 
-		{
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / 30, event);
+			animate(30);
 		}
 	}
 }
