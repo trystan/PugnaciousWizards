@@ -81,7 +81,7 @@ package
 			return tiles[x][y];
 		}
 		
-		public function addAnimation(animation:Screen):void
+		public function addAnimation(animation:AnimatedScreen):void
 		{
 			animations.push(animation);
 		}

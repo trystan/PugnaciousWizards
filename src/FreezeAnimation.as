@@ -8,7 +8,7 @@ package
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class FreezeAnimation extends BaseScreen
+	public class FreezeAnimation extends AnimatedScreen
 	{
 		public var world:World;
 		public var x:int;
@@ -17,8 +17,6 @@ package
 		public var oy:int;
 		public var countDown:int;
 		public var path:Array;
-		
-		public var intervalTimeout:int = 0;
 		
 		public function FreezeAnimation(world:World, sx:int, sy:int, ox:int, oy:int) 
 		{
@@ -50,14 +48,13 @@ package
 				terminal.write(glyph, x, y, ice, Color.lerp(ice, t.bg, 0.90));
 			});
 			
-			bind(".", "step", function():void {
+			bind(".", "animate", function():void {
 				path.push(new Point(x, y));
 				x += ox;
 				y += oy;
 				
 				if (x < 0 || y < 0 || x > 78 || y > 78)
 				{
-					clearInterval(intervalTimeout);
 					exitScreen();
 					return;
 				}
@@ -66,28 +63,19 @@ package
 				if (creature != null)
 				{
 					creature.isFrozenCounter = 12;
-					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 				{
-					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 				else if (countDown-- < 1)
 				{
-					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 			});
 			
-			BeginQuickTime();
-		}
-		
-		private function BeginQuickTime():void 
-		{
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / 30, event);
+			animate(30);
 		}
 	}
 }

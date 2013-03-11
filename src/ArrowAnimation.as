@@ -7,7 +7,7 @@ package
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class ArrowAnimation extends BaseScreen
+	public class ArrowAnimation extends AnimatedScreen
 	{
 		public var world:World;
 		public var x:int;
@@ -16,8 +16,6 @@ package
 		public var oy:int;
 		public var countDown:int;
 		public var glyph:String;
-		
-		public var intervalTimeout:int = 0;
 		
 		public function ArrowAnimation(world:World, sx:int, sy:int, ox:int, oy:int) 
 		{
@@ -43,7 +41,7 @@ package
 				terminal.write(glyph, x, y, 0xffffff, t.bg);
 			});
 			
-			bind(".", "step", function():void {
+			bind(".", "animate", function():void {
 				x += ox;
 				y += oy;
 				
@@ -51,28 +49,19 @@ package
 				if (creature != null)
 				{
 					creature.hp -= 10;
-					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 				{
-					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 				else if (countDown-- < 1)
 				{
-					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 			});
 			
-			BeginQuickTime();
-		}
-		
-		private function BeginQuickTime():void 
-		{
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / 90, event);
+			animate(90);
 		}
 	}
 }
