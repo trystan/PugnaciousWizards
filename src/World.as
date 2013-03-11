@@ -328,6 +328,9 @@ package
 		
 		private function addBloodOnce(x:int, y:int):void
 		{
+			if (x < 0 && y < 0 && x > 79 || y > 79)
+				return;
+				
 			blood[x][y] = Math.min(blood[x][y] + 1, 19);
 		}
 		

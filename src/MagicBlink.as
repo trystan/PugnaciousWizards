@@ -4,6 +4,26 @@ package
 	
 	public class MagicBlink implements Magic
 	{
+		public function calculateAiBenefit(caster:Creature):MagicAction
+		{
+			var total:int = 0;
+			
+			var dirs:Array = [[ -1, -1], [ -0, -1], [ +1, -1],
+							  [ -1, -0],            [ +1, -0],
+							  [ -1, +1], [ -0, +1], [ +1, +1]];
+			
+			for each (var offset:Array in dirs)
+			{
+				if (caster.world.getCreature(caster.x + offset[0], caster.y + offset[1]) != null)
+					total++;
+			}
+
+			return new MagicAction(total * 10, function(c:Creature):void {
+				playerCast(caster);
+				trace("hero blinked");
+			});
+		}
+		
 		public function playerCast(creature:Creature):void
 		{
 			var tries:int = 0;

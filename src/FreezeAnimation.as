@@ -18,14 +18,14 @@ package
 		public var countDown:int;
 		public var path:Array;
 		
-		public function FreezeAnimation(world:World, sx:int, sy:int, ox:int, oy:int) 
+		public function FreezeAnimation(world:World, sx:int, sy:int, ox:int, oy:int, countDown:int) 
 		{
 			this.world = world;
 			this.x = sx;
 			this.y = sy;
 			this.ox = ox;
 			this.oy = oy;
-			this.countDown = 9;
+			this.countDown = countDown;
 			this.path = [];
 			
 			display(function(terminal:AsciiPanel):void {
