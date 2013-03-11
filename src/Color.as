@@ -2,6 +2,9 @@ package
 {
     public class Color 
 	{	
+		public static var fire:int = Color.hsv(15, 90, 70);
+		public static var ice:int = Color.hsv(215, 70, 95);
+		
 		public static function hsv(h:Number, s:Number, v:Number):uint
 		{
 			 var r:Number, g:Number, b:Number, i:Number, f:Number, p:Number, q:Number, t:Number;

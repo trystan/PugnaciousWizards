@@ -2,18 +2,11 @@ package
 {
 	import org.microrl.architecture.RL;
 	
-	public class MagicExplode 
+	public class MagicExplode implements Magic
 	{
-		private var fov:FieldOfView;
-		
-		public function MagicExplode(fov:FieldOfView)
+		public function playerCast(creature:Creature):void
 		{
-			this.fov = fov;
-		}
-		
-		public function apply(creature:Creature):void
-		{
-			RL.enterScreen(new TargetVisibleTileScreen(creature.x, creature.y, fov, function(x:int, y:int):void {
+			RL.enterScreen(new TargetVisibleTileScreen(creature.x, creature.y, creature.viewDistance, creature.world, function(x:int, y:int):void {
 				creature.world.addAnimation(new ExplodeAnimation(creature.world, x, y, 100));
 			}));
 		}

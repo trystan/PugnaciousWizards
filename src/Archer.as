@@ -24,7 +24,7 @@ package
 				var targetX:int = x;
 				var targetY:int = y;
 
-				for (var i:int = 0; i < 9; i++)
+				for (var i:int = 0; i < viewDistance; i++)
 				{
 					targetX += ox;
 					targetY += oy;

@@ -8,6 +8,7 @@ package
 		public var x:int;
 		public var y:int;
 		public var world:World;
+		public var viewDistance:int;
 		
 		public var meleeAttack:int = 10;
 		public var meleeDefence:int = 0;
@@ -20,9 +21,9 @@ package
 		public function get color():int 
 		{
 			if (isOnFireCounter > 0)
-				return Color.lerp(this.fg, Color.hsv(15, 90, 50), 0.2);
+				return Color.lerp(this.fg, Color.fire, 0.2);
 			else if (isFrozenCounter > 0)
-				return Color.lerp(this.fg, Color.hsv(260, 90, 90), 0.2);
+				return Color.lerp(this.fg, Color.ice, 0.2);
 			else
 				return this.fg;
 		}
@@ -34,6 +35,7 @@ package
 			this.x = x;
 			this.y = y;
 			this.hp = 100;
+			this.viewDistance = 9;
 		}
 		
 		public function update():void

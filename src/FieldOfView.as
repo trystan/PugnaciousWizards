@@ -37,8 +37,8 @@ package
 		{
 			lastTurn++;
 			
-			for (var vx:int = x - r; vx < x + r; vx++)
-			for (var vy:int = y - r; vy < y + r; vy++)
+			for (var vx:int = x - r; vx < x + r + 1; vx++)
+			for (var vy:int = y - r; vy < y + r + 1; vy++)
 			{
 				if (vx < 0 || vx > 79 || vy < 0 || vy > 79)
 					continue;

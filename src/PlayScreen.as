@@ -47,21 +47,21 @@ package
 			bind(".", "step", walk, 0, 0);
 			
 			bind("1", "magic 1", function ():void {
-				new MagicBlink().apply(game.hero);
+				game.hero.magic[0].playerCast(game.hero);
 				step();
 			});
 			bind("2", "magic 2", function ():void {
-				new MagicMissile().apply(game.hero);
+				game.hero.magic[1].playerCast(game.hero);
 			});
 			bind("3", "magic 3", function ():void {
-				new MagicHeal().apply(game.hero);
+				game.hero.magic[2].playerCast(game.hero);
 				step();
 			});
 			bind("4", "magic 4", function ():void {
-				new MagicExplode(game.fieldOfView).apply(game.hero);
+				game.hero.magic[3].playerCast(game.hero);
 			});
 			bind("5", "magic 5", function ():void {
-				new MagicFreeze().apply(game.hero);
+				game.hero.magic[4].playerCast(game.hero);
 			});
 		}
 		
@@ -97,7 +97,7 @@ package
 			}
 			
 			game.world.update();
-			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, 12, function(vx:int, vy:int):Boolean {
+			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
 				return game.world.getTile(vx, vy).allowsVision;
 			});
 			

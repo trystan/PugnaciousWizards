@@ -23,8 +23,6 @@ package
 			this.currentFireTiles = [new Point(sx, sy)];
 			
 			display(function(terminal:AsciiPanel):void {
-				var fire:int = Color.hsv(15, 90, 70);
-				
 				for each (var p:Point in previousFireTiles)
 				{
 					var t:Tile = world.getTile(p.x, p.y);
@@ -32,7 +30,7 @@ package
 					var c:Creature = world.getCreature(p.x, p.y);
 					if (c != null)
 						glyph = c.glyph;
-					terminal.write(glyph, p.x, p.y, Color.lerp(t.fg, fire, 0.50), Color.lerp(t.bg, fire, 0.75));
+					terminal.write(glyph, p.x, p.y, Color.lerp(t.fg, Color.fire, 0.50), Color.lerp(t.bg, Color.fire, 0.75));
 				}
 				
 				for each (var p:Point in currentFireTiles)
@@ -42,7 +40,7 @@ package
 					var c:Creature = world.getCreature(p.x, p.y);
 					if (c != null)
 						glyph = c.glyph;
-					terminal.write(glyph, p.x, p.y, Color.lerp(t.fg, fire, 0.10), Color.lerp(t.bg, fire, 0.50));
+					terminal.write(glyph, p.x, p.y, Color.lerp(t.fg, Color.fire, 0.10), Color.lerp(t.bg, Color.fire, 0.50));
 				}
 			});
 			

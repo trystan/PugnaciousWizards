@@ -1,8 +1,8 @@
 package  
 {
-	public class MagicHeal 
+	public class MagicHeal implements Magic
 	{
-		public function apply(creature:Creature):void
+		public function playerCast(creature:Creature):void
 		{
 			creature.hp = Math.min(100, creature.hp + 10);
 		}

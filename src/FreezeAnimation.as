@@ -29,7 +29,6 @@ package
 			this.path = [];
 			
 			display(function(terminal:AsciiPanel):void {
-				var ice:int = Color.hsv(215, 70, 95);
 				for each (var p:Point in path)
 				{
 					var glyph:String = " ";
@@ -37,7 +36,7 @@ package
 					if (c != null)
 						glyph = c.glyph;
 					var t:Tile = world.getTile(p.x, p.y);
-					terminal.write(glyph, p.x, p.y, ice, Color.lerp(ice, t.bg, 0.25));
+					terminal.write(glyph, p.x, p.y, Color.ice, Color.lerp(Color.ice, t.bg, 0.25));
 				}
 				
 				var glyph:String = " ";
@@ -45,7 +44,7 @@ package
 				if (c != null)
 					glyph = c.glyph;
 				var t:Tile = world.getTile(x, y);
-				terminal.write(glyph, x, y, ice, Color.lerp(ice, t.bg, 0.90));
+				terminal.write(glyph, x, y, Color.ice, Color.lerp(Color.ice, t.bg, 0.90));
 			});
 			
 			bind(".", "animate", function():void {

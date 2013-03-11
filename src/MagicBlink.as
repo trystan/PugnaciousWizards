@@ -1,14 +1,10 @@
 package  
 {
 	import flash.geom.Point;
-	public class MagicBlink 
+	
+	public class MagicBlink implements Magic
 	{
-		public function MagicBlink() 
-		{
-			
-		}
-		
-		public function apply(creature:Creature):void
+		public function playerCast(creature:Creature):void
 		{
 			var tries:int = 0;
 			
