@@ -51,6 +51,7 @@ package
 			{
 				hp--;
 				isOnFireCounter--;
+				bleed();
 			}
 			
 			if (isFrozenCounter > 0)
@@ -106,6 +107,16 @@ package
 			var amount:int = Math.max(meleeAttack - other.meleeDefence, 1);
 			
 			other.hp -= amount;
+			
+			bleed();
+		}
+		
+		public function bleed(much:Boolean = true):void
+		{
+			world.addBlood(x, y);
+			
+			if (much)
+				world.addBlood(x, y);
 		}
 		
 		public function wander():void

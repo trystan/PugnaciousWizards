@@ -12,15 +12,38 @@ package
 		public var items:Array = [];
 		public var animations:Array = [];
 		public var rooms:Array = [];
+		public var blood:Array = [];
 		
 		public function World() 
-		{
+		{	
 			makeCastleWalls();
 			makeMaze();
 			addRandomDoors();
 			setTile(4, 40, Tile.closedDoor);
 			
 			addRoom(new Room(0, 4, 0));
+			
+			
+			blood = [];
+			for (var x:int = 0; x < 80; x++)
+			{
+				var row:Array = [];
+				for (var y:int = 0; y < 80; y++)
+					row.push(0);
+				blood.push(row);
+			}
+			addBloodStains();
+		}
+		
+		private function addBloodStains():void 
+		{
+			for (var i:int = 0; i < 250; i++)
+			{
+				var x:int = Math.floor(Math.random() * 8 * 9) + 5;
+				var y:int = Math.floor(Math.random() * 8 * 9) + 5;
+				
+				addBlood(x, y);
+			}
 		}
 		
 		private function addRoom(room:Room):void
@@ -266,6 +289,38 @@ package
 					return creature;
 			}
 			return null;
+		}
+		
+		public function getBlood(x:int, y:int):int 
+		{
+			return blood[x][y];
+		}
+		
+		public function addBlood(x:int, y:int):void
+		{
+			addBloodOnce(x, y);
+			
+			if (Math.random() < 0.15)
+				addBloodOnce(x-1, y);
+			if (Math.random() < 0.15)
+				addBloodOnce(x+1, y);
+			if (Math.random() < 0.15)
+				addBloodOnce(x, y-1);
+			if (Math.random() < 0.15)
+				addBloodOnce(x, y+1);
+			if (Math.random() < 0.5)
+				addBloodOnce(x-1, y-1);
+			if (Math.random() < 0.5)
+				addBloodOnce(x+1, y-1);
+			if (Math.random() < 0.5)
+				addBloodOnce(x-1, y+1);
+			if (Math.random() < 0.5)
+				addBloodOnce(x+1, y+1);
+		}
+		
+		private function addBloodOnce(x:int, y:int):void
+		{
+			blood[x][y] = Math.min(blood[x][y] + 1, 9);
 		}
 	}
 }

@@ -49,17 +49,23 @@ package
 			bind("j,down", "move s", move,  0,  1);
 			bind("y", "move nw", move, -1, -1);
 			bind("u", "move ne", move,  1, -1);
-			bind("b", "move se", move,  1,  1);
-			bind("n", "move sw", move, -1,  1);
+			bind("b", "move se", move, -1,  1);
+			bind("n", "move sw", move,  1,  1);
 			bind(".", "step", move, 0, 0);
 			bind("enter", "done", doCallback);
 			bind("escape", "exit", exitScreen);
 		}
 		
 		private function move(mx:int, my:int):void
-		{		
-			targetX += mx;
-			targetY += my;
+		{	
+			var x:int = targetX + mx;
+			var y:int = targetY + my;
+			
+			if (x >= 0 && y >= 0 && x <= 79 && y <= 79)
+			{
+				targetX = x;
+				targetY = y;
+			}
 		}
 		
 		private function doCallback():void

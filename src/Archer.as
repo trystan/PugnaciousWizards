@@ -4,7 +4,7 @@ package
 	{
 		public function Archer(x:int, y:int) 
 		{
-			super("a", Color.hsv(90, 50, 50), x, y);
+			super("a", Color.hsv(120, 20, 85), x, y);
 			
 			meleeAttack = 5;
 			meleeDefence = 1;

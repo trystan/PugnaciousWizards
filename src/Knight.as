@@ -4,7 +4,7 @@ package
 	{
 		public function Knight(x:int, y:int) 
 		{
-			super("k", Color.hsv(200, 40, 60), x, y);
+			super("k", Color.hsv(200, 20, 90), x, y);
 			
 			meleeAttack = 20;
 			meleeDefence = 10;
