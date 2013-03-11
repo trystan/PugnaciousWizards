@@ -14,12 +14,15 @@ package
 		
 		public var hp:int;
 		
-		public var onFireCounter:int = 0;
+		public var isOnFireCounter:int = 0;
+		public var isFrozenCounter:int = 0;
 		
 		public function get color():int 
 		{
-			if (onFireCounter > 0)
-				return Color.lerp(this.fg, Color.hsv(15, 90, 50), 0.5);
+			if (isOnFireCounter > 0)
+				return Color.lerp(this.fg, Color.hsv(15, 90, 50), 0.2);
+			else if (isFrozenCounter > 0)
+				return Color.lerp(this.fg, Color.hsv(260, 90, 90), 0.2);
 			else
 				return this.fg;
 		}
@@ -35,13 +38,27 @@ package
 		
 		public function update():void
 		{
-			if (onFireCounter > 0)
+			if (isOnFireCounter > 0 && isFrozenCounter > 0)
 			{
-				hp--;
-				onFireCounter--;
+				var min:int = Math.min(isOnFireCounter, isFrozenCounter);
+				isOnFireCounter -= min;
+				isFrozenCounter -= min;
 			}
 			
-			updateInternal();
+			if (isOnFireCounter > 0)
+			{
+				hp--;
+				isOnFireCounter--;
+			}
+			
+			if (isFrozenCounter > 0)
+			{
+				isFrozenCounter--;
+			}
+			else
+			{
+				updateInternal();
+			}
 		}
 		
 		public function updateInternal():void

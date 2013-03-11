@@ -49,7 +49,7 @@ package
 					if (creature != null)
 					{
 						creature.hp -= 1;
-						creature.onFireCounter++;
+						creature.isOnFireCounter++;
 					}
 				}
 				
@@ -61,7 +61,7 @@ package
 					if (creature != null)
 					{
 						creature.hp -= 5;
-						creature.onFireCounter += 5;
+						creature.isOnFireCounter += 5;
 					}
 					
 					var offsets:Array = [[ -1, 0], [1, 0], [0, -1], [0, 1]];

@@ -22,8 +22,18 @@ package
 			
 			display(new WorldView(game));
 			display(function(terminal:AsciiPanel):void {
-				terminal.writeCenter(game.hero.hp + "% health", 4);
-				terminal.writeCenter("You need " + (3 - game.hero.piecesOfAmulet) + " more peices of the amulet.", 78);
+				var x:int = 81;
+				var y:int = 5;
+				terminal.write(game.hero.hp + "% health", x, y+=2);
+				terminal.write(game.hero.piecesOfAmulet + "/3 amulet pieces" , x, y+=2);
+				
+				y++;
+				terminal.write("-- magic --", x, y+=2);
+				terminal.write("1. blink", x, y+=2);
+				terminal.write("2. missile", x, y+=2);
+				terminal.write("3. heal", x, y+=2);
+				terminal.write("4. explosion", x, y+=2);
+				terminal.write("5. freeze", x, y+=2);
 			});
 			
 			bind("h,left", "move w", walk, -1,  0);
@@ -32,8 +42,8 @@ package
 			bind("j,down", "move s", walk,  0,  1);
 			bind("y", "move nw", walk, -1, -1);
 			bind("u", "move ne", walk,  1, -1);
-			bind("b", "move se", walk,  1,  1);
-			bind("n", "move sw", walk, -1,  1);
+			bind("b", "move se", walk, -1,  1);
+			bind("n", "move sw", walk,  1,  1);
 			bind(".", "step", walk, 0, 0);
 			
 			bind("1", "magic 1", function ():void {
@@ -50,12 +60,23 @@ package
 			bind("4", "magic 4", function ():void {
 				new MagicExplode(game.fieldOfView).apply(game.hero);
 			});
+			bind("5", "magic 5", function ():void {
+				new MagicFreeze().apply(game.hero);
+			});
 		}
 		
 		public function walk(mx:int, my:int):void
 		{
 			game.hero.walk(mx, my);
 			step();
+		}
+		
+		override protected function handleIntent(intent:String, behavior:Function):void 
+		{
+			if (game.hero.isFrozenCounter > 0)
+				step();
+			else
+				super.handleIntent(intent, behavior);
 		}
 		
 		private function step():void
@@ -83,8 +104,6 @@ package
 			while (game.world.animations.length > 0)
 			{
 				enterScreen(game.world.animations.shift());
-				
-				// RL.instance.handleKeyboardEvent(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190));
 			}
 		}
 	}

@@ -10,7 +10,7 @@ package
 		
 		public function Main():void 
 		{
-			var terminal:AsciiPanel = new AsciiPanel(80, 80);
+			var terminal:AsciiPanel = new AsciiPanel(100, 80);
 			terminal.useRasterFont(AsciiPanel.codePage437_8x8, 8, 8);
 			
 			addChild(new RL(new IntroScreen(), terminal));

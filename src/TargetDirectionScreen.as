@@ -25,8 +25,8 @@ package
 			bind("j,down", "move s", doCallback,  0,  1);
 			bind("y", "move nw", doCallback, -1, -1);
 			bind("u", "move ne", doCallback,  1, -1);
-			bind("b", "move se", doCallback,  1,  1);
-			bind("n", "move sw", doCallback, -1,  1);
+			bind("b", "move se", doCallback, -1,  1);
+			bind("n", "move sw", doCallback,  1,  1);
 			bind(".", "step", doCallback, 0, 0);
 			bind("escape", "exit", exitScreen);
 		}
