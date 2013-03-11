@@ -1,6 +1,7 @@
 package  
 {
 	import flash.geom.Point;
+	import org.microrl.architecture.Screen;
 	public class World 
 	{
 		private var tiles:Array;
@@ -80,7 +81,7 @@ package
 			return tiles[x][y];
 		}
 		
-		public function addAnimation(animation:ArrowAnimation):void
+		public function addAnimation(animation:Screen):void
 		{
 			animations.push(animation);
 		}

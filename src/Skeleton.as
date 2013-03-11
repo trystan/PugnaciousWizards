@@ -16,7 +16,7 @@ package
 			return !(other is Skeleton);
 		}
 		
-		override public function update():void
+		override public function updateInternal():void
 		{
 			for (var ox:int = -1; ox < 2; ox++)
 			for (var oy:int = -1; oy < 2; oy++)

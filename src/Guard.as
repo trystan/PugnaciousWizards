@@ -11,7 +11,7 @@ package
 			hp = 50;
 		}
 		
-		override public function update():void
+		override public function updateInternal():void
 		{
 			if (world.getRoom(x, y).contains(world.hero))
 			{

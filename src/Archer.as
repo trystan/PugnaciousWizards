@@ -11,7 +11,7 @@ package
 			hp = 40;
 		}
 		
-		override public function update():void
+		override public function updateInternal():void
 		{
 			var dirs:Array = [[ -1, -1], [ -0, -1], [ +1, -1],
 							  [ -1, -0],            [ +1, -0],

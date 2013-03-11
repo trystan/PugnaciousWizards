@@ -41,7 +41,7 @@ package
 					game.startDemo();
 					
 				game.world.update();
-				game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, 9, function(vx:int, vy:int):Boolean {
+				game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, 12, function(vx:int, vy:int):Boolean {
 					return game.world.getTile(vx, vy).allowsVision;
 				});
 				

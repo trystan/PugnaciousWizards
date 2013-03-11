@@ -4,7 +4,7 @@ package
 	public class Creature 
 	{
 		public var glyph:String;
-		public var fg:int;
+		private var fg:int;
 		public var x:int;
 		public var y:int;
 		public var world:World;
@@ -13,6 +13,16 @@ package
 		public var meleeDefence:int = 0;
 		
 		public var hp:int;
+		
+		public var onFireCounter:int = 0;
+		
+		public function get color():int 
+		{
+			if (onFireCounter > 0)
+				return Color.lerp(this.fg, Color.hsv(15, 90, 50), 0.5);
+			else
+				return this.fg;
+		}
 		
 		public function Creature(glyph:String, fg:int, x:int, y:int) 
 		{
@@ -25,7 +35,17 @@ package
 		
 		public function update():void
 		{
+			if (onFireCounter > 0)
+			{
+				hp--;
+				onFireCounter--;
+			}
 			
+			updateInternal();
+		}
+		
+		public function updateInternal():void
+		{
 		}
 		
 		public function walk(mx:int, my:int):void

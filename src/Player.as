@@ -18,7 +18,7 @@ package
 			return true;
 		}
 		
-		override public function update():void
+		override public function updateInternal():void
 		{
 			var itemHere:Item = world.getItem(x, y);
 			if (itemHere is PieceOfAmulet)

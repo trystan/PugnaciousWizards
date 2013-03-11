@@ -47,6 +47,9 @@ package
 				new MagicHeal().apply(game.hero);
 				step();
 			});
+			bind("4", "magic 4", function ():void {
+				new MagicExplode(game.fieldOfView).apply(game.hero);
+			});
 		}
 		
 		public function walk(mx:int, my:int):void
@@ -73,7 +76,7 @@ package
 			}
 			
 			game.world.update();
-			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, 9, function(vx:int, vy:int):Boolean {
+			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, 12, function(vx:int, vy:int):Boolean {
 				return game.world.getTile(vx, vy).allowsVision;
 			});
 			

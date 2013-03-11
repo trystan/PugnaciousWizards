@@ -48,7 +48,7 @@ package
 				if (game.fieldOfView.isVisibleNow(creature.x, creature.y))
 				{
 					t = game.world.getTile(creature.x, creature.y);
-					terminal.write(creature.glyph, creature.x, creature.y, creature.fg, t.bg);
+					terminal.write(creature.glyph, creature.x, creature.y, creature.color, t.bg);
 				}
 			}
 			/*
