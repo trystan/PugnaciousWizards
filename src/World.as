@@ -13,6 +13,7 @@ package
 		public var animations:Array = [];
 		public var rooms:Array = [];
 		public var blood:Array = [];
+		public var burningTiles:Array = [];
 		
 		public function World() 
 		{	
@@ -79,6 +80,8 @@ package
 		
 		public function update():void
 		{
+			updateBurningStuff();
+				
  			for each (var item:Item in items)
 				item.update();
 				
@@ -112,6 +115,11 @@ package
 		public function setTile(x:int, y:int, t:Tile):void
 		{
 			tiles[x][y] = t;
+			
+			if (t == Tile.burningDoor10)
+			{
+				burningTiles.push(new Point(x, y));
+			}
 		}
 		
 		public function addCreature(creature:Creature):void
@@ -321,6 +329,45 @@ package
 		private function addBloodOnce(x:int, y:int):void
 		{
 			blood[x][y] = Math.min(blood[x][y] + 1, 19);
+		}
+		
+		private function updateBurningStuff():void 
+		{
+			var stillBurning:Array = [];
+			for each (var p:Point in burningTiles)
+			{
+				var keepBurning:Boolean = true;
+				
+				switch (getTile(p.x, p.y))
+				{
+				case Tile.burningDoor10: setTile(p.x, p.y, Tile.burningDoor9); break;
+				case Tile.burningDoor9: setTile(p.x, p.y, Tile.burningDoor8); break;
+				case Tile.burningDoor8: setTile(p.x, p.y, Tile.burningDoor7); break;
+				case Tile.burningDoor7: setTile(p.x, p.y, Tile.burningDoor6); break;
+				case Tile.burningDoor6: setTile(p.x, p.y, Tile.burningDoor5); break;
+				case Tile.burningDoor5: setTile(p.x, p.y, Tile.burningDoor4); break;
+				case Tile.burningDoor4: setTile(p.x, p.y, Tile.burningDoor3); break;
+				case Tile.burningDoor3: setTile(p.x, p.y, Tile.burningDoor2); break;
+				case Tile.burningDoor2: setTile(p.x, p.y, Tile.burningDoor1); break;
+				case Tile.burningDoor1: 
+					setTile(p.x, p.y, Tile.floor);
+					keepBurning = false;
+					break;
+				}
+				
+				if (keepBurning)
+				{
+					stillBurning.push(p);
+					
+					for each (var offset:Array in [[-1,0],[1,0],[0,-1],[0,1]])
+					{
+						var c:Creature = getCreature(p.x + offset[0], p.y + offset[1]);
+						if (c != null)
+							c.isOnFireCounter += 3;
+					}
+				}
+			}
+			burningTiles = stillBurning;
 		}
 	}
 }

@@ -15,6 +15,16 @@ package
 		
 		public static var closedDoor:Tile = new Tile(43, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, false);
 		public static var openDoor:Tile = new Tile(47, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, true);
+		public static var burningDoor10:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor9:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor8:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor7:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor6:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor5:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor4:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor3:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor2:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
+		public static var burningDoor1:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
 		
 		public var glyph:String;
 		public var fg:int;
