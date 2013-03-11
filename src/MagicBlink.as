@@ -36,6 +36,9 @@ package
 				if (targetX < 0 || targetX > 78 || targetY < 0 || targetY > 78)
 					continue;
 					
+				if (creature.world.getCreature(targetX, targetY) != null)
+					continue;
+					
 				var isOk:Boolean = true;
 				for each (var p:Point in Line.betweenCoordinates(creature.x, creature.y, targetX, targetY).points)
 				{

@@ -6,6 +6,9 @@ package
 		
 		public static var grass:Tile = new Tile(250, Color.hsv(100, 30, 30), Color.hsv(100, 20, 20), true, true);
 		public static var tree:Tile = new Tile(5, Color.hsv(120, 50, 40), Color.hsv(120, 20, 20), false, false);
+		public static var burningTree3:Tile = new Tile(5, Color.lerp(Color.fire, Color.hsv(120, 50, 40), 0.3), Color.lerp(Color.fire, Color.hsv(120, 20, 20), 0.2), false, false);
+		public static var burningTree2:Tile = new Tile(5, Color.lerp(Color.fire, Color.hsv(120, 50, 40), 0.5), Color.lerp(Color.fire, Color.hsv(120, 20, 20), 0.4), false, false);
+		public static var burningTree1:Tile = new Tile(5, Color.lerp(Color.fire, Color.hsv(120, 50, 40), 0.7), Color.lerp(Color.fire, Color.hsv(120, 20, 20), 0.6), false, false);
 		public static var pit:Tile = new Tile(250, Color.hsv(60, 25, 15), Color.hsv(60, 25, 10), false, true);
 		
 		public static var floor:Tile = new Tile(250, Color.hsv(100, 0, 20), Color.hsv(100, 0, 10), true, true);

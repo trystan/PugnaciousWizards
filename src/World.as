@@ -116,7 +116,7 @@ package
 		{
 			tiles[x][y] = t;
 			
-			if (t == Tile.burningDoor10)
+			if (t == Tile.burningDoor10 || t == Tile.burningTree3)
 			{
 				burningTiles.push(new Point(x, y));
 			}
@@ -328,7 +328,7 @@ package
 		
 		private function addBloodOnce(x:int, y:int):void
 		{
-			if (x < 0 && y < 0 && x > 79 || y > 79)
+			if (x < 0 || y < 0 || x > 79 || y > 79)
 				return;
 				
 			blood[x][y] = Math.min(blood[x][y] + 1, 19);
@@ -356,21 +356,44 @@ package
 					setTile(p.x, p.y, Tile.floor);
 					keepBurning = false;
 					break;
+				case Tile.burningTree3: 
+					if (Math.random() < 0.3)
+						setTile(p.x, p.y, Tile.burningTree2);
+					break;
+				case Tile.burningTree2: 
+					if (Math.random() < 0.2)
+						setTile(p.x, p.y, Tile.burningTree1);
+					break;
+				case Tile.burningTree1: 
+					if (Math.random() < 0.1)
+					{
+						setTile(p.x, p.y, Tile.floor);
+						keepBurning = false;
+					}
+					break;
 				}
 				
 				if (keepBurning)
-				{
 					stillBurning.push(p);
+			}
+			
+			burningTiles = stillBurning;
+			
+			for each (var p:Point in burningTiles)
+			{
+				for each (var offset:Array in [[-1,0],[1,0],[0,-1],[0,1]])
+				{
+					var c:Creature = getCreature(p.x + offset[0], p.y + offset[1]);
+					if (c != null)
+						c.isOnFireCounter += 3;
 					
-					for each (var offset:Array in [[-1,0],[1,0],[0,-1],[0,1]])
+					if (getTile(p.x + offset[0], p.y + offset[1]) == Tile.tree
+						&& Math.random() < 0.05)
 					{
-						var c:Creature = getCreature(p.x + offset[0], p.y + offset[1]);
-						if (c != null)
-							c.isOnFireCounter += 3;
+						setTile(p.x + offset[0], p.y + offset[1], Tile.burningTree3);
 					}
 				}
 			}
-			burningTiles = stillBurning;
 		}
 	}
 }

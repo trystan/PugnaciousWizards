@@ -106,13 +106,18 @@ package
 						if (!isOk)
 							continue;
 						
-							
+						
 						if (world.getTile(x, y) == Tile.closedDoor
 						 || world.getTile(x, y) == Tile.openDoor)
 						{
 							world.setTile(x, y, Tile.burningDoor10);
 							amount--;
 							nextFireTiles.push(new Point(x,y));
+						}
+						else if (world.getTile(x, y) == Tile.tree)
+						{
+							amount--;
+							world.setTile(x, y, Tile.burningTree3);
 						}
 						else if (world.getTile(x, y).allowsVision)
 						{

@@ -62,7 +62,7 @@ package
 				}
 			});
 			
-			animate(90);
+			animate(30);
 		}
 	}
 }
