@@ -21,7 +21,10 @@ package
 			
 			display(function(terminal:AsciiPanel):void {
 				if (intervalTimeout == 0)
-					BeginNormalTime();
+				{
+					var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
+					intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / 30, event);
+				}
 			});
 			
 			display(new WorldView(game));
@@ -43,14 +46,9 @@ package
 				});
 				
 				
-				if (game.world.animations.length > 0)
+				while (game.world.animations.length > 0)
 				{
-					BeginQuickTime();
-					while (game.world.animations.length > 0)
-					{
-						enterScreen(game.world.animations.shift());
-					}
-					BeginNormalTime();
+					enterScreen(game.world.animations.shift());
 				}
 			});
 			
@@ -58,20 +56,6 @@ package
 				clearInterval(intervalTimeout);
 				switchToScreen(new PlayScreen());
 			});
-		}
-		
-		private function BeginNormalTime():void 
-		{
-			clearInterval(intervalTimeout);
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / 10, event);
-		}
-		
-		private function BeginQuickTime():void 
-		{
-			clearInterval(intervalTimeout);
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 10, event);
 		}
 	}
 }

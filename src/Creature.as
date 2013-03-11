@@ -35,9 +35,10 @@ package
 			
 			var other:Creature = world.getCreature(x + mx, y + my);
 			
-			if (other != null && isEnemy(other))
+			if (other != null)
 			{
-				attack(other);
+				if (isEnemy(other))
+					attack(other);
 			}
 			else if (world.getTile(x + mx, y + my) == Tile.closedDoor)
 			{

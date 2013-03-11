@@ -73,7 +73,7 @@ package org.microrl.architecture
 			RL.screenStack = [];
 		}
 		
-		protected static function paint():void
+		public static function paint():void
 		{
 			for (var i:int = screenStack.length - 1; i >= 0; i--)
 				screenStack[i].handleAsciiOutput(terminal);

@@ -40,6 +40,9 @@ package
 				new MagicBlink().apply(game.hero);
 				step();
 			});
+			bind("2", "magic 2", function ():void {
+				new MagicMissile().apply(game.hero);
+			});
 		}
 		
 		public function walk(mx:int, my:int):void
@@ -60,32 +63,22 @@ package
 		
 		private function tick():void
 		{
+			while (game.world.animations.length > 0)
+			{
+				enterScreen(game.world.animations.shift());
+			}
+			
 			game.world.update();
 			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, 9, function(vx:int, vy:int):Boolean {
 				return game.world.getTile(vx, vy).allowsVision;
 			});
 			
-			if (game.world.animations.length > 0)
+			while (game.world.animations.length > 0)
 			{
-				BeginQuickTime();
-				while (game.world.animations.length > 0)
-				{
-					enterScreen(game.world.animations.shift());
-				}
-				BeginNormalTime();
+				enterScreen(game.world.animations.shift());
+				
+				// RL.instance.handleKeyboardEvent(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190));
 			}
-		}
-		
-		private function BeginNormalTime():void 
-		{
-			clearInterval(intervalTimeout);
-		}
-		
-		private function BeginQuickTime():void 
-		{
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 10, event);
-			RL.instance.handleKeyboardEvent(event);
 		}
 	}
 }

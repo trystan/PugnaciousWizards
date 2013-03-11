@@ -1,7 +1,11 @@
 package  
 {
 	import com.headchant.asciipanel.AsciiPanel;
+	import flash.events.KeyboardEvent;
+	import flash.utils.clearInterval;
+	import flash.utils.setInterval;
 	import org.microrl.architecture.BaseScreen;
+	import org.microrl.architecture.RL;
 	
 	public class ArrowAnimation extends BaseScreen
 	{
@@ -12,6 +16,8 @@ package
 		public var oy:int;
 		public var countDown:int;
 		public var glyph:String;
+		
+		public var intervalTimeout:int = 0;
 		
 		public function ArrowAnimation(world:World, sx:int, sy:int, ox:int, oy:int) 
 		{
@@ -45,17 +51,28 @@ package
 				if (creature != null)
 				{
 					creature.hp -= 10;
+					clearInterval(intervalTimeout);
 					exitScreen();
 				}
-				else if (!world.getTile(x, y).isWalkable)
+				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 				{
+					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 				else if (countDown-- < 1)
 				{
+					clearInterval(intervalTimeout);
 					exitScreen();
 				}
 			});
+			
+			BeginQuickTime();
+		}
+		
+		private function BeginQuickTime():void 
+		{
+			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
+			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / 90, event);
 		}
 	}
 }
