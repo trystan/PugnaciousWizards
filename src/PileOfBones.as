@@ -13,7 +13,7 @@ package
 		
 		override public function update():void
 		{
-			if (countDown-- < 1)
+			if (countDown-- < 1 && world.getCreature(x, y) == null)
 			{
 				world.removeItem(this);
 				world.addCreature(new Skeleton(x, y));
