@@ -62,6 +62,9 @@ package
 			{
 				updateInternal();
 			}
+			
+			if (hp < 15)
+				bleed();
 		}
 		
 		public function updateInternal():void
@@ -111,12 +114,9 @@ package
 			bleed();
 		}
 		
-		public function bleed(much:Boolean = true):void
+		public function bleed():void
 		{
 			world.addBlood(x, y);
-			
-			if (much)
-				world.addBlood(x, y);
 		}
 		
 		public function wander():void

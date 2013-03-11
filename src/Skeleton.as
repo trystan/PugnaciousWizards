@@ -16,7 +16,7 @@ package
 			return !(other is Skeleton);
 		}
 		
-		override public function bleed(much:Boolean = true):void
+		override public function bleed():void
 		{
 			
 		}

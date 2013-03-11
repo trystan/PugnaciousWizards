@@ -308,19 +308,19 @@ package
 				addBloodOnce(x, y-1);
 			if (Math.random() < 0.15)
 				addBloodOnce(x, y+1);
-			if (Math.random() < 0.5)
+			if (Math.random() < 0.05)
 				addBloodOnce(x-1, y-1);
-			if (Math.random() < 0.5)
+			if (Math.random() < 0.05)
 				addBloodOnce(x+1, y-1);
-			if (Math.random() < 0.5)
+			if (Math.random() < 0.05)
 				addBloodOnce(x-1, y+1);
-			if (Math.random() < 0.5)
+			if (Math.random() < 0.05)
 				addBloodOnce(x+1, y+1);
 		}
 		
 		private function addBloodOnce(x:int, y:int):void
 		{
-			blood[x][y] = Math.min(blood[x][y] + 1, 9);
+			blood[x][y] = Math.min(blood[x][y] + 1, 19);
 		}
 	}
 }

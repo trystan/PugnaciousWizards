@@ -49,7 +49,7 @@ package
 				if (creature != null)
 				{
 					creature.hp -= 10;
-					creature.bleed(false);
+					creature.bleed();
 					exitScreen();
 				}
 				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)

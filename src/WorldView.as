@@ -15,6 +15,7 @@ package
 		public function viewOn(terminal:AsciiPanel):void
 		{
 			terminal.clear();
+			var maxBlood:int = 20;
 			
 			var t:Tile;
 			for (var x:int = 0; x < 80; x++)
@@ -27,7 +28,7 @@ package
 					if (blood == 0)
 						terminal.write(t.glyph, x, y, t.fg, t.bg);
 					else
-						terminal.write(t.glyph, x, y, Color.lerp(t.fg, Color.blood, 1 - blood / 10), Color.lerp(t.bg, Color.blood, 1 - blood / 10));
+						terminal.write(t.glyph, x, y, Color.lerp(t.fg, Color.blood, 1 - blood / maxBlood), Color.lerp(t.bg, Color.blood, 1 - blood / maxBlood));
 				}
 				else if (game.fieldOfView.wasVisible(x, y))
 				{
@@ -37,7 +38,7 @@ package
 					if (blood == 0)
 						terminal.write(t.glyph, x, y, Color.lerp(t.fg, memoryFg, 0.33), Color.lerp(t.bg, memoryBg, 0.33));
 					else
-						terminal.write(t.glyph, x, y, Color.lerp(Color.lerp(t.fg, Color.blood, 1 - blood / 10), memoryFg, 0.33), Color.lerp(Color.lerp(t.bg, Color.blood, 1 - blood / 10), memoryBg, 0.33));
+						terminal.write(t.glyph, x, y, Color.lerp(Color.lerp(t.fg, Color.blood, 1 - blood / maxBlood), memoryFg, 0.33), Color.lerp(Color.lerp(t.bg, Color.blood, 1 - blood / maxBlood), memoryBg, 0.33));
 				}
 			}
 			
@@ -50,7 +51,7 @@ package
 					if (blood == 0)
 						terminal.write(item.glyph, item.x, item.y, item.fg, t.bg);
 					else
-						terminal.write(item.glyph, item.x, item.y, item.fg, Color.lerp(t.bg, Color.blood, 1 - blood / 10));
+						terminal.write(item.glyph, item.x, item.y, item.fg, Color.lerp(t.bg, Color.blood, 1 - blood / maxBlood));
 				}
 			}
 			
@@ -63,7 +64,7 @@ package
 					if (blood == 0)
 						terminal.write(creature.glyph, creature.x, creature.y, creature.color, t.bg);
 					else
-						terminal.write(creature.glyph, creature.x, creature.y, creature.color, Color.lerp(t.bg, Color.blood, 1 - blood / 10));
+						terminal.write(creature.glyph, creature.x, creature.y, creature.color, Color.lerp(t.bg, Color.blood, 1 - blood / maxBlood));
 				}
 			}
 			/*
