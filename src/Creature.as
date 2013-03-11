@@ -71,6 +71,12 @@ package
 		{
 		}
 		
+		public function teleportTo(nx:int, ny:int):void
+		{
+			x = nx;
+			y = ny;
+		}
+		
 		public function walk(mx:int, my:int):void
 		{
 			if (mx == 0 && my == 0)

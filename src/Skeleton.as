@@ -17,8 +17,7 @@ package
 		}
 		
 		override public function bleed():void
-		{
-			
+		{	
 		}
 		
 		override public function updateInternal():void

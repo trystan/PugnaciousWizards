@@ -13,6 +13,12 @@ package
 			hp = 200;
 		}
 		
+		override public function teleportTo(nx:int, ny:int):void
+		{
+			pathToTarget = [];
+			super.teleportTo(nx, ny);
+		}
+		
 		override public function updateInternal():void
 		{
 			for each (var m:Magic in this.magic)

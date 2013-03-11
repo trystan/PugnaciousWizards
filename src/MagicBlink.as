@@ -52,8 +52,7 @@ package
 				
 				if (isOk)
 				{
-					creature.x = targetX;
-					creature.y = targetY;
+					creature.teleportTo(targetX, targetY);
 					return;
 				}
 			}
