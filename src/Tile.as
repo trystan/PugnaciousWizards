@@ -12,8 +12,9 @@ package
 		public static var pit:Tile = new Tile(250, Color.hsv(60, 25, 15), Color.hsv(60, 25, 2), false, true);
 		
 		public static var burntFloor:Tile = new Tile(250, Color.hsv(30, 10, 20), Color.hsv(30, 5, 10), true, true);
-		public static var tile1:Tile = new Tile(32, Color.hsv(100, 0, 12), Color.hsv(100, 0, 12), true, true);
-		public static var tile2:Tile = new Tile(32, Color.hsv(100, 0, 10), Color.hsv(100, 0, 10), true, true);
+		public static var tile1:Tile = new Tile(32, Color.hsv(100, 0, 10), Color.hsv(100, 0, 10), true, true);
+		public static var tile2:Tile = new Tile(32, Color.hsv(100, 0, 12), Color.hsv(100, 0, 12), true, true);
+		public static var tile3:Tile = new Tile(32, Color.hsv(100, 0, 14), Color.hsv(100, 0, 14), true, true);
 		public static var wall:Tile = new Tile(35, Color.hsv(100, 0, 50), Color.hsv(100, 0, 40), false, false);
 		public static var crumbledWall:Tile = new Tile(35, Color.lerp(Color.ruins, Color.hsv(100, 0, 50), 0.4), Color.lerp(Color.ruins, Color.hsv(100, 0, 40), 0.6), false, false);
 		

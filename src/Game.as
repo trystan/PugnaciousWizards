@@ -77,6 +77,8 @@ package
 		private function applyRoomThemes():void 
 		{
 			var themes:Array = [
+				new RoomTheme_A(),
+				new RoomTheme_G(),
 				new RoomTheme_Pillars(),
 				new RoomTheme_Bloody(),
 				new RoomTheme_Bones(),
