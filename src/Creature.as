@@ -1,6 +1,7 @@
 package  
 {
 	import flash.automation.ActionGenerator;
+	import flash.geom.Point;
 	public class Creature 
 	{
 		public var glyph:String;
@@ -49,7 +50,7 @@ package
 			
 			if (isOnFireCounter > 0)
 			{
-				hp--;
+				hp -= Math.floor(isOnFireCounter / 10) + 1;
 				isOnFireCounter--;
 				bleed();
 			}
@@ -86,7 +87,7 @@ package
 			
 			if (other != null)
 			{
-				if (isEnemy(other))
+				if (doesHate(other))
 					attack(other);
 			}
 			else if (world.getTile(x + mx, y + my) == Tile.closedDoor)
@@ -101,9 +102,19 @@ package
 			}
 		}
 		
-		public function isEnemy(other:Creature):Boolean 
+		public function doesHate(other:Creature):Boolean 
 		{
-			return other is Player || other is Skeleton;
+			return other != null && other != this && (other is Player || other is Skeleton);
+		}
+		
+		public function canSee(other:Creature):Boolean
+		{
+			for each (var p:Point in Line.betweenCoordinates(x, y, other.x, other.y).points)
+			{
+				if (!world.getTile(p.x, p.y).allowsVision)
+					return false;
+			}
+			return true;
 		}
 		
 		public function canOpenDoors():Boolean

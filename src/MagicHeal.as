@@ -6,7 +6,6 @@ package
 		{
 			return new MagicAction(100 - caster.hp, function(c:Creature):void {
 				playerCast(caster);
-				trace("hero healed");
 			});
 		}
 		

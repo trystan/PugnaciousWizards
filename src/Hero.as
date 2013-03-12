@@ -10,7 +10,12 @@ package
 			
 			meleeAttack = 20;
 			meleeDefence = 5;
-			hp = 200;
+			hp = 400;
+		}
+		
+		override public function doesHate(other:Creature):Boolean 
+		{
+			return other != null && other != this;
 		}
 		
 		override public function teleportTo(nx:int, ny:int):void
@@ -21,22 +26,15 @@ package
 		
 		override public function updateInternal():void
 		{
-			for each (var m:Magic in this.magic)
-			{
-				var potential:MagicAction = m.calculateAiBenefit(this);
-				if (Math.random() * 100 < potential.benefit)
-				{
-					potential.action(this);
-					return;
-				}
-			}
+			if (aiCastSpell())
+				return;
 			
 			for (var ox:int = -1; ox < 2; ox++)
 			for (var oy:int = -1; oy < 2; oy++)
 			{
 				var other:Creature = world.getCreature(x + ox, y + oy);
 				
-				if (other != null && other.glyph != "@")
+				if (doesHate(other))
 				{
 					walk(other.x - x, other.y - y);
 					return;

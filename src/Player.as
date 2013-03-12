@@ -1,17 +1,9 @@
 package  
 {
-	public class Player extends Creature
+	public class Player extends MagicUser
 	{		
 		public var piecesOfAmulet:int = 0;
 		
-		public var magic:Array = [
-			new MagicSpell(new MagicBlink()),
-			new MagicSpell(new MagicMissile()),
-			new MagicSpell(new MagicHeal()),
-			new MagicSpell(new MagicExplode()),
-			new MagicSpell(new MagicFreeze())
-		];
-			
 		public function Player(x:int, y:int) 
 		{
 			super("@", Color.hsv(0, 0, 90), x, y);
@@ -22,7 +14,7 @@ package
 			viewDistance = 12;
 		}
 		
-		override public function isEnemy(other:Creature):Boolean
+		override public function doesHate(other:Creature):Boolean
 		{
 			return true;
 		}

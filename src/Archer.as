@@ -38,7 +38,7 @@ package
 					if (target == null)
 						continue;
 					
-					if (target.glyph == "@")
+					if (doesHate(target))
 						fireArrow(ox, oy);
 					
 					return;

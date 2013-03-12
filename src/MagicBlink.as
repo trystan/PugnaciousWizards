@@ -14,13 +14,12 @@ package
 			
 			for each (var offset:Array in dirs)
 			{
-				if (caster.world.getCreature(caster.x + offset[0], caster.y + offset[1]) != null)
+				if (caster.doesHate(caster.world.getCreature(caster.x + offset[0], caster.y + offset[1])))
 					total++;
 			}
 
 			return new MagicAction(total * 10, function(c:Creature):void {
 				playerCast(caster);
-				trace("hero blinked");
 			});
 		}
 		

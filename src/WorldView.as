@@ -15,7 +15,7 @@ package
 		public function viewOn(terminal:AsciiPanel):void
 		{
 			terminal.clear();
-			var maxBlood:int = 20;
+			var maxBlood:int = game.world.maxBloodPerTile + 1;;
 			
 			var t:Tile;
 			for (var x:int = 0; x < 80; x++)

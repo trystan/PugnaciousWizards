@@ -71,8 +71,10 @@ package
 					var y:int = room.y * 8 + 5 + 3;
 					
 					world.addItem(new PieceOfAmulet(x, y));
+					world.addCreature(new Wizard(x, y - 1));
 				}
 			}
+			// world.addCreature(new Wizard(2, 40));
 		}
 		
 		public function startDemo():void

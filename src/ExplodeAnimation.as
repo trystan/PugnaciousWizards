@@ -106,7 +106,6 @@ package
 						if (!isOk)
 							continue;
 						
-						
 						if (world.getTile(x, y) == Tile.closedDoor
 						 || world.getTile(x, y) == Tile.openDoor)
 						{

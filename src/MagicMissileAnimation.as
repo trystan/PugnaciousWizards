@@ -48,7 +48,7 @@ package
 				var creature:Creature = world.getCreature(x, y);
 				if (creature != null)
 				{
-					creature.hp -= 10;
+					creature.hp -= 20;
 					creature.bleed();
 					exitScreen();
 				}

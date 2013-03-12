@@ -15,6 +15,8 @@ package
 		public var blood:Array = [];
 		public var burningTiles:Array = [];
 		
+		public var maxBloodPerTile:int = 15;
+		
 		public function World() 
 		{	
 			makeCastleWalls();
@@ -331,7 +333,7 @@ package
 			if (x < 0 || y < 0 || x > 79 || y > 79)
 				return;
 				
-			blood[x][y] = Math.min(blood[x][y] + 1, 19);
+			blood[x][y] = Math.min(blood[x][y] + 1, maxBloodPerTile);
 		}
 		
 		private function updateBurningStuff():void 
