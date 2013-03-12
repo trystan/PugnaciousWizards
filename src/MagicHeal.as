@@ -1,5 +1,7 @@
 package  
 {
+	import org.microrl.architecture.RL;
+	
 	public class MagicHeal implements Magic
 	{
 		public function calculateAiBenefit(caster:Creature):MagicAction

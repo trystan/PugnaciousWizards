@@ -1,6 +1,8 @@
 package  
 {
+	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
+	import org.microrl.architecture.RL;
 	
 	public class MagicBlink implements Magic
 	{

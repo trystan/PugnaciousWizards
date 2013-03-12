@@ -18,6 +18,7 @@ package
 		
 		public var maxBloodPerTile:int = 15;
 		public var perlinBitmap:BitmapData;
+		public var triggers:Array = [];
 		
 		public function World()
 		{	
@@ -95,7 +96,13 @@ package
 				
 			for each (var creature:Creature in creatures)
 				creature.update();
-				
+			
+			
+			for each (var trigger:Function in triggers)
+			{
+				trigger();
+			}
+			
 			var alive:Array = [];
 			for each (creature in creatures)
 			{
@@ -113,6 +120,11 @@ package
 				return Tile.outOfBounds;
 				
 			return tiles[x][y];
+		}
+		
+		public function addTriggerForEveryTurn(trigger:Function):void
+		{
+			triggers.push(trigger);
 		}
 		
 		public function addAnimation(animation:AnimatedScreen):void

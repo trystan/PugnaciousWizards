@@ -17,7 +17,7 @@ package org.microrl.architecture
 		protected var lastKeyboardEvent:KeyboardEvent;
 		protected var lastMouseEvent:MouseEvent;
 		protected var bindings:Bindings;
-		protected var gui:Array;
+		public var gui:Array;
 		protected var session:SharedObject;
 		
 		/**
@@ -101,7 +101,7 @@ package org.microrl.architecture
 			handleInput(eventType);
 		}
 		
-		protected function handleInput(input:String):void
+		public function handleInput(input:String):void
 		{
 			var intent:String = bindings.intentForInput(input) as String;
 			var behavior:Function = bindings.behaviorForIntent(intent);

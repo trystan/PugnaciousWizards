@@ -10,7 +10,7 @@ package
 			room.hasTheme = true;	
 				
 			var max:int = world.maxBloodPerTile * 49;
-			var total:int = (Math.random() * max + Math.random() * max) / 4;
+			var total:int = (Math.random() * max + Math.random() * max) / 5;
 			for (var i:int = 0; i < total; i++)
 			{
 				var x:int = room.x * 8 + 4 + Math.floor(Math.random() * 9);

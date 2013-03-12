@@ -38,10 +38,10 @@ package
 			
 			display(function(terminal:AsciiPanel):void {
 				var t:Tile = world.getTile(x, y);
-				terminal.write(glyph, x, y, 0xffffff, t.bg);
+				terminal.write(glyph, x, y, Color.hsv(36, 50, 90), t.bg);
 			});
 			
-			bind(".", "animate", function():void {
+			bind(".", "step", function():void {
 				x += ox;
 				y += oy;
 				

@@ -52,6 +52,7 @@ package
 			});
 			bind("2", "magic 2", function ():void {
 				game.hero.magic[1].playerCast(game.hero);
+				step();
 			});
 			bind("3", "magic 3", function ():void {
 				game.hero.magic[2].playerCast(game.hero);
@@ -59,9 +60,11 @@ package
 			});
 			bind("4", "magic 4", function ():void {
 				game.hero.magic[3].playerCast(game.hero);
+				step();
 			});
 			bind("5", "magic 5", function ():void {
 				game.hero.magic[4].playerCast(game.hero);
+				step();
 			});
 		}
 		
@@ -92,9 +95,7 @@ package
 		private function tick():void
 		{
 			while (game.world.animations.length > 0)
-			{
 				enterScreen(game.world.animations.shift());
-			}
 			
 			game.world.update();
 			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
@@ -102,9 +103,7 @@ package
 			});
 			
 			while (game.world.animations.length > 0)
-			{
 				enterScreen(game.world.animations.shift());
-			}
 		}
 	}
 }

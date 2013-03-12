@@ -1,5 +1,6 @@
 package  
 {
+	import flash.events.KeyboardEvent;
 	import org.microrl.architecture.RL;
 	
 	public class MagicMissile implements Magic

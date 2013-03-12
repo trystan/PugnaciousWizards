@@ -79,7 +79,8 @@ package
 			var themes:Array = [
 				new RoomTheme_Pillars(),
 				new RoomTheme_Bloody(),
-				new RoomTheme_Outside()];
+				new RoomTheme_Outside(),
+				new RoomTheme_ArrowTowers()];
 			
 			for each (var room:Room in world.rooms)
 			{

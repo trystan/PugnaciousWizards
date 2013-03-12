@@ -74,7 +74,7 @@ package
 				}
 			});
 			
-			animate(10);
+			animate(30);
 		}
 	}
 }

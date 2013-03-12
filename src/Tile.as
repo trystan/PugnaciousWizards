@@ -17,6 +17,8 @@ package
 		public static var wall:Tile = new Tile(35, Color.hsv(100, 0, 50), Color.hsv(100, 0, 40), false, false);
 		public static var crumbledWall:Tile = new Tile(35, Color.lerp(Color.ruins, Color.hsv(100, 0, 50), 0.4), Color.lerp(Color.ruins, Color.hsv(100, 0, 40), 0.6), false, false);
 		
+		public static var arrowTower:Tile = new Tile(8, Color.hsv(100, 0, 40), Color.hsv(100, 0, 20), false, false);
+		
 		public static var closedDoor:Tile = new Tile(43, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, false);
 		public static var openDoor:Tile = new Tile(47, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, true);
 		public static var burningDoor10:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true);
