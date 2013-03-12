@@ -11,11 +11,6 @@ package
 			hp = 5;
 		}
 		
-		override public function doesHate(other:Creature):Boolean
-		{
-			return other != null && other != this && !(other is Skeleton);
-		}
-		
 		override public function bleed():void
 		{	
 		}

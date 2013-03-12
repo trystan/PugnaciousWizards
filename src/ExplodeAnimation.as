@@ -106,19 +106,25 @@ package
 						if (!isOk)
 							continue;
 						
-						if (world.getTile(x, y) == Tile.closedDoor
-						 || world.getTile(x, y) == Tile.openDoor)
+						var here:Tile = world.getTile(x, y);
+							
+						if (here == Tile.closedDoor || here == Tile.openDoor)
 						{
 							world.setTile(x, y, Tile.burningDoor10);
 							amount--;
 							nextFireTiles.push(new Point(x,y));
 						}
-						else if (world.getTile(x, y) == Tile.tree)
+						else if (here.isTree)
 						{
-							amount--;
-							world.setTile(x, y, Tile.burningTree3);
+							amount -= 3;
+							nextFireTiles.push(new Point(x, y));
+							
+							if (here != Tile.burningTree3
+							  && here != Tile.burningTree2
+							  && here != Tile.burningTree1)
+								world.setTile(x, y, Tile.burningTree3);
 						}
-						else if (world.getTile(x, y).allowsVision)
+						else if (here.allowsVision)
 						{
 							amount--;
 							nextFireTiles.push(new Point(x,y));

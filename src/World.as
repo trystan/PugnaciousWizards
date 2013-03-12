@@ -122,13 +122,16 @@ package
 		
 		public function setTile(x:int, y:int, t:Tile):void
 		{
-			if (t == Tile.grass || t == Tile.tree)
+			if (t == Tile.grass)
 			{
 				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
-				
-				var variation:int = Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10);
-				trace(x + "," + y + " == " + variation);
-				t.bg = Color.hsv(100, 20, 15 + variation);
+				t.bg = Color.hsv(100, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
+			}
+			else if (t == Tile.tree)
+			{
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
+				t.fg = Color.hsv(100 + Math.random() * 40, 50 + Math.random() * 30, 30 + Math.random() * 30);
+				t.bg = Color.hsv(120, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
 			}
 			
 			tiles[x][y] = t;
@@ -199,7 +202,7 @@ package
 					else if (x < 4 && (y < 10 || y > 70))
 						row.push(Tile.tree);
 					else if (x < 4)
-						row.push(Tile.outOfBounds); // change to grass later
+						row.push(Tile.grass);
 					else if (x < 4 || y < 4 || x > 76 || y > 76)
 						row.push(Tile.pit);
 					else if ((x + y) % 2 == 0)
@@ -238,12 +241,7 @@ package
 					setTile(x + 4, y * 8 + 4, Tile.wall);
 			}
 			
-			for (var x:int = 0; x < 80; x++)
-			for (var y:int = 0; y < 80; y++)
-			{
-				if (getTile(x, y) == Tile.outOfBounds)
-					setTile(x, y, Tile.grass);
-			}
+			ApplyNaturalVariation();
 		}
 		
 		private function makeMaze():void 
@@ -377,7 +375,7 @@ package
 				case Tile.burningDoor3: setTile(p.x, p.y, Tile.burningDoor2); break;
 				case Tile.burningDoor2: setTile(p.x, p.y, Tile.burningDoor1); break;
 				case Tile.burningDoor1: 
-					setTile(p.x, p.y, Tile.floor);
+					setTile(p.x, p.y, Tile.burntFloor);
 					keepBurning = false;
 					break;
 				case Tile.burningTree3: 
@@ -391,7 +389,7 @@ package
 				case Tile.burningTree1: 
 					if (Math.random() < 0.1)
 					{
-						setTile(p.x, p.y, Tile.floor);
+						setTile(p.x, p.y, Tile.burntFloor);
 						keepBurning = false;
 					}
 					break;
@@ -410,13 +408,29 @@ package
 					var c:Creature = getCreature(p.x + offset[0], p.y + offset[1]);
 					if (c != null)
 						c.isOnFireCounter += 3;
-					
-					if (getTile(p.x + offset[0], p.y + offset[1]) == Tile.tree
+						
+					var here:Tile = getTile(p.x + offset[0], p.y + offset[1]);
+					if (here.isTree
+						&& here != Tile.burningTree3
+						&& here != Tile.burningTree2
+						&& here != Tile.burningTree1
 						&& Math.random() < 0.05)
 					{
 						setTile(p.x + offset[0], p.y + offset[1], Tile.burningTree3);
 					}
 				}
+			}
+		}
+		
+		private function ApplyNaturalVariation():void 
+		{
+			for (var x:int = 0; x < 80; x++)
+			for (var y:int = 0; y < 80; y++)
+			{
+				if (getTile(x, y) == Tile.grass)
+					setTile(x, y, Tile.grass);
+				else if (getTile(x, y) == Tile.tree)
+					setTile(x, y, Tile.tree);
 			}
 		}
 	}

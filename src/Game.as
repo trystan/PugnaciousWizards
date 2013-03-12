@@ -31,16 +31,9 @@ package
 					var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 7);
 					var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 7);	
 					
-					var t:int = Math.random();
-					
-					if (t < 0.20 && points > 12)
+					if (points > 8 && Math.random())
 					{
-						points -= 12;
-						world.addCreature(new Knight(x, y));
-					}
-					else if (t < 0.40 && points > 6)
-					{
-						points -= 6;
+						points -= 8;
 						world.addCreature(new Archer(x, y));
 					}
 					else

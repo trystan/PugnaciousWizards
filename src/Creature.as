@@ -104,7 +104,7 @@ package
 		
 		public function doesHate(other:Creature):Boolean 
 		{
-			return other != null && other != this && (other is Player || other is Skeleton);
+			return other != null && other != this && other is Player;
 		}
 		
 		public function canSee(other:Creature):Boolean
