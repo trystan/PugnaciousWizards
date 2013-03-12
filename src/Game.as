@@ -80,7 +80,8 @@ package
 				new RoomTheme_Pillars(),
 				new RoomTheme_Bloody(),
 				new RoomTheme_Outside(),
-				new RoomTheme_ArrowTowers()];
+				new RoomTheme_ArrowTowers(),
+				new RoomTheme_ArrowWall()];
 			
 			for each (var room:Room in world.rooms)
 			{

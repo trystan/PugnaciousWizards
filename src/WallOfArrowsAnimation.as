@@ -8,23 +8,14 @@ package
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class ArrowTowersAnimation extends AnimatedScreen
+	public class WallOfArrowsAnimation extends AnimatedScreen
 	{
 		private var arrows:Array = [];
 		
-		public function ArrowTowersAnimation(world:World, points:Array) 
+		public function WallOfArrowsAnimation(world:World, points:Array, ox:int, oy:int) 
 		{
 			for each (var p:Point in points)
-			{
-				arrows.push(new Arrow(p.x, p.y, -1, -1, 7));
-				arrows.push(new Arrow(p.x, p.y,  1, -1, 7));
-				arrows.push(new Arrow(p.x, p.y,  1, -1, 7));
-				arrows.push(new Arrow(p.x, p.y, -1,  1, 7));
-				arrows.push(new Arrow(p.x, p.y, -1,  0, 7));
-				arrows.push(new Arrow(p.x, p.y,  1,  0, 7));
-				arrows.push(new Arrow(p.x, p.y,  0, -1, 7));
-				arrows.push(new Arrow(p.x, p.y,  0,  1, 7));
-			}
+				arrows.push(new Arrow(p.x, p.y, ox, oy, 7));
 				
 			display(function(terminal:AsciiPanel):void {
 				for each (var arrow:Arrow in arrows)
@@ -88,13 +79,13 @@ class Arrow
 		this.range = range;
 		this.glyph = "*";
 		
-		if (ox == -1 && oy == -1 || ox == 1 && oy == 1)
-			this.glyph = "\\";
-		else if (ox == -1 && oy == 1 || ox == 1 && oy == -1)
-			this.glyph = "/";
-		else if (ox == 0 && oy == 1 || ox == 0 && oy == -1)
-			this.glyph = String.fromCharCode(179);
-		else if (ox == 1 && oy == 0 || ox == -1 && oy == 0)
-			this.glyph = String.fromCharCode(196);
+		if (ox == 0 && oy == -1)
+			this.glyph = String.fromCharCode(24);
+		else if (ox == 0 && oy == 1)
+			this.glyph = String.fromCharCode(25);
+		else if (ox == -1 && oy == 0)
+			this.glyph = String.fromCharCode(27);
+		else if (ox == 1 && oy == 0)
+			this.glyph = String.fromCharCode(26);
 	}
 }
