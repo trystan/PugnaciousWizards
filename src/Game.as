@@ -86,22 +86,22 @@ package
 				new RoomTheme_Outside(),
 				new RoomTheme_ArrowTowers(),
 				new RoomTheme_ArrowWall(),
-				new RoomTheme_CheckerTraps()];
+				new RoomTheme_CheckerTraps(),
+				new RoomTheme_FallingFloor(),
+				new RoomTheme_Empty()];
 			
-			themes.splice(Math.floor(Math.random() * themes.length), 1);
-			themes.splice(Math.floor(Math.random() * themes.length), 1);
+			var half:int = themes.length / 2;
+			
+			while (themes.length > half)
+				themes.splice(Math.floor(Math.random() * themes.length), 1);
 			
 			var favored:RoomTheme = themes[Math.floor(Math.random() * themes.length)];
-			var amount:int = themes.length - 1;
 			
-			while (themes.length < amount * 2)
+			while (themes.length < half * 2)
 				themes.push(favored);
 				
 			for each (var room:Room in world.rooms)
-			{
-				if (Math.random() < 0.75)
-					themes[Math.floor(Math.random() * themes.length)].apply(world, room);
-			}
+				themes[Math.floor(Math.random() * themes.length)].apply(world, room);
 		}
 	}
 }
