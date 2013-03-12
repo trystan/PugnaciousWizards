@@ -23,6 +23,9 @@ package
 		
 		public function aiCastSpell():Boolean
 		{	
+			if (world.getRoom(x, y) != null && world.getRoom(x, y).forbidMagic)
+				return false;
+				
 			var actions:Array = [];
 			for each (var m:Magic in magic)
 			{
