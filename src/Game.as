@@ -86,9 +86,18 @@ package
 				new RoomTheme_ArrowTowers(),
 				new RoomTheme_ArrowWall()];
 			
+			themes.splice(Math.floor(Math.random() * themes.length), 1);
+			themes.splice(Math.floor(Math.random() * themes.length), 1);
+			
+			var favored:RoomTheme = themes[Math.floor(Math.random() * themes.length)];
+			var amount:int = themes.length - 1;
+			
+			while (themes.length < amount * 2)
+				themes.push(favored);
+				
 			for each (var room:Room in world.rooms)
 			{
-				if (Math.random() < 0.5)
+				if (Math.random() < 0.75)
 					themes[Math.floor(Math.random() * themes.length)].apply(world, room);
 			}
 		}
