@@ -19,7 +19,7 @@ package
 					world.setTile(p.x, p.y, Tile.pit);
 				}
 				
-				if (room.contains(world.hero))
+				if (room.contains(world.hero) && Math.random() < 0.33)
 					previousTiles.push(new Point(world.hero.x, world.hero.y));
 			});
 		}

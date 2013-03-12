@@ -38,7 +38,7 @@ package
 						continue;
 					
 					world.setTile(p.x, p.y, Tile.exposedTrap)
-					world.addAnimation(new ExplodeAnimation(world, p.x, p.y, 49));
+					world.addAnimation(new ExplodeAnimation(world, p.x, p.y, 49*4));
 				}
 			});
 		}
