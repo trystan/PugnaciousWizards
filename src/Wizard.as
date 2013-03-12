@@ -13,7 +13,7 @@ package
 			
 			meleeAttack = 15;
 			meleeDefence = 5;
-			hp = 100;
+			hp = 50;
 		}
 		
 		override public function doesHate(other:Creature):Boolean

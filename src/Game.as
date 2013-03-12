@@ -67,14 +67,11 @@ package
 					
 					candidates.splice(candidates.indexOf(room), 1);
 					
-					var x:int = room.x * 8 + 5 + 3;
-					var y:int = room.y * 8 + 5 + 3;
-					
-					world.addItem(new PieceOfAmulet(x, y));
-					world.addCreature(new Wizard(x, y - 1));
+					new RoomTheme_Amulet().apply(world, room);
 				}
 			}
-			// world.addCreature(new Wizard(2, 40));
+			
+			applyRoomThemes();
 		}
 		
 		public function startDemo():void
@@ -82,6 +79,20 @@ package
 			startGame();
 			hero = new Hero(1, 30);
 			world.addCreature(hero);
+		}
+		
+		private function applyRoomThemes():void 
+		{
+			var themes:Array = [
+				new RoomTheme_Pillars(),
+				new RoomTheme_Bloody(),
+				new RoomTheme_Outside()];
+			
+			for each (var room:Room in world.rooms)
+			{
+				if (Math.random() < 0.5)
+					themes[Math.floor(Math.random() * themes.length)].apply(world, room);
+			}
 		}
 	}
 }

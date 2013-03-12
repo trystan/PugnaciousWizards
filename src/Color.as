@@ -5,6 +5,7 @@ package
 		public static var fire:int = Color.hsv(15, 90, 70);
 		public static var ice:int = Color.hsv(215, 70, 95);
 		static public var blood:int = Color.hsv(5, 66, 20);
+		static public var ruins:int = Color.hsv(100, 0, 20);
 		
 		public static function hsv(h:Number, s:Number, v:Number):uint
 		{

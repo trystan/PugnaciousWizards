@@ -5,6 +5,7 @@ package
 		public var x:int;
 		public var y:int;
 		public var dist:int;
+		public var hasTheme:Boolean = false;
 		
 		public function Room(x:int, y:int, dist:int) 
 		{

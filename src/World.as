@@ -1,5 +1,6 @@
 package  
 {
+	import flash.display.BitmapData;
 	import flash.geom.Point;
 	import org.microrl.architecture.Screen;
 	public class World 
@@ -16,9 +17,14 @@ package
 		public var burningTiles:Array = [];
 		
 		public var maxBloodPerTile:int = 15;
+		public var perlinBitmap:BitmapData;
 		
-		public function World() 
+		public function World()
 		{	
+			perlinBitmap = new BitmapData(80, 80, false, 0x00CCCCCC);
+			var randomNum:Number = Math.floor(Math.random() * 10);
+			perlinBitmap.perlinNoise(6, 6, 6, randomNum, false, true, 1, true, null);
+
 			makeCastleWalls();
 			makeMaze();
 			addRandomDoors();
@@ -116,6 +122,15 @@ package
 		
 		public function setTile(x:int, y:int, t:Tile):void
 		{
+			if (t == Tile.grass || t == Tile.tree)
+			{
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
+				
+				var variation:int = Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10);
+				trace(x + "," + y + " == " + variation);
+				t.bg = Color.hsv(100, 20, 15 + variation);
+			}
+			
 			tiles[x][y] = t;
 			
 			if (t == Tile.burningDoor10 || t == Tile.burningTree3)
@@ -184,7 +199,7 @@ package
 					else if (x < 4 && (y < 10 || y > 70))
 						row.push(Tile.tree);
 					else if (x < 4)
-						row.push(Tile.grass);
+						row.push(Tile.outOfBounds); // change to grass later
 					else if (x < 4 || y < 4 || x > 76 || y > 76)
 						row.push(Tile.pit);
 					else if ((x + y) % 2 == 0)
@@ -221,6 +236,13 @@ package
 			{
 				for (x = 0; x < 73; x++)
 					setTile(x + 4, y * 8 + 4, Tile.wall);
+			}
+			
+			for (var x:int = 0; x < 80; x++)
+			for (var y:int = 0; y < 80; y++)
+			{
+				if (getTile(x, y) == Tile.outOfBounds)
+					setTile(x, y, Tile.grass);
 			}
 		}
 		

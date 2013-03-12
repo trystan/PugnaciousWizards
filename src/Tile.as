@@ -15,6 +15,7 @@ package
 		public static var tile1:Tile = new Tile(32, Color.hsv(100, 0, 12), Color.hsv(100, 0, 12), true, true);
 		public static var tile2:Tile = new Tile(32, Color.hsv(100, 0, 10), Color.hsv(100, 0, 10), true, true);
 		public static var wall:Tile = new Tile(35, Color.hsv(100, 0, 50), Color.hsv(100, 0, 40), false, false);
+		public static var crumbledWall:Tile = new Tile(35, Color.lerp(Color.ruins, Color.hsv(100, 0, 50), 0.4), Color.lerp(Color.ruins, Color.hsv(100, 0, 40), 0.6), false, false);
 		
 		public static var closedDoor:Tile = new Tile(43, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, false);
 		public static var openDoor:Tile = new Tile(47, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, true);
