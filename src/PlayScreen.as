@@ -30,8 +30,7 @@ package
 				
 				y++;
 				var room:Room = game.world.getRoom(game.hero.x, game.hero.y);
-				var forbidden:Boolean = room != null && room.forbidMagic;
-				var fg:int = forbidden ? 0xff666666 : 0xffc0c0c0;
+				var fg:int = game.hero.canCastMagic ? 0xffc0c0c0 : 0xff666666;
 				
 				terminal.write("-- magic --", x, y+=2);
 				terminal.write("1. blink", x, y+=2, fg);
@@ -60,6 +59,9 @@ package
 		
 		public function cast(i:int):void
 		{
+			if (!game.hero.canCastMagic)
+				return;
+				
 			game.hero.magic[i].playerCast(game.hero);
 			step();
 		}

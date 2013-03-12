@@ -21,9 +21,14 @@ package
 			baseViewDistance = 12;
 		}
 		
+		public function get canCastMagic():Boolean
+		{
+			return world.getRoom(x, y) == null || !world.getRoom(x, y).forbidMagic
+		}
+		
 		public function aiCastSpell():Boolean
 		{	
-			if (world.getRoom(x, y) != null && world.getRoom(x, y).forbidMagic)
+			if (canCastMagic)
 				return false;
 				
 			var actions:Array = [];
