@@ -17,6 +17,18 @@ package
 							  [ -1, -0],            [ +1, -0],
 							  [ -1, +1], [ -0, +1], [ +1, +1]];
 			
+			if (isBlind)
+			{
+				if (Math.random() < 0.25)
+				{
+					var dir:Array = dirs[Math.floor(Math.random() * dirs.length)];
+					fireArrow(ox, oy);
+				}
+				else
+					wander();
+				return;
+			}
+							  
 			for each (var dir:Array in dirs)
 			{
 				var ox:int = dir[0];

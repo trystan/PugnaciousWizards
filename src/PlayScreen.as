@@ -34,6 +34,7 @@ package
 				terminal.write("3. heal", x, y+=2);
 				terminal.write("4. explosion", x, y+=2);
 				terminal.write("5. freeze", x, y+=2);
+				terminal.write("6. blind", x, y+=2);
 			});
 			
 			bind("h,left", "move w", walk, -1,  0);
@@ -46,26 +47,16 @@ package
 			bind("n", "move sw", walk,  1,  1);
 			bind(".", "step", walk, 0, 0);
 			
-			bind("1", "magic 1", function ():void {
-				game.hero.magic[0].playerCast(game.hero);
-				step();
-			});
-			bind("2", "magic 2", function ():void {
-				game.hero.magic[1].playerCast(game.hero);
-				step();
-			});
-			bind("3", "magic 3", function ():void {
-				game.hero.magic[2].playerCast(game.hero);
-				step();
-			});
-			bind("4", "magic 4", function ():void {
-				game.hero.magic[3].playerCast(game.hero);
-				step();
-			});
-			bind("5", "magic 5", function ():void {
-				game.hero.magic[4].playerCast(game.hero);
-				step();
-			});
+			for (var i:int = 0; i < game.hero.magic.length; i++)
+			{
+				bind((i+1) +"", "magic " + (i+1), cast, i);
+			}
+		}
+		
+		public function cast(i:int):void
+		{
+			game.hero.magic[i].playerCast(game.hero);
+			step();
 		}
 		
 		public function walk(mx:int, my:int):void

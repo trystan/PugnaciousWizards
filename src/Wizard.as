@@ -32,6 +32,13 @@ package
 			if (aiCastSpell())
 				return;
 			
+			if (isBlind)
+			{
+				pathToTarget = [];
+				wander();
+				return;
+			}
+			
 			if (canSee(world.hero))
 			{
 				targetPoint = new Point(world.hero.x, world.hero.y);

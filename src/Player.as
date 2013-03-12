@@ -11,7 +11,7 @@ package
 			meleeAttack = 20;
 			meleeDefence = 5;
 			hp = 100;
-			viewDistance = 12;
+			baseViewDistance = 12;
 		}
 		
 		override public function doesHate(other:Creature):Boolean

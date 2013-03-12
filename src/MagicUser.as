@@ -7,7 +7,8 @@ package
 			new MagicSpell(new MagicMissile()),
 			new MagicSpell(new MagicHeal()),
 			new MagicSpell(new MagicExplode()),
-			new MagicSpell(new MagicFreeze())
+			new MagicSpell(new MagicFreeze()),
+			new MagicSpell(new MagicBlind())
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int) 
@@ -17,7 +18,7 @@ package
 			meleeAttack = 20;
 			meleeDefence = 5;
 			hp = 100;
-			viewDistance = 12;
+			baseViewDistance = 12;
 		}
 		
 		public function aiCastSpell():Boolean

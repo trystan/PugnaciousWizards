@@ -13,6 +13,12 @@ package
 		
 		override public function updateInternal():void
 		{
+			if (isBlind)
+			{
+				wander();
+				return;
+			}
+			
 			if (world.getRoom(x, y).contains(world.hero))
 			{
 				var mx:int = x < world.hero.x ? 1 : (x > world.hero.x ? -1 : 0);

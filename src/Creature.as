@@ -9,7 +9,7 @@ package
 		public var x:int;
 		public var y:int;
 		public var world:World;
-		public var viewDistance:int;
+		public var baseViewDistance:int;
 		
 		public var meleeAttack:int = 10;
 		public var meleeDefence:int = 0;
@@ -18,6 +18,15 @@ package
 		
 		public var isOnFireCounter:int = 0;
 		public var isFrozenCounter:int = 0;
+		public var isBlindCounter:int = 0;
+		
+		public function get viewDistance():int
+		{
+			if (isBlind)
+				return 0;
+			else
+				return baseViewDistance;
+		}
 		
 		public function get color():int 
 		{
@@ -36,7 +45,12 @@ package
 			this.x = x;
 			this.y = y;
 			this.hp = 100;
-			this.viewDistance = 9;
+			this.baseViewDistance = 9;
+		}
+		
+		public function get isBlind():Boolean
+		{
+			return isBlindCounter > 0;
 		}
 		
 		public function update():void
@@ -53,6 +67,11 @@ package
 				hp -= Math.floor(isOnFireCounter / 10) + 1;
 				isOnFireCounter--;
 				bleed();
+			}
+			
+			if (isBlindCounter > 0)
+			{
+				isBlindCounter--;
 			}
 			
 			if (isFrozenCounter > 0)
@@ -87,7 +106,7 @@ package
 			
 			if (other != null)
 			{
-				if (doesHate(other))
+				if (doesHate(other) || isBlind)
 					attack(other);
 			}
 			else if (world.getTile(x + mx, y + my) == Tile.closedDoor)
