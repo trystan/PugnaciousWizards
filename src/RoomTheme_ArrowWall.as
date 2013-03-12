@@ -35,7 +35,7 @@ package
 					for (var x:int = 1; x < 8; x++)
 					{
 						if (world.getTile(rx + x, ry + 8) == Tile.wall)
-							walls.push(new Point(rx + x, ry));
+							walls.push(new Point(rx + x, ry + 8));
 					}
 					break;
 				case "W":
