@@ -28,7 +28,7 @@ package
 		
 		public function aiCastSpell():Boolean
 		{	
-			if (canCastMagic)
+			if (!canCastMagic)
 				return false;
 				
 			var actions:Array = [];

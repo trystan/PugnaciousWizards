@@ -85,7 +85,8 @@ package
 				new RoomTheme_Bones(),
 				new RoomTheme_Outside(),
 				new RoomTheme_ArrowTowers(),
-				new RoomTheme_ArrowWall()];
+				new RoomTheme_ArrowWall(),
+				new RoomTheme_CheckerTraps()];
 			
 			themes.splice(Math.floor(Math.random() * themes.length), 1);
 			themes.splice(Math.floor(Math.random() * themes.length), 1);
