@@ -64,7 +64,7 @@ package
 					if (world.getCreature(cx, cy) != null)
 						continue;
 						
-					world.addCreature(new Archer(x, y));
+					world.addCreature(new Archer(cx, cy));
 					break;
 				}
 			});

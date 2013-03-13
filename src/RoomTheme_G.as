@@ -64,7 +64,7 @@ package
 					if (world.getCreature(cx, cy) != null)
 						continue;
 						
-					world.addCreature(new Guard(x, y));
+					world.addCreature(new Guard(cx, cy));
 					break;
 				}
 			});

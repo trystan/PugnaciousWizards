@@ -8,8 +8,10 @@ package
 		
 		public var glyph:String;
 		private var fg:int;
-		public var x:int;
-		public var y:int;
+		public function get x():int { return _x; }
+		public function get y():int { return _y; }
+		private var _x:int;
+		private var _y:int;
 		public var world:World;
 		public var baseViewDistance:int;
 		public var name:String;
@@ -46,8 +48,8 @@ package
 		{
 			this.glyph = glyph;
 			this.fg = fg;
-			this.x = x;
-			this.y = y;
+			this._x = x;
+			this._y = y;
 			this.hp = 100;
 			this.baseViewDistance = 9;
 			this.name = name;
@@ -99,8 +101,9 @@ package
 		
 		public function teleportTo(nx:int, ny:int):void
 		{
-			x = nx;
-			y = ny;
+			world.move(this, x, y, nx, ny);
+			_x = nx;
+			_y = ny;
 		}
 		
 		public function walk(mx:int, my:int):void
@@ -123,8 +126,9 @@ package
 			else if (world.getTile(x + mx, y + my).isWalkable)
 			{
 				var oldRoom:Room = world.getRoom(x, y);
-				x += mx;
-				y += my;
+				world.move(this, x, y, x + mx, y + my);
+				_x += mx;
+				_y += my;
 				var newRoom:Room = world.getRoom(x, y);
 				
 				if (oldRoom != newRoom && newRoom != null && newRoom.description != null)

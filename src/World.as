@@ -10,6 +10,7 @@ package
 		public var hero:Creature;
 		
 		public var creatures:Array = [];
+		public var creatureGrid:Array = [];
 		public var items:Array = [];
 		public var animations:Array = [];
 		public var rooms:Array = [];
@@ -33,6 +34,14 @@ package
 			
 			addRoom(new Room(0, 4, 0));
 			
+			creatureGrid = [];
+			for (var x:int = 0; x < 80; x++)
+			{
+				var row:Array = [];
+				for (var y:int = 0; y < 80; y++)
+					row.push(null);
+				creatureGrid.push(row);
+			}
 			
 			blood = [];
 			for (var x:int = 0; x < 80; x++)
@@ -99,9 +108,7 @@ package
 			
 			
 			for each (var trigger:Function in triggers)
-			{
 				trigger();
-			}
 			
 			var alive:Array = [];
 			for each (creature in creatures)
@@ -109,7 +116,10 @@ package
 				if (creature.hp > 0)
 					alive.push(creature);
 				else
+				{
 					addItem(new PileOfBones(creature.x, creature.y));
+					creatureGrid[creature.x][creature.y] = null;
+				}
 			}
 			creatures = alive;
 		}
@@ -164,6 +174,7 @@ package
 		public function addCreature(creature:Creature):void
 		{
 			creatures.push(creature);
+			creatureGrid[creature.x][creature.y] = creature;
 			creature.world = this;
 		}
 		
@@ -327,12 +338,17 @@ package
 		
 		public function getCreature(x:int, y:int):Creature 
 		{
+			if (x < 0 || y < 0 || x > 79 || y > 79)
+				return null;
+				
+			return creatureGrid[x][y];
+			/*
 			for each (var creature:Creature in creatures)
 			{
 				if (creature.hp > 0 && creature.x == x && creature.y == y)
 					return creature;
 			}
-			return null;
+			return null;*/
 		}
 		
 		public function getBlood(x:int, y:int):int 
@@ -363,6 +379,16 @@ package
 				addBloodOnce(x-1, y+1);
 			if (Math.random() < 0.075)
 				addBloodOnce(x+1, y+1);
+		}
+		
+		public function move(creature:Creature, x:int, y:int, nx:int, ny:int):void 
+		{
+			if (creatureGrid[x][y] != creature)
+				trace(creature.name + " isn't where it should be!");
+			else
+				creatureGrid[x][y] = null;
+		
+			creatureGrid[nx][ny] = creature;
 		}
 		
 		private function addBloodOnce(x:int, y:int):void
