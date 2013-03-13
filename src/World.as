@@ -136,18 +136,18 @@ package
 		{
 			if (t == Tile.portal)
 			{
-				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name);
 				t.isPortal = true;
 				t.bg = Color.hsv(Math.floor(Math.random() * 360), 25, 95);
 			}
 			else if (t == Tile.grass)
 			{
-				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name);
 				t.bg = Color.hsv(100, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
 			}
 			else if (t == Tile.tree)
 			{
-				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name);
 				t.fg = Color.hsv(100 + Math.random() * 40, 50 + Math.random() * 30, 30 + Math.random() * 30);
 				t.bg = Color.hsv(120, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
 			}

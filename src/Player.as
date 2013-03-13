@@ -6,7 +6,7 @@ package
 		
 		public function Player(x:int, y:int) 
 		{
-			super("@", Color.hsv(0, 0, 90), x, y);
+			super("@", Color.hsv(0, 0, 90), x, y, "you");
 			
 			meleeAttack = 20;
 			meleeDefence = 5;

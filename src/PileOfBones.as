@@ -6,7 +6,7 @@ package
 		
 		public function PileOfBones(x:int, y:int, reanimates:Boolean = true) 
 		{
-			super(";", Color.hsv(0, 0, 50), x, y);
+			super(";", Color.hsv(0, 0, 50), x, y, "pile of bones");
 			
 			this.countDown = reanimates ? 50 : -1;
 		}

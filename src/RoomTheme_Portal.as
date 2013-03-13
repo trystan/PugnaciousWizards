@@ -8,7 +8,7 @@ package
 		{
 			if (room.hasTheme)
 				return;
-				
+			
 			room.hasTheme = true;
 			room.description = "Portal room";
 			

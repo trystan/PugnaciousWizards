@@ -4,7 +4,7 @@ package
 	{
 		public function Skeleton(x:int, y:int) 
 		{
-			super("s", Color.hsv(90, 00, 66), x, y);
+			super("s", Color.hsv(90, 00, 66), x, y, "skeleton");
 			
 			meleeAttack = 10;
 			meleeDefence = 0;

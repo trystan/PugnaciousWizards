@@ -23,7 +23,7 @@ package
 				if (ox % 4 == 1 && oy % 4 == 1)
 				{
 					var glyph:int = Math.floor(Math.random() * 26 + 97);
-					world.setTile(x, y, new Tile(glyph, 0xffbbbbbb, 0xff666666, false, true));
+					world.setTile(x, y, new Tile(glyph, 0xffbbbbbb, 0xff666666, false, true, "statue of a " + String.fromCharCode(glyph)));
 				}
 			}
 		}

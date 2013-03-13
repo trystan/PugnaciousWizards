@@ -10,6 +10,7 @@ package
 		public var y:int;
 		public var world:World;
 		public var baseViewDistance:int;
+		public var name:String;
 		
 		public var meleeAttack:int = 10;
 		public var meleeDefence:int = 0;
@@ -38,7 +39,7 @@ package
 				return this.fg;
 		}
 		
-		public function Creature(glyph:String, fg:int, x:int, y:int) 
+		public function Creature(glyph:String, fg:int, x:int, y:int, name:String) 
 		{
 			this.glyph = glyph;
 			this.fg = fg;
@@ -46,6 +47,7 @@ package
 			this.y = y;
 			this.hp = 100;
 			this.baseViewDistance = 9;
+			this.name = name;
 		}
 		
 		public function get isBlind():Boolean

@@ -11,9 +11,9 @@ package
 			new MagicSpell(new MagicBlind())
 		];
 			
-		public function MagicUser(glyph:String, fg:int, x:int, y:int) 
+		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String) 
 		{
-			super(glyph, fg, x, y);
+			super(glyph, fg, x, y, name);
 			
 			meleeAttack = 20;
 			meleeDefence = 5;

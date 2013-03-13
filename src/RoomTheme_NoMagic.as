@@ -20,7 +20,7 @@ package
 				var t:Tile = (x + y) % 2 == 0 ? Tile.tile1 : Tile.tile2;
 				var c:int = Math.floor(Math.random() * 255);
 				
-				t = new Tile(c, 0xff222222, t.bg, t.isWalkable, t.allowsVision);
+				t = new Tile(c, 0xff222222, t.bg, t.isWalkable, t.allowsVision, "floor with odd symbols");
 				
 				world.setTile(x, y, t);
 			}

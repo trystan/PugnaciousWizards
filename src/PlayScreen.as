@@ -60,6 +60,9 @@ package
 			bind("n", "move sw", walk,  1,  1);
 			bind(".", "step", walk, 0, 0);
 			bind("?", "help", enterScreen, new HelpScreen());
+			bind("X", "examine", function():void {
+				enterScreen(new ExamineScreen(game));
+			});
 			
 			for (var i:int = 0; i < game.hero.magic.length; i++)
 			{

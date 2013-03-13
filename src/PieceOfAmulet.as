@@ -4,7 +4,7 @@ package
 	{
 		public function PieceOfAmulet(x:int, y:int) 
 		{
-			super("*", Color.hsv(60, 90, 90), x, y);
+			super(String.fromCharCode(15), Color.hsv(60, 90, 90), x, y, "piece of amulet");
 		}
 	}
 }

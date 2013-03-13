@@ -23,6 +23,11 @@ package
 			return lastVisible[x][y] == lastTurn;
 		}
 		
+		public function isUnknown(x:int, y:int):Boolean
+		{
+			return lastVisible[x][y] == -1;
+		}
+		
 		public function wasVisible(x:int, y:int):Boolean
 		{
 			return lastVisible[x][y] != -1 && lastVisible[x][y] < lastTurn;

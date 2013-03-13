@@ -4,7 +4,7 @@ package
 	{
 		public function Guard(x:int, y:int) 
 		{
-			super("g", Color.hsv(0, 10, 80), x, y);
+			super("g", Color.hsv(0, 10, 80), x, y, "guard");
 			
 			meleeAttack = 10;
 			meleeDefence = 5;

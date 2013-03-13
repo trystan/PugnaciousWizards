@@ -22,7 +22,9 @@ package
 			"    some magic, like freeze, needs to be aimed in a direction",
 			"    some magic, like explode, needs to be aimed at a target",
 			"",
-			"? for this screen"
+			"press X to examine your surroundings",
+			"",
+			"press ? for this screen",
 		];
 		
 		public function HelpScreen() 

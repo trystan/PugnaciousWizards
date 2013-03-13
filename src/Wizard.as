@@ -9,7 +9,7 @@ package
 		
 		public function Wizard(x:int, y:int)
 		{
-			super("w", Color.rgb(330, 90, 90), x, y);
+			super("w", Color.rgb(330, 90, 90), x, y, "wizard");
 			
 			meleeAttack = 15;
 			meleeDefence = 5;
