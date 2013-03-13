@@ -10,6 +10,7 @@ package
 				return;
 				
 			room.hasTheme = true;
+			room.description = "Portal room";
 			
 			var x:int = room.x * 8 + 8;
 			var y:int = room.y * 8 + 8;

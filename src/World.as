@@ -183,13 +183,11 @@ package
 		}
 		
 		public function getRoom(x:int, y:int):Room
-		{
-			x = (x - 4) / 8;
-			y = (y - 4) / 8;
-			
+		{	
 			for each (var room:Room in rooms)
 			{
-				if (room.x == x && room.y == y)
+				if (room.x * 8 + 4 < x && room.x * 8 + 12 > x 
+				 && room.y * 8 + 4 < y && room.y * 8 + 12 > y)
 					return room;
 			}
 			return null;

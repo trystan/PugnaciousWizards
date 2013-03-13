@@ -9,6 +9,7 @@ package
 				return;
 				
 			room.hasTheme = true;
+			room.description = "Tower hall";
 			
 			var total:int = Math.max(1, Math.min(room.dist / 5 + 1, 4));
 			

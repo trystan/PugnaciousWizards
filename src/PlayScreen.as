@@ -26,10 +26,19 @@ package
 				var y:int = 5;
 				var hpColor:int = Color.lerp(Color.hsv(120, 90, 90), Color.hsv(0, 90, 90), Math.max(1, Math.min(game.hero.hp, 100)) / 100.0);
 				terminal.write(game.hero.hp + "% health", x, y+=2, hpColor);
-				terminal.write(game.hero.piecesOfAmulet + "/3 amulet pieces" , x, y+=2);
 				
 				y++;
 				var room:Room = game.world.getRoom(game.hero.x, game.hero.y);
+				
+				if (room == null && (game.hero.x < 5 || game.hero.y < 5 || game.hero.x > 75 || game.hero.y > 75))
+					terminal.write("ouside the castle", x, y += 2);
+				else if (room == null)
+					terminal.write("in a doorway", x, y += 2);
+				else
+					terminal.write(("in a " + room.description.toLowerCase()).substr(0, 19), x, y += 2);
+				
+				terminal.write(game.hero.piecesOfAmulet + "/3 amulet pieces" , x, y += 2);
+				
 				var fg:int = game.hero.canCastMagic ? 0xffc0c0c0 : 0xff666666;
 				
 				terminal.write("-- magic --", x, y+=2);

@@ -7,6 +7,7 @@ package
 		public var dist:int;
 		public var hasTheme:Boolean = false;
 		public var forbidMagic:Boolean = false;
+		public var description:String = "";
 		
 		public function Room(x:int, y:int, dist:int) 
 		{

@@ -7,7 +7,8 @@ package
 			if (room.hasTheme)
 				return;
 				
-			room.hasTheme = true;	
+			room.hasTheme = true;
+			room.description = "Courtyard";	
 				
 			for (var ox:int = 0; ox < 7; ox++)
 			for (var oy:int = 0; oy < 7; oy++)

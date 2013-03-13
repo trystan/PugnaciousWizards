@@ -7,7 +7,8 @@ package
 			if (room.hasTheme)
 				return;
 				
-			room.hasTheme = true;	
+			room.hasTheme = true;
+			room.description = "Bloody room";
 				
 			var max:int = world.maxBloodPerTile * 49;
 			var total:int = (Math.random() * max + Math.random() * max) / 5;

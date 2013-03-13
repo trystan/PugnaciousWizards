@@ -9,6 +9,7 @@ package
 				
 			room.hasTheme = true;	
 			room.forbidMagic = true;
+			room.description = "Mystical room";
 				
 			for (var ox:int = 0; ox < 7; ox++)
 			for (var oy:int = 0; oy < 7; oy++)

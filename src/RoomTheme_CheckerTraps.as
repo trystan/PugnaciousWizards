@@ -10,6 +10,7 @@ package
 				return;
 				
 			room.hasTheme = true;
+			room.description = "Empty room";
 			
 			var type:int = Math.random() < 0.5 ? 1 :0;
 			var triggers:Array = [];

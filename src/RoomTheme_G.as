@@ -7,7 +7,8 @@ package
 			if (room.hasTheme)
 				return;
 				
-			room.hasTheme = true;	
+			room.hasTheme = true;
+			room.description = "Guard barracks";
 			
 			var blueprint:Array = [
 				"0000000",

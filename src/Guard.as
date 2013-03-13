@@ -19,7 +19,8 @@ package
 				return;
 			}
 			
-			if (world.getRoom(x, y).contains(world.hero))
+			var room:Room = world.getRoom(x, y);
+			if (room != null && room.contains(world.hero))
 			{
 				var mx:int = x < world.hero.x ? 1 : (x > world.hero.x ? -1 : 0);
 				var my:int = y < world.hero.y ? 1 : (y > world.hero.y ? -1 : 0);

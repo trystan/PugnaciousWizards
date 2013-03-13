@@ -10,6 +10,7 @@ package
 				return;
 				
 			room.hasTheme = true;
+			room.description = "Statuary";
 			
 			var triggers:Array = [];
 			

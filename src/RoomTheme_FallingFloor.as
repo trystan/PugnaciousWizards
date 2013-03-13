@@ -9,7 +9,8 @@ package
 			if (room.hasTheme)
 				return;
 				
-			room.hasTheme = true;	
+			room.hasTheme = true;
+			room.description = "Old room";
 			
 			var previousTiles:Array = [];
 			world.addTriggerForEveryTurn(function():void {

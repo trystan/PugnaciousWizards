@@ -7,7 +7,8 @@ package
 			if (room.hasTheme)
 				return;
 				
-			room.hasTheme = true;	
+			room.hasTheme = true;
+			room.description = "Amulet room";
 			
 			var x:int = room.x * 8 + 5 + 3;
 			var y:int = room.y * 8 + 5 + 3;
