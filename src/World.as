@@ -134,7 +134,13 @@ package
 		
 		public function setTile(x:int, y:int, t:Tile):void
 		{
-			if (t == Tile.grass)
+			if (t == Tile.portal)
+			{
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
+				t.isPortal = true;
+				t.bg = Color.hsv(Math.floor(Math.random() * 360), 25, 95);
+			}
+			else if (t == Tile.grass)
 			{
 				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision);
 				t.bg = Color.hsv(100, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));

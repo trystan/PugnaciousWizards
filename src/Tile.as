@@ -15,6 +15,7 @@ package
 		public static var tile1:Tile = new Tile(32, Color.hsv(100, 0, 10), Color.hsv(100, 0, 10), true, true);
 		public static var tile2:Tile = new Tile(32, Color.hsv(100, 0, 12), Color.hsv(100, 0, 12), true, true);
 		public static var tile3:Tile = new Tile(32, Color.hsv(100, 0, 14), Color.hsv(100, 0, 14), true, true);
+		public static var portal:Tile = new Tile(32, Color.hsv(100, 0, 14), Color.hsv(100, 0, 14), true, true);
 		public static var exposedTrap:Tile = new Tile(94, Color.hsv(0, 80, 50), Color.hsv(100, 0, 12), true, true);
 		public static var wall:Tile = new Tile(35, Color.hsv(100, 0, 50), Color.hsv(100, 0, 40), false, false);
 		public static var crumbledWall:Tile = new Tile(35, Color.lerp(Color.ruins, Color.hsv(100, 0, 50), 0.4), Color.lerp(Color.ruins, Color.hsv(100, 0, 40), 0.6), false, false);
@@ -40,6 +41,7 @@ package
 		public var isWalkable:Boolean;
 		public var allowsVision:Boolean;
 		public var isTree:Boolean;
+		public var isPortal:Boolean = false;
 		
 		public function Tile(glyph:int, fg:int, bg:int, isWalkable:Boolean, allowsVision:Boolean)
 		{

@@ -36,7 +36,7 @@ package
 				terminal.write("1. blink", x, y+=2, fg);
 				terminal.write("2. missile", x, y+=2, fg);
 				terminal.write("3. heal", x, y+=2, fg);
-				terminal.write("4. explosion", x, y+=2, fg);
+				terminal.write("4. explode", x, y+=2, fg);
 				terminal.write("5. freeze", x, y+=2, fg);
 				terminal.write("6. blind", x, y+=2, fg);
 			});
@@ -50,6 +50,7 @@ package
 			bind("b", "move se", walk, -1,  1);
 			bind("n", "move sw", walk,  1,  1);
 			bind(".", "step", walk, 0, 0);
+			bind("?", "help", enterScreen, new HelpScreen());
 			
 			for (var i:int = 0; i < game.hero.magic.length; i++)
 			{
