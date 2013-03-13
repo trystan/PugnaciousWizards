@@ -8,7 +8,8 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Courtyard";	
+			room.name = "Courtyard";
+			room.description = "It takes a while to adjust to the bright light and fresh air of the small courtyard.";
 				
 			for (var ox:int = 0; ox < 7; ox++)
 			for (var oy:int = 0; oy < 7; oy++)

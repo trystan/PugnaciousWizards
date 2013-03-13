@@ -4,7 +4,7 @@ package
 	{
 		public var fieldOfView:FieldOfView;
 		public var world:World;
-		public var hero:Player;
+		public var hero:MagicUser;
 		
 		public function Game() 
 		{
@@ -71,6 +71,7 @@ package
 		{
 			startGame();
 			hero = new Hero(1, 30);
+			world.hero = hero;
 			world.addCreature(hero);
 		}
 		

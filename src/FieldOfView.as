@@ -5,6 +5,7 @@ package
 	{
 		public var lastVisible:Array;
 		public var lastTurn:int = 0;
+		public var currentlyVisiblePoints:Array = [];
 		
 		public function FieldOfView() 
 		{
@@ -41,6 +42,7 @@ package
 		public function calculateVisibility(x:int, y:int, r:int, isVisible:Function):void
 		{
 			lastTurn++;
+			currentlyVisiblePoints = [];
 			
 			for (var vx:int = x - r; vx < x + r + 1; vx++)
 			for (var vy:int = y - r; vy < y + r + 1; vy++)
@@ -50,10 +52,14 @@ package
 					
 				for each (var p:Point in Line.betweenCoordinates(x, y, vx, vy).points)
 				{
-					lastVisible[p.x][p.y] = lastTurn;
+					if (lastVisible[p.x][p.y] != lastTurn)
+					{
+						currentlyVisiblePoints.push(new Point(p.x, p.y));
+						lastVisible[p.x][p.y] = lastTurn;
+					}
 					
 					if (!isVisible(p.x, p.y))
-						break;	
+						break;
 				}	
 			}
 		}

@@ -4,6 +4,8 @@ package
 	import flash.geom.Point;
 	public class Creature 
 	{
+		public var piecesOfAmulet:int = 0;
+		
 		public var glyph:String;
 		private var fg:int;
 		public var x:int;
@@ -11,6 +13,7 @@ package
 		public var world:World;
 		public var baseViewDistance:int;
 		public var name:String;
+		public var description:String;
 		
 		public var meleeAttack:int = 10;
 		public var meleeDefence:int = 0;
@@ -39,7 +42,7 @@ package
 				return this.fg;
 		}
 		
-		public function Creature(glyph:String, fg:int, x:int, y:int, name:String) 
+		public function Creature(glyph:String, fg:int, x:int, y:int, name:String, description:String) 
 		{
 			this.glyph = glyph;
 			this.fg = fg;
@@ -48,6 +51,7 @@ package
 			this.hp = 100;
 			this.baseViewDistance = 9;
 			this.name = name;
+			this.description = description;
 		}
 		
 		public function get isBlind():Boolean
@@ -118,9 +122,19 @@ package
 			}
 			else if (world.getTile(x + mx, y + my).isWalkable)
 			{
+				var oldRoom:Room = world.getRoom(x, y);
 				x += mx;
 				y += my;
+				var newRoom:Room = world.getRoom(x, y);
+				
+				if (oldRoom != newRoom && newRoom != null && newRoom.description != null)
+					HelpSystem.notify(this, newRoom.name, newRoom.description);
 			}
+		}
+		
+		public function enterRoom(room:Room):void
+		{
+			
 		}
 		
 		public function doesHate(other:Creature):Boolean 

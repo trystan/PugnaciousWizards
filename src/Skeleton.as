@@ -4,9 +4,10 @@ package
 	{
 		public function Skeleton(x:int, y:int) 
 		{
-			super("s", Color.hsv(90, 00, 66), x, y, "skeleton");
+			super("s", Color.hsv(90, 00, 66), x, y, "skeleton",
+				"This reanimated human skeleton has no armor or weapons. Skeletons fall quickly from even minor damage but they always recover.");
 			
-			meleeAttack = 10;
+			meleeAttack = 6;
 			meleeDefence = 0;
 			hp = 5;
 		}

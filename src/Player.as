@@ -1,12 +1,10 @@
 package  
 {
 	public class Player extends MagicUser
-	{		
-		public var piecesOfAmulet:int = 0;
-		
+	{	
 		public function Player(x:int, y:int) 
 		{
-			super("@", Color.hsv(0, 0, 90), x, y, "you");
+			super("@", Color.hsv(0, 0, 90), x, y, "you", null);
 			
 			meleeAttack = 20;
 			meleeDefence = 5;

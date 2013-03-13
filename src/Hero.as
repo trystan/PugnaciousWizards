@@ -2,11 +2,12 @@ package
 {
 	import flash.geom.Point;
 	
-	public class Hero extends Player
+	public class Hero extends MagicUser
 	{
 		public function Hero(x:int, y:int)
 		{
-			super(x, y);
+			super("@", 0xffdddddd, x, y, "hero", 
+				"This magic user is on a quest to find the amulet pieces and escape with them.");
 			
 			meleeAttack = 20;
 			meleeDefence = 5;

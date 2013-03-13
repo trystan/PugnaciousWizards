@@ -10,7 +10,9 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Old room";
+			room.name = "Old room";
+			room.description = "The decrepit floor is falling appart and doesn't look safe to walk on.";
+			
 			
 			var previousTiles:Array = [];
 			world.addTriggerForEveryTurn(function():void {

@@ -4,11 +4,12 @@ package
 	{
 		public function Guard(x:int, y:int) 
 		{
-			super("g", Color.hsv(0, 10, 80), x, y, "guard");
+			super("g", Color.hsv(0, 10, 80), x, y, "guard",
+				"Their heavy armor and sword means guards can cause a lot of pain and withstand a lot of pain.");
 			
-			meleeAttack = 10;
-			meleeDefence = 5;
-			hp = 50;
+			meleeAttack = 15;
+			meleeDefence = 6;
+			hp = 40;
 		}
 		
 		override public function updateInternal():void

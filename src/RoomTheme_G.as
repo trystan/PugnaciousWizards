@@ -8,7 +8,8 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Guard barracks";
+			room.name = "Guard barracks";
+			room.description = "A guard barracks will respawn guards if there arent enough. Ther farther you venture into the castle the more guards each barracks will hold.";
 			
 			var blueprint:Array = [
 				"0000000",

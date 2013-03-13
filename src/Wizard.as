@@ -9,10 +9,11 @@ package
 		
 		public function Wizard(x:int, y:int)
 		{
-			super("w", Color.rgb(330, 90, 90), x, y, "wizard");
+			super("w", Color.rgb(330, 90, 90), x, y, "wizard",
+				"Even though they wear only robes and don't have any weapons, wizards are dangerously unpredictable and can cause all kinds of trouble with their assortment of spells.");
 			
-			meleeAttack = 15;
-			meleeDefence = 5;
+			meleeAttack = 5;
+			meleeDefence = 2;
 			hp = 50;
 		}
 		

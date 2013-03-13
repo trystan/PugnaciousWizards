@@ -136,18 +136,19 @@ package
 		{
 			if (t == Tile.portal)
 			{
-				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name);
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name, t.description);
 				t.isPortal = true;
+				t.fg = Color.hsv(Math.floor(Math.random() * 360), 25, 95);
 				t.bg = Color.hsv(Math.floor(Math.random() * 360), 25, 95);
 			}
 			else if (t == Tile.grass)
 			{
-				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name);
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name, t.description);
 				t.bg = Color.hsv(100, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
 			}
 			else if (t == Tile.tree)
 			{
-				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name);
+				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name, t.description);
 				t.fg = Color.hsv(100 + Math.random() * 40, 50 + Math.random() * 30, 30 + Math.random() * 30);
 				t.bg = Color.hsv(120, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
 			}
@@ -162,9 +163,6 @@ package
 		
 		public function addCreature(creature:Creature):void
 		{
-			if (creature is Player)
-				hero = creature;
-			
 			creatures.push(creature);
 			creature.world = this;
 		}
@@ -339,7 +337,10 @@ package
 		
 		public function getBlood(x:int, y:int):int 
 		{
-			return blood[x][y];
+			if (tiles[x][y].isPortal || tiles[x][y] == Tile.pit)
+				return 0;
+			else
+				return blood[x][y];
 		}
 		
 		public function addBlood(x:int, y:int):void

@@ -36,12 +36,32 @@ package
 						
 					if (itemName != null)
 						text += itemName + " on ";
+					
+					if (tileName.length > 2 && tileName.substr(0, 2) == "a ")
+					{
+						text += "a ";
+						tileName = tileName.substr(2);
+					}
+					else if (tileName.length > 3 && tileName.substr(0, 3) == "an ")
+					{
+						text += "an ";
+						tileName = tileName.substr(3);
+					}
 						
+					var blood:int = game.world.getBlood(lookX, lookY);
+					blood = Math.floor(blood / game.world.maxBloodPerTile * 4);
+					if (blood == 1)
+						text += "blood splattered ";
+					if (blood == 2)
+						text += "bloody ";
+					if (blood == 3)
+						text += "blood soaked ";
+					
 					text += tileName;
 					
 					var room:Room = game.world.getRoom(lookX, lookY);
 					if (room != null && !game.fieldOfView.isUnknown(lookX, lookY))
-						text += " in " + room.description;
+						text += " in " + room.name;
 						
 					text = text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
 				}

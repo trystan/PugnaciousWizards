@@ -2,6 +2,7 @@ package
 {
 	import com.headchant.asciipanel.AsciiPanel;
 	import flash.events.KeyboardEvent;
+	import flash.geom.Point;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
 	import org.microrl.architecture.BaseScreen;
@@ -17,8 +18,12 @@ package
 			game = new Game();
 			game.startGame();
 			game.hero = new Player(2, 40);
+			game.world.hero = game.hero;
 			game.world.addCreature(game.hero);
 			step();
+			
+			HelpSystem.notify(game.hero, "First turn", 
+				"Hello there! Since this is your first turn, I'll explain some details. You control the @ symbol on the left of the screen. Your health, status, and magic are all on the right hand side of this screen. You are on a quest to find three pieces of an amulet hidden within this castle. You should first go through the door, it's the brownish thing to the right of your character. At any time, type [X] to examine your surroundings or [?] to see more help.");
 			
 			display(new WorldView(game));
 			display(function(terminal:AsciiPanel):void {
@@ -35,7 +40,7 @@ package
 				else if (room == null)
 					terminal.write("in a doorway", x, y += 2);
 				else
-					terminal.write(("in a " + room.description.toLowerCase()).substr(0, 19), x, y += 2);
+					terminal.write(("in a " + room.name.toLowerCase()).substr(0, 19), x, y += 2);
 				
 				terminal.write(game.hero.piecesOfAmulet + "/3 amulet pieces" , x, y += 2);
 				
@@ -104,7 +109,7 @@ package
 		}
 		
 		private function tick():void
-		{
+		{	
 			while (game.world.animations.length > 0)
 				enterScreen(game.world.animations.shift());
 			
@@ -115,6 +120,16 @@ package
 			
 			while (game.world.animations.length > 0)
 				enterScreen(game.world.animations.shift());
+			
+			for each (var p:Point in game.fieldOfView.currentlyVisiblePoints)
+			{
+				var c:Creature = game.world.getCreature(p.x, p.y);
+				if (c != null && c.description != null)
+					HelpSystem.notify(game.hero, "You see a " + c.name + " (" + c.glyph +")", c.description);
+				var t:Tile = game.world.getTile(p.x, p.y);
+				if (t.description != null)
+					HelpSystem.notify(game.hero, "You see a " + t.name + " (" + t.glyph +")", t.description);
+			}
 		}
 	}
 }

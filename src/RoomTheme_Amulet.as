@@ -8,7 +8,8 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Amulet room";
+			room.name = "Amulet room";
+			room.description = "An piece of an amulet shines brightly in the center of the room.";
 			
 			var x:int = room.x * 8 + 5 + 3;
 			var y:int = room.y * 8 + 5 + 3;

@@ -18,8 +18,8 @@ package
 			{
 				arrows.push(new Arrow(p.x, p.y, -1, -1, 7));
 				arrows.push(new Arrow(p.x, p.y,  1, -1, 7));
-				arrows.push(new Arrow(p.x, p.y,  1, -1, 7));
 				arrows.push(new Arrow(p.x, p.y, -1,  1, 7));
+				arrows.push(new Arrow(p.x, p.y,  1,  1, 7));
 				arrows.push(new Arrow(p.x, p.y, -1,  0, 7));
 				arrows.push(new Arrow(p.x, p.y,  1,  0, 7));
 				arrows.push(new Arrow(p.x, p.y,  0, -1, 7));

@@ -9,7 +9,7 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Empty room";
+			room.name = "Empty room";
 			
 			var walls:Array = [];
 			

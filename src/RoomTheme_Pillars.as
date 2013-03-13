@@ -8,7 +8,8 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Abandoned room";
+			room.name = "Abandoned room";
+			room.description = "Something used to be in here but ages of neglect have left it in ruins.";
 				
 			var total:int = Math.floor(Math.random() + 2 + Math.random() + 2) + 1;
 			for (var i:int = 0; i < total; i++)

@@ -4,7 +4,8 @@ package
 	{
 		public function Archer(x:int, y:int) 
 		{
-			super("a", Color.hsv(120, 20, 85), x, y, "archer");
+			super("a", Color.hsv(120, 20, 85), x, y, "archer",
+				"Armed with a bow and arrows, archers can't do much damage up close but they can attack from a distance. Their light armor means they fall quickly in melee combat.");
 			
 			meleeAttack = 5;
 			meleeDefence = 1;

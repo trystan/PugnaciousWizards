@@ -8,7 +8,8 @@ package
 				return;
 				
 			room.hasTheme = true;
-			room.description = "Bone room";
+			room.name = "Bone room";
+			room.description = "Piles of bones both old an new fill the room. This is not a nice place to take a break.";
 			
 			for (var ox:int = 0; ox < 7; ox++)
 			for (var oy:int = 0; oy < 7; oy++)
