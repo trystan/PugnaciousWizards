@@ -72,6 +72,9 @@ package
 			
 			if (isOnFireCounter > 0)
 			{
+				HelpSystem.notify(this, "You're on fire!",
+					"One of the hazards of bein an andventurer is fire. Specifically, being on fire. You'll lose health while on fire but eventually the flames will die down as long as you avoid open flames.");
+					
 				hp -= Math.floor(isOnFireCounter / 10) + 1;
 				isOnFireCounter--;
 				bleed();
@@ -79,11 +82,17 @@ package
 			
 			if (isBlindCounter > 0)
 			{
+				HelpSystem.notify(this, "You're blind!",
+					"You can't see anything in here! Give it a few turns and you'll be able to see again. I just hope you remember where the nearest safe area is....");
+					
 				isBlindCounter--;
 			}
 			
 			if (isFrozenCounter > 0)
 			{
+				HelpSystem.notify(this, "You're frozen solid!",
+					"Freezing solid is just part of the job of being an adventurer. Wait a few turns and, if you're still alive, you'll be able to move again. You can't do anything else anyway.");
+					
 				isFrozenCounter--;
 			}
 			else
@@ -91,7 +100,11 @@ package
 				updateInternal();
 			}
 			
-			if (hp < 15)
+			if (hp < 25)
+				bleed();
+			if (hp < 10)
+				bleed();
+			if (hp < 5)
 				bleed();
 		}
 		
