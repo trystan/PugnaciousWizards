@@ -16,7 +16,7 @@ package
 			var y:int = room.y * 8 + 8;
 			
 			world.setTile(x, y, Tile.portal);
-			world.addTriggerForEveryTurn(function() {
+			world.addTriggerForEveryTurn(function():void {
 				world.setTile(x, y, Tile.portal);
 				if (world.hero.x == x && world.hero.y == y)
 					teleport(world.hero);

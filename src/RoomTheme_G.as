@@ -36,10 +36,10 @@ package
 				if (Math.random() > 0.05)
 					return;
 				
-				var x0 = room.x * 8 + 5;
-				var y0 = room.y * 8 + 5;
-				var x1 = room.x * 8 + 5 + 7;
-				var y1 = room.y * 8 + 5 + 7;
+				var x0:int = room.x * 8 + 5;
+				var y0:int = room.y * 8 + 5;
+				var x1:int = room.x * 8 + 5 + 7;
+				var y1:int = room.y * 8 + 5 + 7;
 				
 				var guardCount:int = 0;
 				

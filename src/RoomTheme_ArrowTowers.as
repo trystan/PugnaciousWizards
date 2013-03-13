@@ -33,10 +33,10 @@ package
 			}
 			
 			world.addTriggerForEveryTurn(function():void {
-				var x0 = room.x * 8 + 5;
-				var y0 = room.y * 8 + 5;
-				var x1 = room.x * 8 + 5 + 7;
-				var y1 = room.y * 8 + 5 + 7;
+				var x0:int = room.x * 8 + 5;
+				var y0:int = room.y * 8 + 5;
+				var x1:int = room.x * 8 + 5 + 7;
+				var y1:int = room.y * 8 + 5 + 7;
 				
 				if (world.hero.x >= x0 && world.hero.x <= x1 && world.hero.y >= y0 && world.hero.y <= y1)
 					world.addAnimation(new ArrowTowersAnimation(world, towers));

@@ -50,7 +50,7 @@ package
 						true);
 			}
 			
-			if (pathToTarget != null && pathToTarget.length > 0);
+			if (pathToTarget != null && pathToTarget.length > 0)
 			{
 				var next:Point = pathToTarget.shift();
 				if (next != null)

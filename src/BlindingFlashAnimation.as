@@ -11,7 +11,7 @@ package
 				return creature.world.getTile(vx, vy).allowsVision;
 			});
 			
-			display(function(terminal:AsciiPanel) {
+			display(function(terminal:AsciiPanel):void {
 				for (var x:int = 0; x < 80; x++)
 				for (var y:int = 0; y < 80; y++)
 				{
