@@ -1,6 +1,6 @@
 package  
 {
-	import delivery.Projectile;
+	import delivery.MagicMissileProjectile;
 	import effect.MagicDamage;
 	import flash.events.KeyboardEvent;
 	import org.microrl.architecture.RL;
@@ -12,7 +12,7 @@ package
 		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
 			function (world:World, x:int, y:int, ox:int, oy:int):AnimatedScreen {
-				return new Projectile(world, x, y, ox, oy, 16, new MagicDamage(11))
+				return new MagicMissileProjectile(world, x, y, ox, oy, 16, new MagicDamage(11))
 			});
 			
 		public function calculateAiBenefit(caster:Creature):MagicAction
