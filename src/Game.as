@@ -85,12 +85,10 @@ package
 				new RoomTheme_G(),
 				new RoomTheme_Pillars(),
 				new RoomTheme_Bloody(),
-				new RoomTheme_Bones(),
 				new RoomTheme_Outside(),
 				new RoomTheme_ArrowTowers(),
 				new RoomTheme_ArrowWall(),
 				new RoomTheme_CheckerTraps(),
-				new RoomTheme_FallingFloor(),
 				new RoomTheme_Empty()];
 			
 			var half:int = themes.length / 2;
@@ -100,7 +98,7 @@ package
 			
 			var favored:RoomTheme = themes[Math.floor(Math.random() * themes.length)];
 			
-			while (themes.length < half * 2)
+			while (themes.length < half * 1.5)
 				themes.push(favored);
 				
 			for each (var room:Room in world.rooms)
