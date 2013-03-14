@@ -3,13 +3,13 @@ package targeting
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
 	
-	public class ChooseAVisibleTile implements Targeting
+	public class ChooseAVisibleEmptyTile implements Targeting
 	{
 		private var minDistance:int;
 		private var maxDistance:int;
 		public var castAtLocationCallback:Function;
 		
-		public function ChooseAVisibleTile(minDistance:int, maxDistance:int, castAtLocationCallback:Function):void
+		public function ChooseAVisibleEmptyTile(minDistance:int, maxDistance:int, castAtLocationCallback:Function):void
 		{
 			this.minDistance = minDistance;
 			this.maxDistance = maxDistance;
@@ -35,6 +35,9 @@ package targeting
 			var candidates:Array = [];
 			for each (var p:Point in points)
 			{
+				if (!caster.canSeeLocation(p.x, p.y))
+					continue;
+					
 				var candidate:MagicAction = getCandidate(caster, p);
 				if (candidate != null)
 					candidates.push(candidate);
@@ -49,12 +52,15 @@ package targeting
 		
 		private function getCandidate(caster:Creature, p:Point):MagicAction 
 		{
-			var other:Creature = caster.world.getCreature(caster.x + p.x, caster.y + p.y);
-		
-			if (other == null || !caster.doesHate(other) || !caster.canSee(other))
+			if (!(caster is Hero))
 				return null;
 				
-			return new MagicAction(50, function(c:Creature):void {
+			var other:Creature = caster.world.getCreature(caster.x + p.x, caster.y + p.y);
+		
+			if (other != null)
+				return null;
+				
+			return new MagicAction(10, function(c:Creature):void {
 				c.world.addAnimation(castAtLocationCallback(caster.world, c.x + p.x, c.y + p.y));
 			});
 		}

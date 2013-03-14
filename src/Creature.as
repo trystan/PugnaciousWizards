@@ -161,8 +161,13 @@ package
 		
 		public function canSee(other:Creature):Boolean
 		{
+			return canSeeLocation(other.x, other.y);
+		}
+		
+		public function canSeeLocation(tx:int, ty:int):Boolean
+		{
 			var dist:int = 0;
-			for each (var p:Point in Line.betweenCoordinates(x, y, other.x, other.y).points)
+			for each (var p:Point in Line.betweenCoordinates(x, y, tx, ty).points)
 			{
 				if (dist++ > viewDistance)
 					return false;
