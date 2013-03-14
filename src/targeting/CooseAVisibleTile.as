@@ -3,7 +3,7 @@ package targeting
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
 	
-	public class CooseAVisibleTile 
+	public class CooseAVisibleTile implements Targeting
 	{
 		private var minDistance:int;
 		private var maxDistance:int;
@@ -54,7 +54,7 @@ package targeting
 			if (other == null || !caster.doesHate(other) || !caster.canSee(other))
 				return null;
 				
-			return new MagicAction(33, function(c:Creature):void {
+			return new MagicAction(50, function(c:Creature):void {
 				c.world.addAnimation(castAtLocationCallback(caster.world, c.x + p.x, c.y + p.y));
 			});
 		}

@@ -1,6 +1,7 @@
-package  
+package animation
 {
 	import com.headchant.asciipanel.AsciiPanel;
+	import effect.Effect;
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import flash.utils.clearInterval;
@@ -8,24 +9,24 @@ package
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class FreezeAnimation extends AnimatedScreen
+	public class Ray extends AnimatedScreen
 	{
 		public var world:World;
 		public var x:int;
 		public var y:int;
 		public var ox:int;
 		public var oy:int;
-		public var countDown:int;
+		public var maxDistance:int;
 		public var path:Array;
 		
-		public function FreezeAnimation(world:World, sx:int, sy:int, ox:int, oy:int, countDown:int) 
+		public function Ray(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect) 
 		{
 			this.world = world;
 			this.x = sx;
 			this.y = sy;
 			this.ox = ox;
 			this.oy = oy;
-			this.countDown = countDown;
+			this.maxDistance = maxDistance;
 			this.path = [];
 			
 			display(function(terminal:AsciiPanel):void {
@@ -36,7 +37,7 @@ package
 					if (c != null)
 						glyph = c.glyph;
 					var t:Tile = world.getTile(p.x, p.y);
-					terminal.write(glyph, p.x, p.y, Color.ice, Color.lerp(Color.ice, t.bg, 0.25));
+					terminal.write(glyph, p.x, p.y, magicEffect.primaryColor, Color.lerp(magicEffect.primaryColor, t.bg, 0.25));
 				}
 				
 				var glyph:String = " ";
@@ -44,7 +45,7 @@ package
 				if (c != null)
 					glyph = c.glyph;
 				var t:Tile = world.getTile(x, y);
-				terminal.write(glyph, x, y, Color.ice, Color.lerp(Color.ice, t.bg, 0.90));
+				terminal.write(glyph, x, y, magicEffect.secondaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.90));
 			});
 			
 			bind(".", "animate", function():void {
@@ -61,15 +62,17 @@ package
 				var creature:Creature = world.getCreature(x, y);
 				if (creature != null)
 				{
-					creature.isFrozenCounter = 12;
+					magicEffect.applyPrimary(world, x, y);
 					exitScreen();
 				}
 				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 				{
+					magicEffect.applyPrimary(world, x, y);
 					exitScreen();
 				}
-				else if (countDown-- < 1)
+				else if (maxDistance-- < 1)
 				{
+					magicEffect.applySecondary(world, x, y);
 					exitScreen();
 				}
 			});
