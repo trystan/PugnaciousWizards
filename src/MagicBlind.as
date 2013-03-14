@@ -4,7 +4,7 @@ package
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
-	import animation.EverythingVisible;
+	import delivery.EverythingVisible;
 	
 	public class MagicBlind implements Magic
 	{

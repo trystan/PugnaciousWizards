@@ -1,6 +1,6 @@
 package  
 {
-	import animation.Projectile;
+	import delivery.Projectile;
 	import effect.MagicDamage;
 	import flash.events.KeyboardEvent;
 	import org.microrl.architecture.RL;

@@ -1,4 +1,4 @@
-package animation
+package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
 	import effect.Effect;

@@ -1,6 +1,6 @@
 package  
 {
-	import animation.RandomVisibleSpace;
+	import delivery.RandomVisibleSpace;
 	import effect.Teleport;
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;

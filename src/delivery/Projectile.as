@@ -1,15 +1,14 @@
-package animation
+package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
 	import effect.Effect;
 	import flash.events.KeyboardEvent;
-	import flash.geom.Point;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class Ray extends AnimatedScreen
+	public class Projectile extends AnimatedScreen
 	{
 		public var world:World;
 		public var x:int;
@@ -17,9 +16,9 @@ package animation
 		public var ox:int;
 		public var oy:int;
 		public var maxDistance:int;
-		public var path:Array;
+		public var glyph:String;
 		
-		public function Ray(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect) 
+		public function Projectile(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect) 
 		{
 			this.world = world;
 			this.x = sx;
@@ -27,37 +26,25 @@ package animation
 			this.ox = ox;
 			this.oy = oy;
 			this.maxDistance = maxDistance;
-			this.path = [];
+			this.glyph = "*";
+			
+			if (ox == -1 && oy == -1 || ox == 1 && oy == 1)
+				glyph = "\\";
+			else if (ox == -1 && oy == 1 || ox == 1 && oy == -1)
+				glyph = "/";
+			else if (ox == 0 && oy == 1 || ox == 0 && oy == -1)
+				glyph = String.fromCharCode(179);
+			else if (ox == 1 && oy == 0 || ox == -1 && oy == 0)
+				glyph = String.fromCharCode(196);
 			
 			display(function(terminal:AsciiPanel):void {
-				for each (var p:Point in path)
-				{
-					var glyph:String = " ";
-					var c:Creature = world.getCreature(p.x, p.y);
-					if (c != null)
-						glyph = c.glyph;
-					var t:Tile = world.getTile(p.x, p.y);
-					terminal.write(glyph, p.x, p.y, magicEffect.primaryColor, Color.lerp(magicEffect.primaryColor, t.bg, 0.25));
-				}
-				
-				var glyph:String = " ";
-				var c:Creature = world.getCreature(x, y);
-				if (c != null)
-					glyph = c.glyph;
 				var t:Tile = world.getTile(x, y);
-				terminal.write(glyph, x, y, magicEffect.secondaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.90));
+				terminal.write(glyph, x, y, magicEffect.primaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.33));
 			});
 			
 			bind(".", "animate", function():void {
-				path.push(new Point(x, y));
 				x += ox;
 				y += oy;
-				
-				if (x < 0 || y < 0 || x > 78 || y > 78)
-				{
-					exitScreen();
-					return;
-				}
 				
 				var creature:Creature = world.getCreature(x, y);
 				if (creature != null)
@@ -77,7 +64,7 @@ package animation
 				}
 			});
 			
-			animate(20);
+			animate(30);
 		}
 	}
 }

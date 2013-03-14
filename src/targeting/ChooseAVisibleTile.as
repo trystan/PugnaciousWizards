@@ -3,13 +3,13 @@ package targeting
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
 	
-	public class CooseAVisibleTile implements Targeting
+	public class ChooseAVisibleTile implements Targeting
 	{
 		private var minDistance:int;
 		private var maxDistance:int;
 		public var castAtLocationCallback:Function;
 		
-		public function CooseAVisibleTile(minDistance:int, maxDistance:int, castAtLocationCallback:Function):void
+		public function ChooseAVisibleTile(minDistance:int, maxDistance:int, castAtLocationCallback:Function):void
 		{
 			this.minDistance = minDistance;
 			this.maxDistance = maxDistance;

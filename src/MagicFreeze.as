@@ -1,7 +1,7 @@
 package  
 {
 	import effect.Ice;
-	import animation.Ray;
+	import delivery.Ray;
 	import flash.events.KeyboardEvent;
 	import org.microrl.architecture.RL;
 	import targeting.ChooseDirectionToEnemy;
