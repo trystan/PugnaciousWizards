@@ -1,8 +1,10 @@
 package  
 {
+	import effect.Blind;
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
+	import animation.EverythingVisible;
 	
 	public class MagicBlind implements Magic
 	{
@@ -15,7 +17,7 @@ package
 		
 		public function playerCast(creature:Creature):void
 		{
-			creature.world.addAnimation(new BlindingFlashAnimation(creature));
+			creature.world.addAnimation(new EverythingVisible(creature, new Blind()));
 		}
 	}
 }

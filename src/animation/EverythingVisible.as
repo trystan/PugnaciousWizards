@@ -1,9 +1,11 @@
-package  
+package animation
 {
 	import com.headchant.asciipanel.AsciiPanel;
-	public class BlindingFlashAnimation extends AnimatedScreen 
+	import effect.Effect;
+	
+	public class EverythingVisible extends AnimatedScreen 
 	{
-		public function BlindingFlashAnimation(creature:Creature) 
+		public function EverythingVisible(creature:Creature, magicEffect:Effect) 
 		{
 			var fov:FieldOfView = new FieldOfView();
 			
@@ -18,16 +20,9 @@ package
 					if (!fov.isVisibleNow(x, y))
 						continue;
 						
-					terminal.write(" ", x, y, 0xffffffff, 0xffffffff);
+					terminal.write(" ", x, y, magicEffect.primaryColor, magicEffect.secondaryColor);
 					
-					var c:Creature = creature.world.getCreature(x, y);
-					if (c == null)
-						continue;
-					
-					if (c.isBlindCounter > 0)
-						continue;
-					
-					c.isBlindCounter = 12;
+					magicEffect.applyPrimary(creature.world, x, y);
 				}
 			});
 			
