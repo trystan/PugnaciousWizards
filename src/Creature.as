@@ -161,8 +161,12 @@ package
 		
 		public function canSee(other:Creature):Boolean
 		{
+			var dist:int = 0;
 			for each (var p:Point in Line.betweenCoordinates(x, y, other.x, other.y).points)
 			{
+				if (dist++ > viewDistance)
+					return false;
+					
 				if (!world.getTile(p.x, p.y).allowsVision)
 					return false;
 			}

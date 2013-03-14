@@ -57,8 +57,17 @@ package
 					return;
 				}
 			}
-							  
-			wander();
+			
+			if (canSee(world.hero) && ((world.hero.x-x)*(world.hero.x-x) + (world.hero.y-y)*(world.hero.y-y)) > 3)
+			{
+				var mx:int = x < world.hero.x ? 1 : (x > world.hero.x ? -1 : 0);
+				var my:int = y < world.hero.y ? 1 : (y > world.hero.y ? -1 : 0);
+				walk(mx, my);
+			}
+			else
+			{
+				wander();
+			}
 		}
 		
 		public function fireArrow(ox:int, oy:int):void

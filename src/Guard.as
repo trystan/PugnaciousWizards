@@ -14,18 +14,10 @@ package
 		
 		override public function updateInternal():void
 		{
-			if (isBlind)
-			{
-				wander();
-				return;
-			}
-			
-			var room:Room = world.getRoom(x, y);
-			if (room != null && room.contains(world.hero))
+			if (canSee(world.hero))
 			{
 				var mx:int = x < world.hero.x ? 1 : (x > world.hero.x ? -1 : 0);
 				var my:int = y < world.hero.y ? 1 : (y > world.hero.y ? -1 : 0);
-				
 				walk(mx, my);
 			}
 			else
