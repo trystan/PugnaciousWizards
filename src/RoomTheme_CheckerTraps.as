@@ -1,5 +1,7 @@
 package  
 {
+	import animation.Explosion;
+	import effect.Fire;
 	import flash.geom.Point;
 	
 	public class RoomTheme_CheckerTraps implements RoomTheme
@@ -39,7 +41,7 @@ package
 						continue;
 					
 					world.setTile(p.x, p.y, Tile.exposedTrap)
-					world.addAnimation(new ExplodeAnimation(world, p.x, p.y, 49*4));
+					world.addAnimation(new Explosion(world, p.x, p.y, 49*4, new Fire()));
 				}
 			});
 		}

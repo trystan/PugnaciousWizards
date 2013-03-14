@@ -1,20 +1,20 @@
 package  
 {
 	import animation.Explosion;
-	import effect.Fire;
+	import effect.Ice;
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
 	
-	public class MagicExplode implements Magic
-	{
+	public class MagicFreeze2 implements Magic
+	{	
 		private static var points:Array = null;
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			if (points == null)
 			{
 				points = [];
-				for (var radius:int = 8; radius < 12; radius++)
+				for (var radius:int = 5; radius < 7; radius++)
 				{
 					for (var angle:int = 0; angle < 360; angle += 10)
 					{
@@ -41,8 +41,8 @@ package
 		
 		public function playerCast(creature:Creature):void
 		{
-			RL.enterScreen(new TargetVisibleTileScreen(creature.x, creature.y, creature.viewDistance, creature.world, function(x:int, y:int):void {
-				creature.world.addAnimation(new Explosion(creature.world, x, y, 100, new Fire()));
+			RL.enterScreen(new TargetVisibleTileScreen(creature.x, creature.y, creature.viewDistance, creature.world, function(mx:int, my:int):void {
+				creature.world.addAnimation(new Explosion(creature.world, mx, my, 49, new Ice()));
 			}));
 		}
 		
@@ -54,7 +54,7 @@ package
 				return null;
 				
 			return new MagicAction(33, function(c:Creature):void {
-				c.world.addAnimation(new Explosion(c.world, c.x + p.x, c.y + p.y, 100, new Fire()));
+				c.world.addAnimation(new Explosion(c.world, c.x + p.x, c.y + p.y, 49, new Ice()));
 			});
 		}
 	}

@@ -8,7 +8,8 @@ package
 			new MagicSpell(new MagicHeal()),
 			new MagicSpell(new MagicExplode()),
 			new MagicSpell(new MagicFreeze()),
-			new MagicSpell(new MagicBlind())
+			new MagicSpell(new MagicBlind()),
+			new MagicSpell(new MagicFreeze2())
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 

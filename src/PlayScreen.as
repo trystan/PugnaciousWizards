@@ -53,6 +53,7 @@ package
 				terminal.write("4. explode", x, y+=2, fg);
 				terminal.write("5. freeze", x, y+=2, fg);
 				terminal.write("6. blind", x, y+=2, fg);
+				terminal.write("7. freeze2", x, y+=2, fg);
 			});
 			
 			bind("h,left", "move w", walk, -1,  0);
