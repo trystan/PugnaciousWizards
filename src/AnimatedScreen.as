@@ -17,7 +17,12 @@ package
 		
 		protected function animate(fps:int):void 
 		{
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
+			animateWith(fps, 46);
+		}
+		
+		protected function animateWith(fps:int, keyCode:int):void 
+		{
+			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, keyCode, 190);
 			intervalTimeout = setInterval(RL.instance.handleKeyboardEvent, 1000 / fps, event);
 		}
 		

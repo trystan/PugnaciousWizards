@@ -10,14 +10,14 @@ package delivery
 	{
 		public function Composite(deliveries:Array) 
 		{	
-			bind(".", "animate", function():void {
+			bind(String.fromCharCode(0), "animate", function():void {
 				if (deliveries.length == 0)
 					exitScreen();
 				else
 					enterScreen(deliveries.shift());
 			});
 			
-			animate(1);
+			animateWith(5, 0);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package  
 {
 	import spells.FieryTeleport;
+	import spells.IceBlink;
 	public class MagicUser extends Creature
 	{
 		public var magic:Array = [
@@ -12,6 +13,7 @@ package
 			new MagicBlind(),
 			new MagicFreeze2(),
 			new FieryTeleport(),
+			new IceBlink(),
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 

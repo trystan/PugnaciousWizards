@@ -383,12 +383,15 @@ package
 		
 		public function move(creature:Creature, x:int, y:int, nx:int, ny:int):void 
 		{
-			if (creatureGrid[x][y] != creature)
+			if (x < 0 && y < 0) // removed from game
+				;
+			else if (creatureGrid[x][y] != creature)
 				trace(creature.name + " isn't where it should be!");
 			else
 				creatureGrid[x][y] = null;
 		
-			creatureGrid[nx][ny] = creature;
+			if (!(nx < 0 && ny < 0)) // removing from game
+				creatureGrid[nx][ny] = creature;
 		}
 		
 		private function addBloodOnce(x:int, y:int):void

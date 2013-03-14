@@ -21,16 +21,25 @@ package
 		
 		public function isVisibleNow(x:int, y:int):Boolean
 		{
+			if (x < 0 || x > 79 || y < 0 || y > 79)
+				return false;
+				
 			return lastVisible[x][y] == lastTurn;
 		}
 		
 		public function isUnknown(x:int, y:int):Boolean
 		{
+			if (x < 0 || x > 79 || y < 0 || y > 79)
+				return false;
+				
 			return lastVisible[x][y] == -1;
 		}
 		
 		public function wasVisible(x:int, y:int):Boolean
 		{
+			if (x < 0 || x > 79 || y < 0 || y > 79)
+				return false;
+				
 			return lastVisible[x][y] != -1 && lastVisible[x][y] < lastTurn;
 		}
 		
@@ -43,7 +52,10 @@ package
 		{
 			lastTurn++;
 			currentlyVisiblePoints = [];
-			
+		
+			if (x < 0 || x > 79 || y < 0 || y > 79)
+				return;
+				
 			for (var vx:int = x - r; vx < x + r + 1; vx++)
 			for (var vy:int = y - r; vy < y + r + 1; vy++)
 			{
