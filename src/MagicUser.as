@@ -2,6 +2,8 @@ package
 {
 	import spells.FieryTeleport;
 	import spells.IceBlink;
+	import spells.MagicMissile;
+	
 	public class MagicUser extends Creature
 	{
 		public var magic:Array = [

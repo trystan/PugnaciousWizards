@@ -47,7 +47,9 @@ package delivery
 				else if (creature != null)
 				{
 					magicEffect.applyPrimary(world, x, y);
-					exitScreen();
+					ox = Math.floor(Math.random() * 3) - 1;
+					oy = Math.floor(Math.random() * 3) - 1;
+					calculateGlyph();
 				}
 				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 				{

@@ -1,4 +1,4 @@
-package  
+package spells
 {
 	import delivery.MagicMissileProjectile;
 	import effect.MagicDamage;
@@ -8,7 +8,7 @@ package
 	
 	public class MagicMissile implements Magic
 	{
-		public function get name():String { return "Missile"; }
+		public function get name():String { return "Magic Missile"; }
 		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
 			function (world:World, x:int, y:int, ox:int, oy:int):AnimatedScreen {

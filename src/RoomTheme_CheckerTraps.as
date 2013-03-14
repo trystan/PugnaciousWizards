@@ -1,6 +1,8 @@
 package  
 {
+	import delivery.EverythingVisible;
 	import delivery.Explosion;
+	import effect.Blind;
 	import effect.Fire;
 	import flash.geom.Point;
 	
@@ -41,7 +43,11 @@ package
 						continue;
 					
 					world.setTile(p.x, p.y, Tile.exposedTrap)
-					world.addAnimation(new Explosion(world, p.x, p.y, 49*4, new Fire()));
+					
+					if (Math.random() < 0.80)
+						world.addAnimation(new Explosion(world, p.x, p.y, 49 * 4, new Fire()));
+					else
+						world.addAnimation(new EverythingVisible(c, new Blind()));
 				}
 			});
 		}
