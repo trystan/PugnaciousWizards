@@ -8,6 +8,8 @@ package
 	
 	public class MagicFreeze implements Magic
 	{	
+		public function get name():String { return "Freeze"; }
+		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
 			function (world:World, x:int, y:int, ox:int, oy:int):AnimatedScreen {
 				return new Ray(world, x, y, ox, oy, 16, new Ice())

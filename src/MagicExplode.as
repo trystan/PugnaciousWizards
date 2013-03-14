@@ -9,6 +9,8 @@ package
 	
 	public class MagicExplode implements Magic
 	{
+		public function get name():String { return "Fire burst"; }
+		
 		private var action:ChooseAVisibleTile = new ChooseAVisibleTile(8, 12, 
 			function (world:World, x:int, y:int):Explosion {
 				return new Explosion(world, x, y, 100, new Fire());

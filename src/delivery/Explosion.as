@@ -125,7 +125,7 @@ package delivery
 					exitScreen();
 			});
 			
-			animate(30);
+			animate(20);
 		}
 	}
 }

@@ -8,6 +8,8 @@ package
 	
 	public class MagicBlind implements Magic
 	{
+		public function get name():String { return "Blindess"; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return new MagicAction(0, function(c:Creature):void {

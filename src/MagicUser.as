@@ -1,15 +1,17 @@
 package  
 {
+	import spells.FieryTeleport;
 	public class MagicUser extends Creature
 	{
 		public var magic:Array = [
-			new MagicSpell(new MagicBlink()),
-			new MagicSpell(new MagicMissile()),
-			new MagicSpell(new MagicHeal()),
-			new MagicSpell(new MagicExplode()),
-			new MagicSpell(new MagicFreeze()),
-			new MagicSpell(new MagicBlind()),
-			new MagicSpell(new MagicFreeze2())
+			new MagicBlink(),
+			new MagicMissile(),
+			new MagicHeal(),
+			new MagicExplode(),
+			new MagicFreeze(),
+			new MagicBlind(),
+			new MagicFreeze2(),
+			new FieryTeleport(),
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 

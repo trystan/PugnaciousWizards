@@ -46,14 +46,13 @@ package
 				
 				var fg:int = game.hero.canCastMagic ? 0xffc0c0c0 : 0xff666666;
 				
-				terminal.write("-- magic --", x, y+=2);
-				terminal.write("1. blink", x, y+=2, fg);
-				terminal.write("2. missile", x, y+=2, fg);
-				terminal.write("3. heal", x, y+=2, fg);
-				terminal.write("4. explode", x, y+=2, fg);
-				terminal.write("5. freeze", x, y+=2, fg);
-				terminal.write("6. blind", x, y+=2, fg);
-				terminal.write("7. freeze2", x, y+=2, fg);
+				terminal.write("-- magic --", x, y += 2);
+				
+				for (var i:int = 0; i < game.hero.magic.length; i++)
+				{
+					var name:String = (i + 1) + ". " + game.hero.magic[i].name;
+					terminal.write(name.substr(0, 99 - x), x, y+=2, fg);
+				}
 			});
 			
 			bind("h,left", "move w", walk, -1,  0);

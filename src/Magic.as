@@ -2,6 +2,8 @@ package
 {
 	public interface Magic 
 	{
+		function get name():String;
+		
 		function calculateAiBenefit(caster:Creature):MagicAction;
 		
 		function playerCast(caster:Creature):void;

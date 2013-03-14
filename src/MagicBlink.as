@@ -8,6 +8,8 @@ package
 	
 	public class MagicBlink implements Magic
 	{
+		public function get name():String { return "Blink"; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			var total:int = 0;

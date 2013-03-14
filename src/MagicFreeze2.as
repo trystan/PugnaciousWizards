@@ -9,6 +9,8 @@ package
 	
 	public class MagicFreeze2 implements Magic
 	{	
+		public function get name():String { return "Freeze burst"; }
+		
 		private var action:ChooseAVisibleTile = new ChooseAVisibleTile(4, 12, 
 			function (world:World, x:int, y:int):Explosion {
 				return new Explosion(world, x, y, 49, new Ice());
