@@ -7,7 +7,7 @@ package delivery
 	import flash.utils.setInterval;
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
-	import effect.Effect;
+	import effects.Effect;
 	
 	public class Explosion implements Animation
 	{

@@ -1,4 +1,4 @@
-package effect 
+package effects 
 {
 	public class MagicDamage implements Effect
 	{

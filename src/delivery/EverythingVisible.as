@@ -1,7 +1,7 @@
 package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
-	import effect.Effect;
+	import effects.Effect;
 	
 	public class EverythingVisible implements Animation
 	{

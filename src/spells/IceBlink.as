@@ -1,14 +1,14 @@
 package spells
 {
 	import delivery.RandomVisibleSpace;
-	import effect.Disapear;
+	import effects.Disapear;
 	import org.microrl.architecture.RL;
 	import targeting.Self;
 	import delivery.Composite;
 	import delivery.Instant;
 	import delivery.Explosion;
-	import effect.Ice;
-	import effect.Teleport;
+	import effects.Ice;
+	import effects.Teleport;
 	import targeting.Targeting;
 	
 	public class IceBlink implements Magic

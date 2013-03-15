@@ -1,4 +1,4 @@
-package effect 
+package effects 
 {
 	public class Fire implements Effect
 	{

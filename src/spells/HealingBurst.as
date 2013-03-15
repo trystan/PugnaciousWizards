@@ -2,7 +2,7 @@ package spells
 {
 	import targeting.Self;
 	import delivery.Explosion;
-	import effect.Heal;
+	import effects.Heal;
 	
 	public class HealingBurst implements Magic
 	{

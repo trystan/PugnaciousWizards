@@ -1,7 +1,7 @@
 package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
-	import effect.Effect;
+	import effects.Effect;
 	import flash.events.KeyboardEvent;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;

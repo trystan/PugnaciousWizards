@@ -1,7 +1,7 @@
 package spells
 {
 	import delivery.MagicMissileProjectile;
-	import effect.MagicDamage;
+	import effects.MagicDamage;
 	import flash.events.KeyboardEvent;
 	import org.microrl.architecture.RL;
 	import targeting.ChooseDirectionToEnemy;

@@ -1,7 +1,14 @@
-package effect 
+package effects 
 {
-	public class Blind implements Effect
+	public class Teleport implements Effect
 	{
+		private var caster:Creature;
+		
+		public function Teleport(caster:Creature)
+		{
+			this.caster = caster;
+		}
+		
 		public function get primaryColor():int { return 0xffffffff; }
 		
 		public function get secondaryColor():int { return 0xffeeeeee; }
@@ -9,9 +16,9 @@ package effect
 		public function applyPrimary(world:World, x:int, y:int):void
 		{
 			var creature:Creature = world.getCreature(x, y);
-			if (creature != null && creature.isBlindCounter == 0)
+			if (creature == null)
 			{
-				creature.isBlindCounter += 5;
+				caster.teleportTo(x, y);
 			}
 		}
 		

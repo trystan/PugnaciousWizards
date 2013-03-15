@@ -1,13 +1,13 @@
 package spells
 {
-	import effect.Disapear;
+	import effects.Disapear;
 	import org.microrl.architecture.RL;
 	import targeting.ChooseAVisibleEmptyTile;
 	import delivery.Composite;
 	import delivery.Instant;
 	import delivery.Explosion;
-	import effect.Fire;
-	import effect.Teleport;
+	import effects.Fire;
+	import effects.Teleport;
 	import targeting.Targeting;
 	
 	public class FieryTeleport implements Magic

@@ -1,7 +1,7 @@
 package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
-	import effect.Effect;
+	import effects.Effect;
 	import flash.geom.Point;
 	
 	public class RandomVisibleSpace implements Animation 

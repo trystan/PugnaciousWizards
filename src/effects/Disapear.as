@@ -1,10 +1,10 @@
-package effect 
+package effects 
 {
-	public class Teleport implements Effect
+	public class Disapear implements Effect
 	{
 		private var caster:Creature;
 		
-		public function Teleport(caster:Creature)
+		public function Disapear(caster:Creature)
 		{
 			this.caster = caster;
 		}
@@ -15,11 +15,7 @@ package effect
 		
 		public function applyPrimary(world:World, x:int, y:int):void
 		{
-			var creature:Creature = world.getCreature(x, y);
-			if (creature == null)
-			{
-				caster.teleportTo(x, y);
-			}
+			caster.teleportTo(-2, -2);
 		}
 		
 		public function applySecondary(world:World, x:int, y:int):void

@@ -1,6 +1,6 @@
 package effects 
 {
-	import effect.Effect;
+	import effects.Effect;
 	
 	public class BloodToHealth implements Effect 
 	{

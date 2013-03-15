@@ -2,8 +2,8 @@ package
 {
 	import delivery.EverythingVisible;
 	import delivery.Explosion;
-	import effect.Blind;
-	import effect.Fire;
+	import effects.Blind;
+	import effects.Fire;
 	import flash.geom.Point;
 	
 	public class RoomTheme_CheckerTraps implements RoomTheme

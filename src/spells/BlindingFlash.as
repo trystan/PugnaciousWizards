@@ -2,7 +2,7 @@ package spells
 {
 	import delivery.EverythingVisibleFrom;
 	import targeting.ChooseAVisibleOccupiedTile;
-	import effect.Blind;
+	import effects.Blind;
 	
 	public class BlindingFlash implements Magic
 	{
