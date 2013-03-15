@@ -50,6 +50,20 @@ package
 						world.addAnimation(new EverythingVisible(c, new Blind()));
 				}
 			});
+			addBlood(world, room, 10);
+		}
+		
+		public function addBlood(world:World, room:Room, amount:int):void
+		{
+			var max:int = world.maxBloodPerTile * 49;
+			var total:int = max * amount / 100.0;
+			for (var i:int = 0; i < total; i++)
+			{
+				var x:int = room.x * 8 + 4 + Math.floor(Math.random() * 9);
+				var y:int = room.y * 8 + 4 + Math.floor(Math.random() * 9);
+				
+				world.addBlood(x, y);
+			}
 		}
 	}
 }

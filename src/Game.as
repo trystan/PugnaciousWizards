@@ -79,12 +79,10 @@ package
 		{
 			var themes:Array = [
 				new RoomTheme_Portal(),
-				new RoomTheme_Statuary(),
 				new RoomTheme_NoMagic(),
 				new RoomTheme_A(),
 				new RoomTheme_G(),
 				new RoomTheme_Pillars(),
-				new RoomTheme_Bloody(),
 				new RoomTheme_Outside(),
 				new RoomTheme_ArrowTowers(),
 				new RoomTheme_ArrowWall(),

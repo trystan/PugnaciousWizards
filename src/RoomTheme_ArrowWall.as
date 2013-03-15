@@ -70,6 +70,21 @@ package
 					&& Math.random() < 0.1)
 					world.addAnimation(new WallOfArrowsAnimation(world, walls, ox, oy));
 			});
+			
+			addBlood(world, room, 5);
+		}
+		
+		public function addBlood(world:World, room:Room, amount:int):void
+		{
+			var max:int = world.maxBloodPerTile * 49;
+			var total:int = max * amount / 100.0;
+			for (var i:int = 0; i < total; i++)
+			{
+				var x:int = room.x * 8 + 4 + Math.floor(Math.random() * 9);
+				var y:int = room.y * 8 + 4 + Math.floor(Math.random() * 9);
+				
+				world.addBlood(x, y);
+			}
 		}
 	}
 }
