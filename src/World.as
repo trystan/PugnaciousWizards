@@ -22,12 +22,16 @@ package
 		public var perlinBitmap:BitmapData;
 		public var triggers:Array = [];
 		
+		public var treeType:int;
+		
 		public function World()
 		{	
 			perlinBitmap = new BitmapData(80, 80, false, 0x00CCCCCC);
 			var randomNum:Number = Math.floor(Math.random() * 10);
 			perlinBitmap.perlinNoise(6, 6, 6, randomNum, false, true, 1, true, null);
 
+			treeType = Math.floor(Math.random() * 3);
+			
 			makeCastleWalls();
 			makeMaze();
 			addRandomDoors();
@@ -160,6 +164,14 @@ package
 			else if (t == Tile.tree)
 			{
 				t = new Tile(t.glyph.charCodeAt(0), t.fg, t.bg, t.isWalkable, t.allowsVision, t.name, t.description);
+				
+				switch (treeType)
+				{
+					case 0: t.glyph = String.fromCharCode(5); break;
+					case 1: t.glyph = String.fromCharCode(6); break;
+					case 2: t.glyph = String.fromCharCode(30); break;
+				}
+				
 				t.fg = Color.hsv(100 + Math.random() * 40, 50 + Math.random() * 30, 30 + Math.random() * 30);
 				t.bg = Color.hsv(120, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
 			}
@@ -238,22 +250,22 @@ package
 				}
 				tiles.push(row);
 			}
-			tiles[0][10] = Tile.tree;
-			tiles[2][10] = Tile.tree;
-			tiles[2][11] = Tile.tree;
-			tiles[3][10] = Tile.tree;
-			tiles[3][11] = Tile.tree;
-			tiles[3][12] = Tile.tree;
+			setTile(0, 10, Tile.tree);
+			setTile(2, 10, Tile.tree);
+			setTile(2, 11, Tile.tree);
+			setTile(3, 10, Tile.tree);
+			setTile(3, 11, Tile.tree);
+			setTile(3, 12, Tile.tree);
 			
-			tiles[6][3] = Tile.tree;
+			setTile(6, 3, Tile.tree);
 			
-			tiles[0][69] = Tile.tree;
-			tiles[0][70] = Tile.tree;
-			tiles[3][70] = Tile.tree;
+			setTile(0, 69, Tile.tree);
+			setTile(0, 70, Tile.tree);
+			setTile(3, 70, Tile.tree);
 			
-			tiles[6][77] = Tile.tree;
-			tiles[7][77] = Tile.tree;
-			tiles[6][78] = Tile.tree;
+			setTile(6, 77, Tile.tree);
+			setTile(7, 77, Tile.tree);
+			setTile(6, 78, Tile.tree);
 			
 			for (x = 0; x < 10; x++)
 			{
