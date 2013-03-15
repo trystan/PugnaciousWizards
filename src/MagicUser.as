@@ -1,6 +1,7 @@
 package  
 {
 	import spells.BlindingFlash;
+	import spells.BoneSplode;
 	import spells.FieryTeleport;
 	import spells.HealFromBlood;
 	import spells.HealingBurst;
@@ -16,6 +17,7 @@ package
 			new BlindingFlash(),
 			new FieryTeleport(),
 			new IceBlink(),
+			new BoneSplode(),
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 
