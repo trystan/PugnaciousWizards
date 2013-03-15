@@ -12,7 +12,7 @@ package spells
 		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
 			function (world:World, x:int, y:int, ox:int, oy:int):Animation {
-				return new MagicMissileProjectile(world, x, y, ox, oy, 16, new MagicDamage(11))
+				return new MagicMissileProjectile(world, x, y, ox, oy, 16, new MagicDamage(21))
 			});
 			
 		public function calculateAiBenefit(caster:Creature):MagicAction

@@ -12,8 +12,6 @@ package
 			new MagicMissile(),
 			new HealingBurst(),
 			new BlindingFlash(),
-			new MagicFreeze(),
-			new MagicFreeze2(),
 			new FieryTeleport(),
 			new IceBlink(),
 		];
