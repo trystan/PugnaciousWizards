@@ -2,9 +2,11 @@ package
 {
 	import com.headchant.asciipanel.AsciiPanel;
 	import flash.events.KeyboardEvent;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
+	import flash.utils.Timer;
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
@@ -111,17 +113,11 @@ package
 		}
 		
 		private function tick():void
-		{	
-			while (game.world.animations.length > 0)
-				enterScreen(game.world.animations.shift());
-			
+		{
 			game.world.update();
 			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
 				return game.world.getTile(vx, vy).allowsVision;
 			});
-			
-			while (game.world.animations.length > 0)
-				enterScreen(game.world.animations.shift());
 			
 			for each (var p:Point in game.fieldOfView.currentlyVisiblePoints)
 			{

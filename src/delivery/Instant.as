@@ -2,34 +2,30 @@ package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
 	import effect.Effect;
-	import flash.events.KeyboardEvent;
-	import flash.geom.Point;
-	import flash.utils.clearInterval;
-	import flash.utils.setInterval;
-	import org.microrl.architecture.RL;
 	
-	public class Instant extends AnimatedScreen 
+	public class Instant implements Animation
 	{
-		private var intervalTimeout:int;
+		public var world:World;
+		public var x:int;
+		public var y:int;
+		public var magicEffect:Effect;
 		
 		public function Instant(world:World, x:int, y:int, magicEffect:Effect) 
 		{
-			display(function(terminal:AsciiPanel):void {
-				magicEffect.applyPrimary(world, x, y);
-			});
-			
-			bind(".", "animate", function():void {
-				exitScreen();
-			});
-			
-			intervalTimeout = setInterval(stepOnce, 1000 / 30);
+			this.world = world;
+			this.x = x;
+			this.y = y;
+			this.magicEffect = magicEffect;
 		}
 		
-		public function stepOnce():void
+		public function get isDone():Boolean 
 		{
-			clearInterval(intervalTimeout);
-			var event:KeyboardEvent = new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 46, 190);
-			RL.instance.handleKeyboardEvent(event);
+			return true;
+		}
+		
+		public function tick(terminal:AsciiPanel):void 
+		{
+			magicEffect.applyPrimary(world, x, y);
 		}
 	}
 }

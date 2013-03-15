@@ -2,6 +2,7 @@ package
 {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
+	import org.microrl.architecture.RL;
 	import org.microrl.architecture.Screen;
 	public class World 
 	{
@@ -137,9 +138,9 @@ package
 			triggers.push(trigger);
 		}
 		
-		public function addAnimation(animation:AnimatedScreen):void
+		public function addAnimation(animation:Animation):void
 		{
-			animations.push(animation);
+			RL.instance.addAnimation(animation);
 		}
 		
 		public function setTile(x:int, y:int, t:Tile):void

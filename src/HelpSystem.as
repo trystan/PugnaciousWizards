@@ -16,7 +16,7 @@ package
 				return;
 				
 			events.push(event);
-			creature.world.addAnimation(new HelpSystemPopupScreen(event, details));
+			RL.enterScreen(new HelpSystemPopupScreen(event, details));
 		}
 	}
 }

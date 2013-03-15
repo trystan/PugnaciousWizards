@@ -6,18 +6,29 @@ package delivery
 	import flash.utils.setInterval;
 	import org.microrl.architecture.RL;
 	
-	public class Composite extends AnimatedScreen 
+	public class Composite implements Animation 
 	{
+		private var deliveries:Array = [];
+		
 		public function Composite(deliveries:Array) 
-		{	
-			bind(String.fromCharCode(0), "animate", function():void {
-				if (deliveries.length == 0)
-					exitScreen();
-				else
-					enterScreen(deliveries.shift());
-			});
-			
-			animateWith(5, 0);
+		{
+			this.deliveries = deliveries;
+		}
+		
+		public function get isDone():Boolean 
+		{
+			return deliveries.length == 0;
+		}
+		
+		public function tick(terminal:AsciiPanel):void 
+		{
+			if (deliveries.length > 0)
+			{
+				deliveries[0].tick(terminal);
+				
+				if (deliveries[0].isDone)
+					deliveries.shift();
+			}
 		}
 	}
 }

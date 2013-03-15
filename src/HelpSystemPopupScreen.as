@@ -3,7 +3,7 @@ package
 	import com.headchant.asciipanel.AsciiPanel;
 	import org.microrl.architecture.BaseScreen;
 
-	public class HelpSystemPopupScreen extends AnimatedScreen
+	public class HelpSystemPopupScreen extends BaseScreen
 	{
 		private var text:Array = [];
 		

@@ -45,9 +45,6 @@ package
 				game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
 					return game.world.getTile(vx, vy).allowsVision;
 				});
-				
-				while (game.world.animations.length > 0)
-					enterScreen(game.world.animations.shift());
 			});
 			
 			bind("enter", "start", function():void {

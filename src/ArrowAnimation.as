@@ -7,7 +7,7 @@ package
 	import org.microrl.architecture.BaseScreen;
 	import org.microrl.architecture.RL;
 	
-	public class ArrowAnimation extends AnimatedScreen
+	public class ArrowAnimation implements Animation
 	{
 		public var world:World;
 		public var x:int;
@@ -35,34 +35,39 @@ package
 				glyph = String.fromCharCode(179);
 			else if (ox == 1 && oy == 0 || ox == -1 && oy == 0)
 				glyph = String.fromCharCode(196);
+		}
+		
+		private var _isDone:Boolean = false;
+		public function get isDone():Boolean 
+		{
+			return _isDone;
+		}
+		
+		public function tick(terminal:AsciiPanel):void 
+		{
+			x += ox;
+			y += oy;
 			
-			display(function(terminal:AsciiPanel):void {
+			var creature:Creature = world.getCreature(x, y);
+			if (creature != null)
+			{
+				creature.hp -= 10;
+				creature.bleed();
+				_isDone = true;
+			}
+			else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
+			{
+				_isDone = true;
+			}
+			else if (countDown-- < 1)
+			{
+				_isDone = true;
+			}
+			else
+			{
 				var t:Tile = world.getTile(x, y);
 				terminal.write(glyph, x, y, Color.hsv(36, 50, 90), t.bg);
-			});
-			
-			bind(".", "step", function():void {
-				x += ox;
-				y += oy;
-				
-				var creature:Creature = world.getCreature(x, y);
-				if (creature != null)
-				{
-					creature.hp -= 10;
-					creature.bleed();
-					exitScreen();
-				}
-				else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
-				{
-					exitScreen();
-				}
-				else if (countDown-- < 1)
-				{
-					exitScreen();
-				}
-			});
-			
-			animate(60);
+			}
 		}
 	}
 }

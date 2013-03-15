@@ -11,7 +11,7 @@ package spells
 		public function get name():String { return "Magic Missile"; }
 		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
-			function (world:World, x:int, y:int, ox:int, oy:int):AnimatedScreen {
+			function (world:World, x:int, y:int, ox:int, oy:int):Animation {
 				return new MagicMissileProjectile(world, x, y, ox, oy, 16, new MagicDamage(11))
 			});
 			

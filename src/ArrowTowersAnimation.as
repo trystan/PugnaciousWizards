@@ -5,15 +5,15 @@ package
 	import flash.geom.Point;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
-	import org.microrl.architecture.BaseScreen;
-	import org.microrl.architecture.RL;
 	
-	public class ArrowTowersAnimation extends AnimatedScreen
+	public class ArrowTowersAnimation implements Animation
 	{
-		private var arrows:Array = [];
+		public var world:World;
+		public var arrows:Array = [];
 		
 		public function ArrowTowersAnimation(world:World, points:Array) 
 		{
+			this.world = world;
 			for each (var p:Point in points)
 			{
 				arrows.push(new Arrow(p.x, p.y, -1, -1, 7));
@@ -25,47 +25,46 @@ package
 				arrows.push(new Arrow(p.x, p.y,  0, -1, 7));
 				arrows.push(new Arrow(p.x, p.y,  0,  1, 7));
 			}
+		}
+		
+		public function get isDone():Boolean 
+		{
+			return arrows.length == 0;
+		}
+		
+		public function tick(terminal:AsciiPanel):void 
+		{
+			var alive:Array = [];
+			for each (var arrow:Arrow in arrows)
+			{
+				arrow.x += arrow.ox;
+				arrow.y += arrow.oy;
 				
-			display(function(terminal:AsciiPanel):void {
-				for each (var arrow:Arrow in arrows)
+				var creature:Creature = world.getCreature(arrow.x, arrow.y);
+				if (creature != null)
 				{
-					var t:Tile = world.getTile(arrow.x, arrow.y);
-					terminal.write(arrow.glyph, arrow.x, arrow.y, Color.hsv(36, 50, 90), t.bg);
+					creature.hp -= 5;
+					creature.bleed();
 				}
-			});
-			
-			bind(".", "animate", function():void {
-				var alive:Array = [];
-				for each (var arrow:Arrow in arrows)
+				else if (!world.getTile(arrow.x, arrow.y).isWalkable 
+					   || world.getTile(arrow.x, arrow.y) == Tile.closedDoor)
 				{
-					arrow.x += arrow.ox;
-					arrow.y += arrow.oy;
-					
-					var creature:Creature = world.getCreature(arrow.x, arrow.y);
-					if (creature != null)
-					{
-						creature.hp -= 5;
-						creature.bleed();
-					}
-					else if (!world.getTile(arrow.x, arrow.y).isWalkable 
-					       || world.getTile(arrow.x, arrow.y) == Tile.closedDoor)
-					{
-					}
-					else if (arrow.range-- < 1)
-					{
-					}
-					else
-					{
-						alive.push(arrow);
-					}
 				}
-				if (alive.length == 0)
-					exitScreen();
+				else if (arrow.range-- < 1)
+				{
+				}
 				else
-					arrows = alive;
-			});
+				{
+					alive.push(arrow);
+				}
+			}
 			
-			animate(60);
+			arrows = alive;
+			for each (var arrow:Arrow in arrows)
+			{
+				var t:Tile = world.getTile(arrow.x, arrow.y);
+				terminal.write(arrow.glyph, arrow.x, arrow.y, Color.hsv(36, 50, 90), t.bg);
+			}
 		}
 	}
 }
