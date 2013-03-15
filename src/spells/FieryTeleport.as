@@ -1,5 +1,6 @@
 package spells
 {
+	import effect.Disapear;
 	import org.microrl.architecture.RL;
 	import targeting.ChooseAVisibleEmptyTile;
 	import delivery.Composite;
@@ -28,8 +29,9 @@ package spells
 			return new ChooseAVisibleEmptyTile(8, 12,  
 				function (world:World, x:int, y:int):Composite {
 					return new Composite([
-						new Instant(world, x, y, new Teleport(creature)),
+						new Instant(world, x, y, new Disapear(creature)),
 						new Explosion(world, x, y, 50, new Fire()),
+						new Instant(world, x, y, new Teleport(creature)),
 					]);
 				});
 		}
