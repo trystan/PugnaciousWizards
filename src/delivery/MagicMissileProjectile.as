@@ -66,7 +66,7 @@ package delivery
 				calculateGlyph();
 			}
 			
-			if (!isDone)
+			if (!isDone && world.hero.canSeeLocation(x, y))
 			{
 				var t:Tile = world.getTile(x, y);
 				terminal.write(glyph, x, y, magicEffect.primaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.33));

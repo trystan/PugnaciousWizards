@@ -18,7 +18,7 @@ package effect
 			var creature:Creature = world.getCreature(x, y);
 			if (creature != null)
 			{
-				creature.hp = Math.max(creature.hp + amount, 100);
+				creature.hp = Math.min(creature.hp + amount, 100);
 			}
 		}
 		
@@ -27,7 +27,7 @@ package effect
 			var creature:Creature = world.getCreature(x, y);
 			if (creature != null)
 			{
-				creature.hp = Math.max(creature.hp + amount / 2, 100);
+				creature.hp = Math.min(creature.hp + amount / 2, 100);
 			}
 		}
 	}

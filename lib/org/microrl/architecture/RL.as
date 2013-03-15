@@ -117,8 +117,17 @@ package org.microrl.architecture
 				return;
 			
 			ignoreInput = true;
-			animateInterval = setInterval(animateOneFrame, 1000 / 30);
+			animateInterval = setInterval(animateOneFrame, 1000 / 45);
 			animatedLastFrame = false;
+		}
+		
+		public function cancelAnimations():void
+		{
+			clearInterval(animateInterval);
+			ignoreInput = false;
+			animatedLastFrame = false;
+			animations = [];
+			paint();
 		}
 		
 		private var animatedLastFrame:Boolean = false;
@@ -140,9 +149,7 @@ package org.microrl.architecture
 			{
 				if (animatedLastFrame)
 				{
-					clearInterval(animateInterval);
-					ignoreInput = false;
-					paint();
+					cancelAnimations();
 				}
 				else
 				{

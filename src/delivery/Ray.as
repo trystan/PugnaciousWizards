@@ -66,15 +66,6 @@ package delivery
 				magicEffect.applySecondary(world, x, y);
 				_isDone = true;
 			}
-			for each (var p:Point in path)
-			{
-				var glyph:String = " ";
-				var c:Creature = world.getCreature(p.x, p.y);
-				if (c != null)
-					glyph = c.glyph;
-				var t:Tile = world.getTile(p.x, p.y);
-				terminal.write(glyph, p.x, p.y, magicEffect.primaryColor, Color.lerp(magicEffect.primaryColor, t.bg, 0.25));
-			}
 			
 			if (!isDone)
 			{
@@ -83,7 +74,19 @@ package delivery
 				if (c != null)
 					glyph = c.glyph;
 				var t:Tile = world.getTile(x, y);
-				terminal.write(glyph, x, y, magicEffect.secondaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.90));
+				if (world.hero.canSeeLocation(x, y))
+					terminal.write(glyph, x, y, magicEffect.secondaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.90));
+				
+				for each (var p:Point in path)
+				{
+					var glyph:String = " ";
+					var c:Creature = world.getCreature(p.x, p.y);
+					if (c != null)
+						glyph = c.glyph;
+					var t:Tile = world.getTile(p.x, p.y);
+					if (world.hero.canSeeLocation(p.x, p.y))
+						terminal.write(glyph, p.x, p.y, magicEffect.primaryColor, Color.lerp(magicEffect.primaryColor, t.bg, 0.25));
+				}
 			}
 		}
 	}

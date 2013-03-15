@@ -166,6 +166,9 @@ package
 		
 		public function canSeeLocation(tx:int, ty:int):Boolean
 		{
+			if (x < 0 && y < 0)
+				return true; // teleporting etc...
+				
 			var dist:int = 0;
 			for each (var p:Point in Line.betweenCoordinates(x, y, tx, ty).points)
 			{

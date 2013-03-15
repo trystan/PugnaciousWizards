@@ -1,5 +1,6 @@
 package  
 {
+	import spells.BlindingFlash;
 	import spells.FieryTeleport;
 	import spells.HealingBurst;
 	import spells.IceBlink;
@@ -8,12 +9,10 @@ package
 	public class MagicUser extends Creature
 	{
 		public var magic:Array = [
-			new MagicBlink(),
 			new MagicMissile(),
 			new HealingBurst(),
-			new MagicExplode(),
+			new BlindingFlash(),
 			new MagicFreeze(),
-			new MagicBlind(),
 			new MagicFreeze2(),
 			new FieryTeleport(),
 			new IceBlink(),

@@ -49,6 +49,7 @@ package
 			
 			bind("enter", "start", function():void {
 				clearInterval(intervalTimeout);
+				RL.instance.cancelAnimations();
 				switchToScreen(new PlayScreen());
 			});
 		}

@@ -115,6 +115,9 @@ package delivery
 			
 			for each (var p:Point in interiorPoints)
 			{
+				if (!world.hero.canSeeLocation(p.x, p.y))
+					continue;
+					
 				var t:Tile = world.getTile(p.x, p.y);
 				var glyph:String = t.glyph;
 				var c:Creature = world.getCreature(p.x, p.y);
@@ -125,6 +128,9 @@ package delivery
 			
 			for each (var p:Point in edgePoints)
 			{
+				if (!world.hero.canSeeLocation(p.x, p.y))
+					continue;
+					
 				var t:Tile = world.getTile(p.x, p.y);
 				var glyph:String = t.glyph;
 				var c:Creature = world.getCreature(p.x, p.y);

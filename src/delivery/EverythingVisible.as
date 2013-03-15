@@ -15,7 +15,7 @@ package delivery
 			this.fov = new FieldOfView();
 			this.magicEffect = magicEffect;
 			
-			fov.calculateVisibility(creature.x, creature.y, 13, function(vx:int, vy:int):Boolean {
+			fov.calculateVisibility(creature.x, creature.y, creature.viewDistance - 1, function(vx:int, vy:int):Boolean {
 				return creature.world.getTile(vx, vy).allowsVision;
 			});
 		}
@@ -32,8 +32,9 @@ package delivery
 			{
 				if (!fov.isVisibleNow(x, y))
 					continue;
-					
-				terminal.write(" ", x, y, magicEffect.primaryColor, magicEffect.secondaryColor);
+				
+				if (world.hero.canSeeLocation(x, y))
+					terminal.write(" ", x, y, magicEffect.primaryColor, magicEffect.secondaryColor);
 				
 				magicEffect.applyPrimary(world, x, y);
 			}
