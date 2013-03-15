@@ -18,6 +18,7 @@ package
 		public var rooms:Array = [];
 		public var blood:Array = [];
 		public var burningTiles:Array = [];
+		public var timerTiles:Array = [];
 		
 		public var maxBloodPerTile:int = 9;
 		public var perlinBitmap:BitmapData;
@@ -106,6 +107,7 @@ package
 		
 		public function update():void
 		{
+			updateTimers();
 			updateBurningStuff();
 				
  			for each (var item:Item in items)
@@ -113,7 +115,6 @@ package
 				
 			for each (var creature:Creature in creatures)
 				creature.update();
-			
 			
 			for each (var trigger:Function in triggers)
 				trigger();
@@ -177,6 +178,10 @@ package
 				
 				t.fg = Color.hsv(100 + Math.random() * 40, 50 + Math.random() * 30, 30 + Math.random() * 30);
 				t.bg = Color.hsv(120, 20, 15 + Math.floor((perlinBitmap.getPixel(x, y) & 0xFF) / 255.0 * 10));
+			}
+			else if (t == Tile.timer0 || t == Tile.timer1 || t == Tile.timer2 || t == Tile.timer3 || t == Tile.timer4 || t == Tile.timer5)
+			{
+				timerTiles.push(new Point(x, y));
 			}
 			
 			tiles[x][y] = t;
@@ -414,6 +419,28 @@ package
 				return;
 				
 			blood[x][y] = Math.min(blood[x][y] + 1, maxBloodPerTile);
+		}
+		
+		private function updateTimers():void
+		{
+			var current:Array = timerTiles.map(function (value:Point, index:int, array:Array):Point {
+				return new Point(value.x, value.y);
+			});
+			
+			timerTiles = [];
+			
+			for each (var p:Point in current)
+			{
+				switch (getTile(p.x, p.y))
+				{
+					case Tile.timer5: setTile(p.x, p.y, Tile.timer4); break;
+					case Tile.timer4: setTile(p.x, p.y, Tile.timer3); break;
+					case Tile.timer3: setTile(p.x, p.y, Tile.timer2); break;
+					case Tile.timer2: setTile(p.x, p.y, Tile.timer1); break;
+					case Tile.timer1: setTile(p.x, p.y, Tile.timer0); break;
+					case Tile.timer0: setTile(p.x, p.y, Tile.burntFloor); break;
+				}
+			}
 		}
 		
 		private function updateBurningStuff():void 

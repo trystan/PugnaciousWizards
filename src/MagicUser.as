@@ -8,6 +8,7 @@ package
 	import spells.IceBlink;
 	import spells.Inferno;
 	import spells.MagicMissile;
+	import spells.TimedDeath;
 	
 	public class MagicUser extends Creature
 	{
@@ -20,6 +21,7 @@ package
 			new IceBlink(),
 			new BoneSplode(),
 			new Inferno(),
+			new TimedDeath(),
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 

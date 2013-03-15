@@ -63,6 +63,19 @@ package
 		public static var burningDoor1:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true,
 				"burning door", "You can feel the heat from the door as it burns. Don't get too close.");
 		
+		public static var timer5:Tile = new Tile(53, Color.hsv(0, 0, 50), Color.hsv(100, 0, 14), true, true,
+				"a timer", "Something is going to happen here in 5 turns. Maybe you don't want to be near it? Or maybe you do. Only one way to find out.");
+		public static var timer4:Tile = new Tile(52, Color.hsv(0, 3, 50), Color.hsv(100, 0, 14), true, true,
+				"a timer", "Something is going to happen here in 4 turns. Maybe you don't want to be near it? Or maybe you do. Only one way to find out.");
+		public static var timer3:Tile = new Tile(51, Color.hsv(0, 6, 50), Color.hsv(100, 0, 14), true, true,
+				"a timer", "Something is going to happen here in 3 turns. Maybe you don't want to be near it? Or maybe you do. Only one way to find out.");
+		public static var timer2:Tile = new Tile(50, Color.hsv(0, 9, 50), Color.hsv(100, 0, 14), true, true,
+				"a timer", "Something is going to happen here in 2 turns. Maybe you don't want to be near it? Or maybe you do. Only one way to find out.");
+		public static var timer1:Tile = new Tile(49, Color.hsv(0, 12, 50), Color.hsv(100, 0, 14), true, true,
+				"a timer", "Something is going to happen here in 1 turns. Maybe you don't want to be near it? Or maybe you do. Only one way to find out.");
+		public static var timer0:Tile = new Tile(48, Color.hsv(0, 15, 50), Color.hsv(100, 0, 14), true, true,
+				"a timer", "Something is going to happen here. Maybe you don't want to be near it? Or maybe you do. Only one way to find out.");
+				
 		public var glyph:String;
 		public var fg:int;
 		public var bg:int;
