@@ -40,7 +40,7 @@ package
 				if (game.hero.x < 0 && game.hero.y < 0)
 					terminal.write("another dimension", x, y += 2);
 				else if (room == null && (game.hero.x < 5 || game.hero.y < 5 || game.hero.x > 75 || game.hero.y > 75))
-					terminal.write("ouside the castle", x, y += 2);
+					terminal.write("outside the castle", x, y += 2);
 				else if (room == null)
 					terminal.write("in a doorway", x, y += 2);
 				else
