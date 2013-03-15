@@ -1,6 +1,7 @@
 package  
 {
 	import flash.geom.Point;
+	import triggers.HeroInRoom;
 	public class RoomTheme_ArrowTowers implements RoomTheme
 	{
 		public function apply(world:World, room:Room):void
@@ -32,13 +33,10 @@ package
 				cols.splice(rows.indexOf(col), 1);
 			}
 			
+			var trigger:HeroInRoom = new HeroInRoom(room);
+			
 			world.addTriggerForEveryTurn(function():void {
-				var x0:int = room.x * 8 + 5;
-				var y0:int = room.y * 8 + 5;
-				var x1:int = room.x * 8 + 5 + 7;
-				var y1:int = room.y * 8 + 5 + 7;
-				
-				if (world.hero.x >= x0 && world.hero.x <= x1 && world.hero.y >= y0 && world.hero.y <= y1)
+				if (trigger.check(world))
 					world.addAnimation(new ArrowTowersAnimation(world, towers));
 			});
 			

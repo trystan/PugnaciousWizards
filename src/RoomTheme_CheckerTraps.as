@@ -1,9 +1,15 @@
 package  
 {
-	import delivery.EverythingVisible;
+	import delivery.EverythingVisibleFrom;
 	import delivery.Explosion;
+	import effects.MagicDamage;
+	import effects.Heal;
+	import traps.Trap;
+	import triggers.CreatureAtLocation;
+	import triggers.Trigger;
 	import effects.Blind;
 	import effects.Fire;
+	import effects.Ice;
 	import flash.geom.Point;
 	
 	public class RoomTheme_CheckerTraps implements RoomTheme
@@ -16,8 +22,9 @@ package
 			room.hasTheme = true;
 			room.name = "Empty room";
 			
+			var trapType:int = Math.random() * 3;
 			var type:int = Math.random() < 0.5 ? 1 :0;
-			var triggers:Array = [];
+			var trapList:Array = [];
 			
 			for (var ox:int = 0; ox < 7; ox++)
 			for (var oy:int = 0; oy < 7; oy++)
@@ -25,32 +32,43 @@ package
 				var x:int = room.x * 8 + 5 + ox;
 				var y:int = room.y * 8 + 5 + oy;
 				
-				if ((x+y) % 2 == type)
-					triggers.push(new Point(x, y));
+				if ((x + y) % 2 == type)
+				{
+					if (Math.random() < 0.05)
+					{
+						trapList.push(new Trap(
+											new CreatureAtLocation(room, [new Point(x, y)]),
+											new Explosion(world, x, y, 49, new Heal(2))));
+					}
+					else
+					{
+						switch (trapType)
+						{
+							case 0:
+								trapList.push(new Trap(
+													new CreatureAtLocation(room, [new Point(x, y)]),
+													new Explosion(world, x, y, 49 * 4, new Fire())));
+								break;
+							case 1:
+								trapList.push(new Trap(
+													new CreatureAtLocation(room, [new Point(x, y)]),
+													new Explosion(world, x, y, 49, new MagicDamage(2))));
+								break;
+							case 2:
+								trapList.push(new Trap(
+													new CreatureAtLocation(room, [new Point(x, y)]),
+													new EverythingVisibleFrom(world, x, y, 5, new Blind())));
+								break;
+						}
+					}
+				}
 			}
 			
 			world.addTriggerForEveryTurn(function():void {
-				if (!room.contains(world.hero))
-					return;
-					
-				for each (var p:Point in triggers)
-				{
-					if (world.getTile(p.x, p.y) == Tile.exposedTrap)
-						continue;
-						
-					var c:Creature = world.getCreature(p.x, p.y);
-					if (c == null)
-						continue;
-					
-					world.setTile(p.x, p.y, Tile.exposedTrap)
-					
-					if (Math.random() < 0.80)
-						world.addAnimation(new Explosion(world, p.x, p.y, 49 * 4, new Fire()));
-					else
-						world.addAnimation(new EverythingVisible(c, new Blind()));
-				}
+				for each (var trap:Trap in trapList)
+					trap.check(world);
 			});
-			addBlood(world, room, 10);
+			addBlood(world, room, 25);
 		}
 		
 		public function addBlood(world:World, room:Room, amount:int):void

@@ -1,6 +1,11 @@
 package  
 {
 	import flash.geom.Point;
+	import traps.Trap;
+	import triggers.AndTrigger;
+	import triggers.HeroInRoom;
+	import triggers.RandomPercentOfTheTime;
+	import triggers.Trigger;
 	public class RoomTheme_ArrowWall implements RoomTheme
 	{
 		public function apply(world:World, room:Room):void
@@ -59,16 +64,12 @@ package
 					break;
 			}
 			
+			var trap:Trap = new Trap(
+								new AndTrigger([new HeroInRoom(room), new RandomPercentOfTheTime(25)]), 
+								new WallOfArrowsAnimation(world, walls, ox, oy));
+			
 			world.addTriggerForEveryTurn(function():void {
-				var x0:int = room.x * 8 + 5;
-				var y0:int = room.y * 8 + 5;
-				var x1:int = room.x * 8 + 5 + 7;
-				var y1:int = room.y * 8 + 5 + 7;
-				
-				if (world.hero.x >= x0 && world.hero.x <= x1 
-					&& world.hero.y >= y0 && world.hero.y <= y1
-					&& Math.random() < 0.1)
-					world.addAnimation(new WallOfArrowsAnimation(world, walls, ox, oy));
+				trap.check(world);
 			});
 			
 			addBlood(world, room, 5);
