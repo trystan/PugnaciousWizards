@@ -1,6 +1,6 @@
 package spells
 {
-	import delivery.EverythingVisible;
+	import delivery.EverythingVisibleFrom;
 	import targeting.ChooseAVisibleOccupiedTile;
 	import effect.Blind;
 	
@@ -20,10 +20,9 @@ package spells
 		
 		private function targetWith(creature:Creature):ChooseAVisibleOccupiedTile
 		{
-			return new ChooseAVisibleOccupiedTile(8, 12,  
-				function (world:World, x:int, y:int):delivery.EverythingVisible {
-					var c:Creature = world.getCreature(x, y);
-					return new EverythingVisible(c, new Blind());
+			return new ChooseAVisibleOccupiedTile(8, 12,
+				function (world:World, x:int, y:int):EverythingVisibleFrom {
+					return new EverythingVisibleFrom(world, x, y, creature.viewDistance / 2, new Blind());
 				});
 		}
 	}

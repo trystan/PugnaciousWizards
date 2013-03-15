@@ -407,6 +407,11 @@ package
 				creatureGrid[nx][ny] = creature;
 		}
 		
+		public function removeBlood(x:int, y:int):void 
+		{
+			blood[x][y] = 0;
+		}
+		
 		private function addBloodOnce(x:int, y:int):void
 		{
 			if (x < 0 || y < 0 || x > 79 || y > 79)

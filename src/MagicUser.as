@@ -2,6 +2,7 @@ package
 {
 	import spells.BlindingFlash;
 	import spells.FieryTeleport;
+	import spells.HealFromBlood;
 	import spells.HealingBurst;
 	import spells.IceBlink;
 	import spells.MagicMissile;
@@ -11,6 +12,7 @@ package
 		public var magic:Array = [
 			new MagicMissile(),
 			new HealingBurst(),
+			new HealFromBlood(),
 			new BlindingFlash(),
 			new FieryTeleport(),
 			new IceBlink(),

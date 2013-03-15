@@ -207,5 +207,10 @@ package
 			
 			walk(mx, my);
 		}
+		
+		public function heal(amount:int):void 
+		{
+			hp = Math.min(hp + amount, 100);
+		}
 	}
 }
