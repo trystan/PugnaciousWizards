@@ -65,7 +65,7 @@ package
 			}
 			
 			var trap:Trap = new Trap(
-								new AndTrigger([new HeroInRoom(room), new RandomPercentOfTheTime(25)]), 
+								new AndTrigger([new HeroInRoom(room), new RandomPercentOfTheTime(50)]), 
 								new WallOfArrowsAnimation(world, walls, ox, oy));
 			
 			world.addTriggerForEveryTurn(function():void {
@@ -74,7 +74,7 @@ package
 			
 			addBlood(world, room, 5);
 			
-			if (Math.random() < 0.75)
+			if (Math.random() < 0.9)
 				addPillar(world, room);
 		}
 		
@@ -85,7 +85,7 @@ package
 			
 			world.setTile(x, y, Tile.wall);
 			
-			if (Math.random() < 0.2)
+			if (Math.random() < 0.33)
 				addPillar(world, room);
 		}
 		

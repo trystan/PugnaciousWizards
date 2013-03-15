@@ -78,7 +78,6 @@ package
 		private function applyRoomThemes():void 
 		{
 			var themes:Array = [
-				new RoomTheme_Portal(),
 				new RoomTheme_NoMagic(),
 				new RoomTheme_A(),
 				new RoomTheme_G(),
@@ -97,9 +96,24 @@ package
 			
 			for (var i:int = 0; i < 4; i++)
 				themes.push(favored);
+			
+			var themesWaitingToBeApplied:Array = [
+				new RoomTheme_Portal(),
+				new RoomTheme_Portal()];
+			
+			while (Math.random() < 0.5)
+				themesWaitingToBeApplied.push(new RoomTheme_Portal());
 				
+			while (themesWaitingToBeApplied.length < world.rooms.length)
+				themesWaitingToBeApplied.push(themes[Math.floor(Math.random() * themes.length)]);
+			
 			for each (var room:Room in world.rooms)
-				themes[Math.floor(Math.random() * themes.length)].apply(world, room);
+			{
+				var i:int = Math.floor(Math.random() * themesWaitingToBeApplied.length);
+				
+				themesWaitingToBeApplied[i].apply(world, room);
+				themesWaitingToBeApplied.splice(i, 1);
+			}
 		}
 	}
 }

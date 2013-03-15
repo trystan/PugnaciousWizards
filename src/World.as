@@ -33,7 +33,7 @@ package
 			perlinBitmap.perlinNoise(6, 6, 6, randomNum, false, true, 1, true, null);
 
 			treeType = Math.floor(Math.random() * 3);
-			courtyardTreeDensity = Math.random() * 0.8 + 0.1;
+			courtyardTreeDensity = Math.random() * 0.2 + Math.random() * 0.2 + 0.1;
 			
 			makeCastleWalls();
 			makeMaze();

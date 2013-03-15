@@ -32,7 +32,7 @@ package
 			
 			if (isBlind)
 			{
-				if (pathToTarget == [])
+				if (pathToTarget.length > 0)
 				{
 					wander();
 				}
