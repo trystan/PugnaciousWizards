@@ -17,8 +17,7 @@ package spells
 		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
-			if (!(caster is Hero))
-				return new MagicAction(0, function(c:Creature):void { } );
+			return new MagicAction(0, function(c:Creature):void { } );
 				
 			return targetWith(caster).calculateAiBenefit(caster);
 		}
