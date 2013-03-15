@@ -22,7 +22,7 @@ package
 			game.hero = new Player(2, 40);
 			game.world.hero = game.hero;
 			game.world.addCreature(game.hero);
-			step();
+			endTurn();
 			
 			HelpSystem.notify(game.hero, "First turn", 
 				"Hello there! Since this is your first turn, I'll explain some details. You control the @ symbol on the left of the screen. Your health, status, and magic are all on the right hand side of this screen. You are on a quest to find three pieces of an amulet hidden within this castle. You should first go through the door, it's the brownish thing to the right of your character. At any time, type [X] to examine your surroundings or [?] to see more help.");
@@ -57,6 +57,11 @@ package
 					var name:String = (i + 1) + ". " + game.hero.magic[i].name;
 					terminal.write(name.substr(0, 99 - x), x, y+=2, fg);
 				}
+							
+				if (game.hero.hp < 1)
+					switchToScreen(new DefeatScreen(game));
+				else if (game.hero.piecesOfAmulet == 3 && game.hero.x < 5)
+					switchToScreen(new VictoryScreen(game));
 			});
 			
 			bind("h,left", "move w", walk, -1,  0);
@@ -85,34 +90,24 @@ package
 				return;
 				
 			game.hero.magic[i].playerCast(game.hero);
-			step();
+			endTurn();
 		}
 		
 		public function walk(mx:int, my:int):void
 		{
 			game.hero.walk(mx, my);
-			step();
+			endTurn();
 		}
 		
 		override protected function handleIntent(intent:String, behavior:Function):void 
 		{
 			if (game.hero.isFrozenCounter > 0)
-				step();
+				endTurn();
 			else
 				super.handleIntent(intent, behavior);
 		}
 		
-		private function step():void
-		{
-			if (game.hero.hp < 1)
-				switchToScreen(new DefeatScreen(game));
-			else if (game.hero.piecesOfAmulet == 3 && game.hero.x < 5)
-				switchToScreen(new VictoryScreen(game));
-			else
-				tick();
-		}
-		
-		private function tick():void
+		private function endTurn():void
 		{
 			game.world.update();
 			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
