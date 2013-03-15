@@ -17,7 +17,7 @@ package
 				var x:int = room.x * 8 + 5 + ox;
 				var y:int = room.y * 8 + 5 + oy;
 				
-				if (Math.random() < 0.1)
+				if (Math.random() < world.courtyardTreeDensity)
 					world.setTile(x, y, Tile.tree);
 				else
 					world.setTile(x, y, Tile.grass);

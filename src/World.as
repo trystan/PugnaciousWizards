@@ -4,6 +4,7 @@ package
 	import flash.geom.Point;
 	import org.microrl.architecture.RL;
 	import org.microrl.architecture.Screen;
+	
 	public class World 
 	{
 		private var tiles:Array;
@@ -18,11 +19,12 @@ package
 		public var blood:Array = [];
 		public var burningTiles:Array = [];
 		
-		public var maxBloodPerTile:int = 15;
+		public var maxBloodPerTile:int = 9;
 		public var perlinBitmap:BitmapData;
 		public var triggers:Array = [];
 		
 		public var treeType:int;
+		public var courtyardTreeDensity:Number;
 		
 		public function World()
 		{	
@@ -31,6 +33,7 @@ package
 			perlinBitmap.perlinNoise(6, 6, 6, randomNum, false, true, 1, true, null);
 
 			treeType = Math.floor(Math.random() * 3);
+			courtyardTreeDensity = Math.random() * 0.8 + 0.1;
 			
 			makeCastleWalls();
 			makeMaze();
@@ -355,13 +358,6 @@ package
 				return null;
 				
 			return creatureGrid[x][y];
-			/*
-			for each (var creature:Creature in creatures)
-			{
-				if (creature.hp > 0 && creature.x == x && creature.y == y)
-					return creature;
-			}
-			return null;*/
 		}
 		
 		public function getBlood(x:int, y:int):int 

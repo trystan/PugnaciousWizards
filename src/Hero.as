@@ -32,8 +32,15 @@ package
 			
 			if (isBlind)
 			{
-				pathToTarget = [];
-				wander();
+				if (pathToTarget == [])
+				{
+					wander();
+				}
+				else
+				{
+					var nextStep:Point = pathToTarget.shift();
+					walk(nextStep.x - x, nextStep.y - y);
+				}
 				return;
 			}
 			

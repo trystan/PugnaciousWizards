@@ -6,6 +6,7 @@ package
 	import spells.HealFromBlood;
 	import spells.HealingBurst;
 	import spells.IceBlink;
+	import spells.Inferno;
 	import spells.MagicMissile;
 	
 	public class MagicUser extends Creature
@@ -18,6 +19,7 @@ package
 			new FieryTeleport(),
 			new IceBlink(),
 			new BoneSplode(),
+			new Inferno(),
 		];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 

@@ -18,6 +18,9 @@ package
 			var cols:Array = [1, 2, 3, 5, 6, 7];
 			var towers:Array = [];
 			
+			if (Math.random() < 0.75)
+				addPillar(world, room);
+				
 			for (var i:int = 0; i < total; i++)
 			{
 				var row:int = rows[Math.floor(Math.random() * rows.length)];
@@ -41,6 +44,17 @@ package
 			});
 			
 			addBlood(world, room, towers.length * 3);
+		}
+		
+		public function addPillar(world:World, room:Room):void
+		{
+			var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 5) + 1;
+			var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 5) + 1;
+			
+			world.setTile(x, y, Tile.wall);
+			
+			if (Math.random() < 0.2)
+				addPillar(world, room);
 		}
 		
 		public function addBlood(world:World, room:Room, amount:int):void

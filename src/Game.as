@@ -82,7 +82,6 @@ package
 				new RoomTheme_NoMagic(),
 				new RoomTheme_A(),
 				new RoomTheme_G(),
-				new RoomTheme_Pillars(),
 				new RoomTheme_Outside(),
 				new RoomTheme_ArrowTowers(),
 				new RoomTheme_ArrowWall(),
@@ -96,7 +95,7 @@ package
 			
 			var favored:RoomTheme = themes[Math.floor(Math.random() * themes.length)];
 			
-			while (themes.length < half * 1.5)
+			for (var i:int = 0; i < 4; i++)
 				themes.push(favored);
 				
 			for each (var room:Room in world.rooms)

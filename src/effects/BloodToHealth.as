@@ -19,7 +19,7 @@ package effects
 		{
 			var amount = world.getBlood(x, y);
 			
-			target.heal(amount);
+			target.heal(amount / 2);
 			
 			world.removeBlood(x, y);
 		}
