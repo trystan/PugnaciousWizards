@@ -127,7 +127,8 @@ package
 				new IceBlink(),
 				new BoneSplode(),
 				new Inferno(),
-				new TimedDeath(), ];
+				new TimedDeath(),
+				new PullAndFreeze()];
 				
 			while (spellList.length > 0)
 			{

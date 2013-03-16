@@ -201,5 +201,12 @@ package com.headchant.asciipanel {
 			}
 		}
 		
+		public function withLocation(x:int, y:int, filter:Function)
+		{
+			if (x < 0 || y < 0 || x >= widthInCharacters || y >= heightInCharacters)
+				return;
+				
+			filter(chars[x][y], foregroundColor[x][y], backgroundColor[x][y]);
+		}
 	}
 }
