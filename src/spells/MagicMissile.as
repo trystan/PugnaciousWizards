@@ -10,6 +10,8 @@ package spells
 	{
 		public function get name():String { return "Magic Missile"; }
 		
+		public function get description():String { return "Shoot a projectile that bounces of walls and splits when it hits anyone. Be carefull - you could end up hitting yourself."; }
+		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
 			function (world:World, x:int, y:int, ox:int, oy:int):Animation {
 				return new MagicMissileProjectile(world, x, y, ox, oy, 16, new MagicDamage(21))

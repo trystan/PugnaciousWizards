@@ -123,6 +123,11 @@ package
 				var c:Creature = game.world.getCreature(p.x, p.y);
 				if (c != null && c.description != null)
 					HelpSystem.notify(game.hero, "You see a " + c.name + " (" + c.glyph +")", c.description);
+					
+				var i:Item = game.world.getItem(p.x, p.y);
+				if (i != null && i.description != null)
+					HelpSystem.notify(game.hero, "You see a " + i.name + " (" + i.glyph +")", i.description);
+					
 				var t:Tile = game.world.getTile(p.x, p.y);
 				if (t.description != null)
 					HelpSystem.notify(game.hero, "You see a " + t.name + " (" + t.glyph +")", t.description);

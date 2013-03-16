@@ -8,6 +8,8 @@ package spells
 	{
 		public function get name():String { return "Heal from blood"; }
 		
+		public function get description():String { return "Recover health based on the amount of blood you see around you."; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return targetWith(caster).calculateAiBenefit(caster);

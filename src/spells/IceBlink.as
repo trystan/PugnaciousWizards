@@ -15,6 +15,8 @@ package spells
 	{
 		public function get name():String { return "Ice blink"; }
 		
+		public function get description():String { return "Freeze the area round you then teleport to a random nearby location."; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return new MagicAction(0, function(c:Creature):void { } );

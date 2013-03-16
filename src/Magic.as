@@ -2,6 +2,7 @@ package
 {
 	public interface Magic 
 	{
+		function get description():String;
 		function get name():String;
 		
 		function calculateAiBenefit(caster:Creature):MagicAction;

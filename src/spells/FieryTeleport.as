@@ -14,6 +14,8 @@ package spells
 	{
 		public function get name():String { return "Fire jump"; }
 		
+		public function get description():String { return "Teleport to a new location and burn everything near it. Probably not a good idea to teleport in the middle of a bunch of trees...."; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return targetWith(caster).calculateAiBenefit(caster);

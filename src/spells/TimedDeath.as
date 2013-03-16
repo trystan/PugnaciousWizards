@@ -10,6 +10,8 @@ package spells
 	{
 		public function get name():String { return "Timed death"; }
 		
+		public function get description():String { return "Places a timer where you're standing. After a few turns, anything within it's field of view will be hit with some heavy magic damage."; }
+		
 		private var action:Self = new Self(
 			function (world:World, x:int, y:int):Animation {
 				world.setTile(x, y, Tile.timer5);

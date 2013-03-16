@@ -8,6 +8,8 @@ package spells
 	{
 		public function get name():String { return "Bone-splode"; }
 		
+		public function get description():String { return "Any piles of bones that you see explode - which is very bad for anyone near them."; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return new MagicAction(0, function(c:Creature):void { } );
@@ -23,7 +25,7 @@ package spells
 		private function targetWith(creature:Creature):Self
 		{
 			return new Self(function (world:World, x:int, y:int):ExplodeEveryVisiblePileOfBones {
-					return new ExplodeEveryVisiblePileOfBones(creature, new MagicDamage(10));
+					return new ExplodeEveryVisiblePileOfBones(creature, new MagicDamage(15));
 				});
 		}
 	}

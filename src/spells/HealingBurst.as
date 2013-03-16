@@ -8,6 +8,8 @@ package spells
 	{
 		public function get name():String { return "Healing burst"; }
 		
+		public function get description():String { return "Heals yourself. Anyone next to you may also get healed a little."; }
+		
 		private var action:Self = new Self(
 			function (world:World, x:int, y:int):Animation {
 				return new Explosion(world, x, y, 9, new Heal(5))

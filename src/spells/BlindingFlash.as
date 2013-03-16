@@ -8,6 +8,8 @@ package spells
 	{
 		public function get name():String { return "Blinding flash"; }
 		
+		public function get description():String { return "Creates a bright light at a choosen location. Everyone who sees it will be blinded for a few turns."; }
+		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return targetWith(caster).calculateAiBenefit(caster);

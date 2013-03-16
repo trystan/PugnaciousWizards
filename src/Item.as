@@ -8,6 +8,7 @@ package
 		public var y:int;
 		public var world:World;
 		public var name:String;
+		public var description:String = null;
 		
 		public function Item(glyph:String, fg:int, x:int, y:int, name:String) 
 		{

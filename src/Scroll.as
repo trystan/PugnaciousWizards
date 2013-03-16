@@ -8,6 +8,7 @@ package
 		{
 			super("?", 0xffdddddd, x, y, "Scroll of " + spell.name);
 			this.spell = spell;
+			this.description = spell.description;
 		}
 	}
 }
