@@ -19,7 +19,7 @@ package
 		{
 			game = new Game();
 			game.startGame();
-			game.hero = new Player(2, 40);
+			game.hero = new Player(2, 12);
 			game.world.hero = game.hero;
 			game.world.addCreature(game.hero);
 			
@@ -31,7 +31,7 @@ package
 				var x:int = 81;
 				var y:int = 5;
 				var hpColor:int = Color.lerp(Color.hsv(120, 90, 90), Color.hsv(0, 90, 90), Math.max(1, Math.min(game.hero.hp, 100)) / 100.0);
-				terminal.write(game.hero.hp + "% health", x, y+=2, hpColor);
+				terminal.write(Math.floor((game.hero.hp * 1.0 / game.hero.maximumHp) * 100) + "% health", x, y+=2, hpColor);
 				
 				y++;
 				var room:Room = game.world.getRoom(game.hero.x, game.hero.y);

@@ -18,9 +18,9 @@ package
 		public var description:String;
 		
 		public var meleeAttack:int = 10;
-		public var meleeDefence:int = 0;
 		
 		public var hp:int;
+		public var maximumHp:int;
 		
 		public var isOnFireCounter:int = 0;
 		public var isFrozenCounter:int = 0;
@@ -51,6 +51,7 @@ package
 			this._x = x;
 			this._y = y;
 			this.hp = 100;
+			this.maximumHp = 100;
 			this.baseViewDistance = 9;
 			this.name = name;
 			this.description = description;
@@ -100,11 +101,11 @@ package
 				updateInternal();
 			}
 			
-			if (hp < 25)
+			if (hp < maximumHp / 4)
 				bleed();
-			if (hp < 10)
+			if (hp < maximumHp / 5)
 				bleed();
-			if (hp < 5)
+			if (hp < maximumHp / 6)
 				bleed();
 		}
 		
@@ -188,11 +189,8 @@ package
 		
 		public function attack(other:Creature):void
 		{
-			var amount:int = Math.max(meleeAttack - other.meleeDefence, 1);
-			
-			other.hp -= amount;
-			
-			bleed();
+			other.hp -= meleeAttack;
+			other.bleed();
 		}
 		
 		public function bleed():void
@@ -210,7 +208,7 @@ package
 		
 		public function heal(amount:int):void 
 		{
-			hp = Math.min(hp + amount, 100);
+			hp = Math.min(hp + amount, maximumHp);
 		}
 	}
 }

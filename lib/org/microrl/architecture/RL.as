@@ -133,12 +133,15 @@ package org.microrl.architecture
 			animations = [];
 			paint();
 			
-			if (keyboardInputQueue.length > 0)
+			var tries:int = 99;
+			while (tries-- > 0 && keyboardInputQueue.length > 0)
 			{
 				var event:KeyboardEvent = keyboardInputQueue.unshift() as KeyboardEvent;
 				if (event != null)
+				{
 					handleKeyboardEvent(event);
-				keyboardInputQueue = [];
+					keyboardInputQueue = [];
+				}
 			}
 		}
 		

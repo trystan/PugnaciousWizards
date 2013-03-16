@@ -18,9 +18,9 @@ package
 		{
 			super(glyph, fg, x, y, name, description);
 			
-			meleeAttack = 20;
-			meleeDefence = 5;
+			meleeAttack = 10;
 			hp = 100;
+			maximumHp = 100;
 			baseViewDistance = 12;
 		}
 		
@@ -33,7 +33,7 @@ package
 		{	
 			if (!canCastMagic)
 				return false;
-				
+			
 			var actions:Array = [];
 			for each (var m:Magic in magic)
 			{

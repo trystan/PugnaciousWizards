@@ -7,9 +7,9 @@ package
 			super("g", Color.hsv(0, 10, 80), x, y, "guard",
 				"Their heavy armor and sword means guards can cause a lot of pain and withstand a lot of pain.");
 			
-			meleeAttack = 15;
-			meleeDefence = 6;
+			meleeAttack = 10;
 			hp = 40;
+			maximumHp = 40;
 		}
 		
 		override public function updateInternal():void

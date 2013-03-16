@@ -8,8 +8,8 @@ package
 				"This reanimated human skeleton has no armor or weapons. Skeletons fall quickly from even minor damage but they always recover.");
 			
 			meleeAttack = 6;
-			meleeDefence = 0;
 			hp = 5;
+			maximumHp = 5;
 		}
 		
 		override public function bleed():void

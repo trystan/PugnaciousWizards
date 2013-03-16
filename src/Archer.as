@@ -8,8 +8,8 @@ package
 				"Armed with a bow and arrows, archers can't do much damage up close but they can attack from a distance. Their light armor means they fall quickly in melee combat.");
 			
 			meleeAttack = 5;
-			meleeDefence = 1;
-			hp = 40;
+			hp = 20;
+			maximumHp = 20;
 		}
 		
 		override public function updateInternal():void

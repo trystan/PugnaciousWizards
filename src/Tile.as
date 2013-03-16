@@ -7,7 +7,7 @@ package
 		
 		public static var grass:Tile = new Tile(250, Color.hsv(100, 30, 30), Color.hsv(100, 20, 20), true, true,
 				"grass", null);
-		public static var tree:Tile = new Tile(5, Color.hsv(120, 50, 40), Color.hsv(120, 20, 20), false, true,
+		public static var tree:Tile = new Tile(5, Color.hsv(120, 50, 40), Color.hsv(120, 20, 20), false, false,
 				"a tree", null);
 		public static var burningTree3:Tile = new Tile(5, Color.lerp(Color.fire, Color.hsv(120, 50, 40), 0.3), Color.lerp(Color.fire, Color.hsv(120, 20, 20), 0.2), false, true,
 				"a burning tree", "You can feel the heat from the tree as it burns. Don't get too close.");
@@ -47,10 +47,9 @@ package
 		public static var rotatingTower4:Tile = new Tile(179, Color.hsv(0, 10, 20), Color.hsv(0, 10, 40), false, false,
 				"a rotating tower", "This tower rotates. And shoots fire.");
 		
-				
-		public static var closedDoor:Tile = new Tile(43, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, false,
+		public static var closedDoor:Tile = new Tile(43, Color.hsv(30, 60, 60), Color.hsv(30, 70, 40), true, false,
 				"closed door", null);
-		public static var openDoor:Tile = new Tile(47, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, true,
+		public static var openDoor:Tile = new Tile(47, Color.hsv(30, 60, 60), Color.hsv(30, 70, 40), true, true,
 				"open door", null);
 		public static var burningDoor10:Tile = new Tile(47, Color.lerp(Color.fire, Color.hsv(30, 60, 60), 0.5), Color.lerp(Color.fire, Color.hsv(30, 60, 50), 0.5), true, true,
 				"burning door", "You can feel the heat from the door as it burns. Don't get too close.");

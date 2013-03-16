@@ -9,7 +9,7 @@ package spells
 	{
 		public function get name():String { return "Inferno"; }
 		
-		public function get description():String { return "Create an explosion of fire that's trong enough to fill nine rooms. Not a very safe spell."; }
+		public function get description():String { return "Create an explosion of fire that's strong enough to fill nine rooms. Not a very safe spell."; }
 		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{

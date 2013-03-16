@@ -60,7 +60,7 @@ package targeting
 			if (other != null)
 				return null;
 				
-			return new MagicAction(10, function(c:Creature):void {
+			return new MagicAction(20, function(c:Creature):void {
 				c.world.addAnimation(castAtLocationCallback(caster.world, c.x + p.x, c.y + p.y));
 			});
 		}

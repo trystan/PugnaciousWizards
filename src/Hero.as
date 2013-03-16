@@ -1,6 +1,7 @@
 package  
 {
 	import flash.geom.Point;
+	import spells.*;
 	
 	public class Hero extends MagicUser
 	{
@@ -9,9 +10,12 @@ package
 			super("@", 0xffdddddd, x, y, "hero", 
 				"This magic user is on a quest to find the amulet pieces and escape with them.");
 			
-			meleeAttack = 20;
-			meleeDefence = 5;
+			meleeAttack = 15;
 			hp = 400;
+			maximumHp = 400;
+			this.magic = [
+				new MagicMissile(),
+				new FieryTeleport()];
 		}
 		
 		override public function doesHate(other:Creature):Boolean 
@@ -32,7 +36,7 @@ package
 			
 			if (isBlind)
 			{
-				if (pathToTarget.length > 0)
+				if (pathToTarget == null || pathToTarget.length == 0)
 				{
 					wander();
 				}

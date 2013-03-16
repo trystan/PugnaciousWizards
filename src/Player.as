@@ -8,13 +8,12 @@ package
 		{
 			super("@", Color.hsv(0, 0, 90), x, y, "you", null);
 			
-			meleeAttack = 20;
-			meleeDefence = 5;
+			meleeAttack = 10;
 			hp = 100;
+			maximumHp = 100;
 			baseViewDistance = 12;
 			this.magic = [
 				new MagicMissile(),
-				new HealingBurst(),
 				new FieryTeleport()];
 		}
 		

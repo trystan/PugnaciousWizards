@@ -25,7 +25,14 @@ package spells
 			
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
-			return action.calculateAiBenefit(caster);
+			if (caster.isOnFireCounter > 10)
+				return new MagicAction(1, function():void {
+					action.castInDirectionCallback(caster.world, caster.x, caster.y, 0, 0);
+				});
+			
+			return new MagicAction(1, function():void {
+				action.calculateAiBenefit(caster);
+			});
 		}
 		
 		public function playerCast(creature:Creature):void

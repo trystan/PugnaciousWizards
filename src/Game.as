@@ -17,14 +17,18 @@ package
 		{
 			fieldOfView = new FieldOfView();
 			world = new World();
+			world.addItem(new Scroll(2, 38, new HealAndBlind()));
 			
 			var maxDistance:int = 0;
 			for each (var room:Room in world.rooms)
 			{
 				maxDistance = Math.max(maxDistance, room.dist);
 				
-				if (Math.random() < 0.5)
-					continue;
+				if (room.dist == 0)
+				{
+					new RoomTheme_Empty().apply(world, room);
+					
+				}
 				
 				var points:int = room.dist;
 				
@@ -129,7 +133,8 @@ package
 				new BoneSplode(),
 				new Inferno(),
 				new TimedDeath(),
-				new PullAndFreeze()];
+				new PullAndFreeze(),
+				new HealingBurst()];
 				
 			while (spellList.length > 0)
 			{
