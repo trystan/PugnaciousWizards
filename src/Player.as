@@ -14,7 +14,8 @@ package
 			baseViewDistance = 12;
 			this.magic = [
 				new MagicMissile(),
-				new HealingBurst()];
+				new HealingBurst(),
+				new FieryTeleport()];
 		}
 		
 		override public function doesHate(other:Creature):Boolean

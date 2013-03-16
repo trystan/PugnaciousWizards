@@ -47,10 +47,14 @@ package org.microrl.architecture
 			paint();
 		}
 		
+		private var keyboardInputQueue:Array = [];
 		public function handleKeyboardEvent(keyEvent:KeyboardEvent):void
 		{
 			if (ignoreInput)
+			{
+				keyboardInputQueue.push(keyEvent);
 				return;
+			}
 				
 			screenStack[0].handleKeyboardInput(keyEvent);
 			paint();
@@ -128,6 +132,14 @@ package org.microrl.architecture
 			animatedLastFrame = false;
 			animations = [];
 			paint();
+			
+			if (keyboardInputQueue.length > 0)
+			{
+				var event:KeyboardEvent = keyboardInputQueue.unshift() as KeyboardEvent;
+				if (event != null)
+					handleKeyboardEvent(event);
+				keyboardInputQueue = [];
+			}
 		}
 		
 		private var animatedLastFrame:Boolean = false;
@@ -148,13 +160,9 @@ package org.microrl.architecture
 			if (animations.length == 0)
 			{
 				if (animatedLastFrame)
-				{
 					cancelAnimations();
-				}
 				else
-				{
 					animatedLastFrame = true;
-				}
 			}
 		}
 		

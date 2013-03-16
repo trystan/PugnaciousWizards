@@ -24,9 +24,9 @@ package
 			game.world.addCreature(game.hero);
 			
 			display(new WorldView(game));
-			display(function(terminal:AsciiPanel):void {				
-				HelpSystem.notify(game.hero, "First turn", 
-					"Hello there! Since this is your first turn, I'll explain some details. You control the @ symbol on the left of the screen. Your health, status, and magic are all on the right hand side of this screen. You are on a quest to find three pieces of an amulet hidden within this castle. You should first go through the door, it's the brownish thing to the right of your character. At any time, type [X] to examine your surroundings or [?] to see more help.");
+			display(function(terminal:AsciiPanel):void {		
+				var help:String = "Hello there! Since this is your first turn, I'll explain some details. You control the @ symbol on the left of the screen. Your health, status, and magic are all on the right hand side of this screen. You are on a quest to find three pieces of an amulet hidden within this castle. You should first go through the door, it's the brownish thing to the right of your character. At any time, type [X] to examine your surroundings or [?] to see more help.";
+				HelpSystem.notify(game.hero, "First turn", help);
 			
 				var x:int = 81;
 				var y:int = 5;
