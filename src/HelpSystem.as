@@ -7,7 +7,7 @@ package
 		private static var events:Array = [];
 		public static var enabled:Boolean = true;
 		
-		public static function notify(creature:Creature, event:String, details:String):void
+		public static function notify(creature:Creature, event:String, glyph:String, details:String):void
 		{
 			if (!enabled || !(creature is Player))
 				return;
@@ -16,7 +16,7 @@ package
 				return;
 				
 			events.push(event);
-			RL.enterScreen(new HelpSystemPopupScreen(event, details));
+			RL.enterScreen(new HelpSystemPopupScreen(event + (glyph == null ? "" : " (" + glyph + ")"), details));
 		}
 	}
 }

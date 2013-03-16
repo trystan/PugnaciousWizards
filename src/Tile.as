@@ -38,6 +38,16 @@ package
 		public static var arrowTower:Tile = new Tile(8, Color.hsv(100, 0, 40), Color.hsv(100, 0, 20), false, false,
 				"an arrow tower", "This menacing tower has the tips of arrows pointing out of each side. It's best to step carefully when near it.");
 		
+		public static var rotatingTower1:Tile = new Tile(47, Color.hsv(0, 10, 20), Color.hsv(0, 10, 40), false, false,
+				"a rotating tower", "This tower rotates. And shoots fire.");
+		public static var rotatingTower2:Tile = new Tile(196, Color.hsv(0, 10, 20), Color.hsv(0, 10, 40), false, false,
+				"a rotating tower", "This tower rotates. And shoots fire.");
+		public static var rotatingTower3:Tile = new Tile(92, Color.hsv(0, 10, 20), Color.hsv(0, 10, 40), false, false,
+				"a rotating tower", "This tower rotates. And shoots fire.");
+		public static var rotatingTower4:Tile = new Tile(179, Color.hsv(0, 10, 20), Color.hsv(0, 10, 40), false, false,
+				"a rotating tower", "This tower rotates. And shoots fire.");
+		
+				
 		public static var closedDoor:Tile = new Tile(43, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, false,
 				"closed door", null);
 		public static var openDoor:Tile = new Tile(47, Color.hsv(30, 60, 60), Color.hsv(30, 60, 50), true, true,

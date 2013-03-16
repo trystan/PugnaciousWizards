@@ -15,7 +15,7 @@ package delivery
 		public var magicEffect:Effect;
 		public var callback:Function
 		
-		public function Projectile(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect, callback:Function) 
+		public function Projectile(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect, callback:Function = null) 
 		{
 			this.world = world;
 			this.x = sx;
@@ -51,12 +51,18 @@ package delivery
 			var creature:Creature = world.getCreature(x, y);
 			if (creature != null)
 			{
-				callback(world, x, y);
+				if (callback == null)
+					magicEffect.applyPrimary(world, x, y);
+				else
+					callback(world, x, y);
 				_isDone = true;
 			}
 			else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 			{
-				callback(world, x, y);
+				if (callback == null)
+					magicEffect.applyPrimary(world, x, y);
+				else
+					callback(world, x, y);
 				_isDone = true;
 			}
 			else if (maxDistance-- < 1)

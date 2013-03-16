@@ -72,7 +72,7 @@ package
 			
 			if (isOnFireCounter > 0)
 			{
-				HelpSystem.notify(this, "You're on fire!",
+				HelpSystem.notify(this, "You're on fire!", null,
 					"One of the hazards of bein an andventurer is fire. Specifically, being on fire. You'll lose health while on fire but eventually the flames will die down as long as you avoid open flames.");
 					
 				hp -= Math.floor(isOnFireCounter / 10) + 1;
@@ -82,7 +82,7 @@ package
 			
 			if (isBlindCounter > 0)
 			{
-				HelpSystem.notify(this, "You're blind!",
+				HelpSystem.notify(this, "You're blind!", null,
 					"You can't see anything in here! Give it a few turns and you'll be able to see again. I just hope you remember where the nearest safe area is....");
 					
 				isBlindCounter--;
@@ -90,7 +90,7 @@ package
 			
 			if (isFrozenCounter > 0)
 			{
-				HelpSystem.notify(this, "You're frozen solid!",
+				HelpSystem.notify(this, "You're frozen solid!", null,
 					"Freezing solid is just part of the job of being an adventurer. Wait a few turns and, if you're still alive, you'll be able to move again. You can't do anything else anyway.");
 					
 				isFrozenCounter--;
@@ -145,7 +145,7 @@ package
 				var newRoom:Room = world.getRoom(x, y);
 				
 				if (oldRoom != newRoom && newRoom != null && newRoom.description != null)
-					HelpSystem.notify(this, newRoom.name, newRoom.description);
+					HelpSystem.notify(this, newRoom.name, null, newRoom.description);
 			}
 		}
 		

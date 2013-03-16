@@ -86,6 +86,7 @@ package
 				new RoomTheme_G(),
 				new RoomTheme_Outside(),
 				new RoomTheme_ArrowTowers(),
+				new RoomTheme_RotatingTowers(),
 				new RoomTheme_ArrowWall(),
 				new RoomTheme_CheckerTraps(),
 				new RoomTheme_Empty()];

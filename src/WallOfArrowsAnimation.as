@@ -40,7 +40,7 @@ package
 					creature.hp -= 5;
 					creature.bleed();
 					
-					HelpSystem.notify(creature, "Arrow traps", "You've been hit by an arrow that shot out of the wall. It's probablly not a good idea to hang out here to too long....");
+					HelpSystem.notify(creature, "Arrow traps", null, "You've been hit by an arrow that shot out of the wall. It's probablly not a good idea to hang out here to too long....");
 				}
 				else if (!world.getTile(arrow.x, arrow.y).isWalkable 
 					   || world.getTile(arrow.x, arrow.y) == Tile.closedDoor)
