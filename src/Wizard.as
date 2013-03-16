@@ -1,6 +1,7 @@
 package  
 {
 	import flash.geom.Point;
+	import spells.*;
 	
 	public class Wizard extends MagicUser
 	{
@@ -15,6 +16,17 @@ package
 			meleeAttack = 5;
 			meleeDefence = 2;
 			hp = 50;
+			
+			this.magic = [
+				new MagicMissile(),
+				new HealingBurst(),
+				new HealFromBlood(),
+				new BlindingFlash(),
+				new FieryTeleport(),
+				new IceBlink(),
+				new BoneSplode(),
+				new Inferno(),
+				new TimedDeath()];
 		}
 		
 		override public function doesHate(other:Creature):Boolean

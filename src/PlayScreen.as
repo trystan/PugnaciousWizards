@@ -77,7 +77,7 @@ package
 				enterScreen(new ExamineScreen(game));
 			});
 			
-			for (var i:int = 0; i < game.hero.magic.length; i++)
+			for (var i:int = 0; i < 9; i++)
 			{
 				bind((i+1) +"", "magic " + (i+1), cast, i);
 			}
@@ -89,7 +89,10 @@ package
 		{
 			if (!game.hero.canCastMagic)
 				return;
-				
+			
+			if (game.hero.magic.length <= i)
+				return;
+			
 			game.hero.magic[i].playerCast(game.hero);
 			endTurn();
 		}

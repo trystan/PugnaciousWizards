@@ -1,5 +1,7 @@
 package  
 {
+	import spells.*;
+	
 	public class Game 
 	{
 		public var fieldOfView:FieldOfView;
@@ -65,6 +67,7 @@ package
 			}
 			
 			applyRoomThemes();
+			addScrolls();
 		}
 		
 		public function startDemo():void
@@ -113,6 +116,36 @@ package
 				
 				themesWaitingToBeApplied[i].apply(world, room);
 				themesWaitingToBeApplied.splice(i, 1);
+			}
+		}
+		
+		public function addScrolls()
+		{
+			var spellList:Array = [
+				new HealFromBlood(),
+				new BlindingFlash(),
+				new FieryTeleport(),
+				new IceBlink(),
+				new BoneSplode(),
+				new Inferno(),
+				new TimedDeath(), ];
+				
+			while (spellList.length > 0)
+			{
+				var x:int = 5 + Math.floor(Math.random() * 7 * 9);
+				var y:int = 5 + Math.floor(Math.random() * 7 * 9);
+				
+				if (!world.getTile(x, y).isWalkable || !world.getTile(x, y).allowsVision)
+					continue;
+					
+				if (world.getItem(x, y) != null)
+					continue;
+					
+				var i:int = Math.floor(Math.random() * spellList.length);
+				var spell:Magic = spellList[i];
+				spellList.splice(i, 1);
+				
+				world.addItem(new Scroll(x, y, spell));
 			}
 		}
 	}

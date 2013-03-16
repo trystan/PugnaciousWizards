@@ -63,13 +63,18 @@ package
 				piecesOfAmulet++;
 				world.removeItem(itemHere);
 			}
+			else if (itemHere is Scroll && magic.length < 9)
+			{
+				world.removeItem(itemHere);
+				magic.push((itemHere as Scroll).spell);
+			}
 			else if (piecesOfAmulet == 3)
 			{
 				exitCastle();
 			}
 			else
 			{	
-				var nextStep:Point = findNearestAmuletPiece();
+				var nextStep:Point = findLoot();
 				
 				if (nextStep == null)
 					nextStep = findNearestDoor();
@@ -103,7 +108,7 @@ package
 		}
 		
 		private var pathToTarget:Array = null;
-		public function findNearestAmuletPiece():Point
+		public function findLoot():Point
 		{
 			if (pathToTarget != null && pathToTarget.length > 0)
 			{
@@ -112,11 +117,14 @@ package
 				
 				if (itemAtTarget is PieceOfAmulet)
 					return pathToTarget.shift();
+					
+				if (itemAtTarget is Scroll)
+					return pathToTarget.shift();
 			}
 			
 			for each (var item:Item in world.items)
 			{
-				if (!(item is PieceOfAmulet))
+				if (!(item is PieceOfAmulet || item is Scroll && magic.length < 9))
 					continue;
 				
 				var path:Array = Line.betweenCoordinates(x, y, item.x, item.y).points;

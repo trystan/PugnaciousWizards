@@ -12,17 +12,7 @@ package
 	
 	public class MagicUser extends Creature
 	{
-		public var magic:Array = [
-			new MagicMissile(),
-			new HealingBurst(),
-			new HealFromBlood(),
-			new BlindingFlash(),
-			new FieryTeleport(),
-			new IceBlink(),
-			new BoneSplode(),
-			new Inferno(),
-			new TimedDeath(),
-		];
+		public var magic:Array = [];
 			
 		public function MagicUser(glyph:String, fg:int, x:int, y:int, name:String, description:String) 
 		{

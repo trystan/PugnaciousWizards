@@ -1,5 +1,7 @@
 package  
 {
+	import spells.*;
+	
 	public class Player extends MagicUser
 	{	
 		public function Player(x:int, y:int) 
@@ -10,6 +12,9 @@ package
 			meleeDefence = 5;
 			hp = 100;
 			baseViewDistance = 12;
+			this.magic = [
+				new MagicMissile(),
+				new HealingBurst()];
 		}
 		
 		override public function doesHate(other:Creature):Boolean
@@ -24,6 +29,14 @@ package
 			{
 				piecesOfAmulet++;
 				world.removeItem(itemHere);
+			}
+			else if (itemHere is Scroll)
+			{
+				if (magic.length < 9)
+				{
+					magic.push((itemHere as Scroll).spell);
+					world.removeItem(itemHere);
+				}
 			}
 		}
 	}
