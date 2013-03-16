@@ -65,7 +65,7 @@ package
 			}
 			
 			var trap:Trap = new Trap(
-								new AndTrigger([new HeroInRoom(room), new RandomPercentOfTheTime(50)]), 
+								new AndTrigger([new HeroInRoom(room), new RandomPercentOfTheTime(25)]), 
 								new WallOfArrowsAnimation(world, walls, ox, oy));
 			
 			world.addTriggerForEveryTurn(function():void {

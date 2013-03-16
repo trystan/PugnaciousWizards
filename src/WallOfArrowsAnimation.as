@@ -10,24 +10,37 @@ package
 	
 	public class WallOfArrowsAnimation implements Animation
 	{
-		private var arrows:Array = [];
-		private var world:World;
+		public var arrows:Array = [];
+		public var world:World;
+		public var restart:Boolean = true;
+		public var points:Array;
+		public var ox:int;
+		public var oy:int;
 		
 		public function WallOfArrowsAnimation(world:World, points:Array, ox:int, oy:int) 
 		{
 			this.world = world;
-			
-			for each (var p:Point in points)
-				arrows.push(new Arrow(p.x, p.y, ox, oy, 7));
+			this.points = points;
+			this.ox = ox;
+			this.oy = oy;
 		}
 		
 		public function get isDone():Boolean
 		{
-			return arrows.length == 0;
+			if (arrows.length == 0)
+				restart = true;
+			return restart;
 		}
 		
 		public function tick(terminal:AsciiPanel):void
 		{
+			if (restart)
+			{	
+				restart = false;
+				for each (var p:Point in points)
+					arrows.push(new Arrow(p.x, p.y, ox, oy, 7));
+			}
+			
 			var alive:Array = [];
 			for each (var arrow:Arrow in arrows)
 			{

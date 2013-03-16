@@ -95,15 +95,8 @@ package
 				new RoomTheme_CheckerTraps(),
 				new RoomTheme_Empty()];
 			
-			var half:int = themes.length / 2;
-			
-			while (themes.length > half)
-				themes.splice(Math.floor(Math.random() * themes.length), 1);
-			
-			var favored:RoomTheme = themes[Math.floor(Math.random() * themes.length)];
-			
 			for (var i:int = 0; i < 4; i++)
-				themes.push(favored);
+				themes.push(themes[Math.floor(Math.random() * themes.length)]);
 			
 			var themesWaitingToBeApplied:Array = [
 				new RoomTheme_Portal(),
