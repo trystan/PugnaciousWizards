@@ -32,7 +32,7 @@ package spells
 				function (world:World, x:int, y:int):Composite {
 					return new Composite([
 						new Instant(world, x, y, new Disapear(creature)),
-						new Explosion(world, x, y, 50, new Fire()),
+						new Explosion(world, x, y, 50, new Fire(10)),
 						new Instant(world, x, y, new Teleport(creature)),
 					]);
 				});

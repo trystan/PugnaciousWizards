@@ -25,7 +25,7 @@ package spells
 		{
 			return new ChooseAVisibleOccupiedTile(12, 30,  
 				function (world:World, x:int, y:int):Explosion {
-						return new Explosion(world, x, y, 49 * 9, new Fire());
+						return new Explosion(world, x, y, 49 * 9, new Fire(10));
 				});
 		}
 	}

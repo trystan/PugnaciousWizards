@@ -6,13 +6,19 @@ package effects
 		
 		public function get secondaryColor():int { return Color.fire; }
 		
+		public var amount:int;
+		public function Fire(amount:int)
+		{
+			this.amount = amount;
+		}
+		
 		public function applyPrimary(world:World, x:int, y:int):void
 		{
 			var creature:Creature = world.getCreature(x, y);
 			if (creature != null)
 			{
-				creature.hp -= 5;
-				creature.isOnFireCounter += 5;
+				creature.hp -= amount;
+				creature.isOnFireCounter += amount;
 			}
 			var here:Tile = world.getTile(x, y);
 			if (here == Tile.closedDoor || here == Tile.openDoor)
@@ -33,8 +39,8 @@ package effects
 			var creature:Creature = world.getCreature(x, y);
 			if (creature != null)
 			{
-				creature.hp -= 1;
-				creature.isOnFireCounter++;
+				creature.hp -= amount / 5;
+				creature.isOnFireCounter += amount / 5;
 			}
 		}
 	}

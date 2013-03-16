@@ -47,7 +47,7 @@ package
 							case 0:
 								trapList.push(new Trap(
 													new CreatureAtLocation(room, [new Point(x, y)]),
-													new Explosion(world, x, y, 49 * 4, new Fire())));
+													new Explosion(world, x, y, 49 * 4, new Fire(5))));
 								break;
 							case 1:
 								trapList.push(new Trap(

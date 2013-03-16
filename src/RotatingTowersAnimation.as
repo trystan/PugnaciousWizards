@@ -33,23 +33,23 @@ package
 				switch (t) {
 					case Tile.rotatingTower1:
 						world.setTile(p.x, p.y, Tile.rotatingTower2);
-						world.addAnimation(new Projectile(world, p.x, p.y, -1,  0, 7, new Fire()));
-						world.addAnimation(new Projectile(world, p.x, p.y,  1,  0, 7, new Fire()));
+						world.addAnimation(new Projectile(world, p.x, p.y, -1,  0, 7, new Fire(50)));
+						world.addAnimation(new Projectile(world, p.x, p.y,  1,  0, 7, new Fire(50)));
 						break;
 					case Tile.rotatingTower2:
 						world.setTile(p.x, p.y, Tile.rotatingTower3);
-						world.addAnimation(new Projectile(world, p.x, p.y, -1, -1, 7, new Fire()));
-						world.addAnimation(new Projectile(world, p.x, p.y,  1,  1, 7, new Fire()));
+						world.addAnimation(new Projectile(world, p.x, p.y, -1, -1, 7, new Fire(50)));
+						world.addAnimation(new Projectile(world, p.x, p.y,  1,  1, 7, new Fire(50)));
 						break
 					case Tile.rotatingTower3:
 						world.setTile(p.x, p.y, Tile.rotatingTower4);
-						world.addAnimation(new Projectile(world, p.x, p.y,  0, -1, 7, new Fire()));
-						world.addAnimation(new Projectile(world, p.x, p.y,  0,  1, 7, new Fire()));
+						world.addAnimation(new Projectile(world, p.x, p.y,  0, -1, 7, new Fire(50)));
+						world.addAnimation(new Projectile(world, p.x, p.y,  0,  1, 7, new Fire(50)));
 						break;
 					case Tile.rotatingTower4:
 						world.setTile(p.x, p.y, Tile.rotatingTower1);
-						world.addAnimation(new Projectile(world, p.x, p.y,  1, -1, 7, new Fire()));
-						world.addAnimation(new Projectile(world, p.x, p.y, -1,  1, 7, new Fire()));
+						world.addAnimation(new Projectile(world, p.x, p.y,  1, -1, 7, new Fire(50)));
+						world.addAnimation(new Projectile(world, p.x, p.y, -1,  1, 7, new Fire(50)));
 						break;
 				}
 			}
