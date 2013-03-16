@@ -2,7 +2,7 @@ package spells
 {
 	import delivery.Composite;
 	import delivery.Explosion;
-	import delivery.Projectile;
+	import delivery.Ray;
 	import delivery.Pull;
 	import effects.Ice;
 	import effects.MagicDamage;
@@ -18,7 +18,7 @@ package spells
 		
 		private var action:ChooseDirectionToEnemy = new ChooseDirectionToEnemy(4, 12, 
 			function (world:World, x:int, y:int, ox:int, oy:int):Animation {
-				return new Projectile(world, x, y, ox, oy, 16, new Ice(), function(w:World, px:int, py:int):void {
+				return new Ray(world, x, y, ox, oy, 16, new Ice(), function(w:World, px:int, py:int):void {
 					world.addAnimation(new Pull(w, px, py, 5, new Ice()));
 				})
 			});

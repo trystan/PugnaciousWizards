@@ -1,7 +1,7 @@
 package delivery
 {
 	import com.headchant.asciipanel.AsciiPanel;
-	import effect.Effect;
+	import effects.Effect;
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import flash.utils.clearInterval;
@@ -19,8 +19,9 @@ package delivery
 		public var maxDistance:int;
 		public var path:Array;
 		public var magicEffect:Effect;
+		public var callback:Function;
 		
-		public function Ray(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect) 
+		public function Ray(world:World, sx:int, sy:int, ox:int, oy:int, maxDistance:int, magicEffect:Effect, callback:Function) 
 		{
 			this.world = world;
 			this.x = sx;
@@ -30,6 +31,7 @@ package delivery
 			this.maxDistance = maxDistance;
 			this.path = [];
 			this.magicEffect = magicEffect;
+			this.callback = callback;
 		}
 		
 		private var _isDone:Boolean = false;
@@ -53,40 +55,34 @@ package delivery
 			var creature:Creature = world.getCreature(x, y);
 			if (creature != null)
 			{
-				magicEffect.applyPrimary(world, x, y);
+				callback(world, x, y);
 				_isDone = true;
 			}
 			else if (!world.getTile(x, y).isWalkable || world.getTile(x, y) == Tile.closedDoor)
 			{
-				magicEffect.applyPrimary(world, x, y);
+				callback(world, x, y);
 				_isDone = true;
 			}
 			else if (maxDistance-- < 1)
 			{
-				magicEffect.applySecondary(world, x, y);
+				callback(world, x, y);
 				_isDone = true;
 			}
 			
-			if (!isDone)
+			if (isDone)
+				return;
+			
+			if (world.hero.canSeeLocation(x, y))
+				terminal.withLocation(x, y, function(c:int, fg:int, bg:int):void {
+					terminal.write(String.fromCharCode(c), x, y, Color.lerp(magicEffect.primaryColor, fg, 0.33), Color.lerp(magicEffect.primaryColor, bg, 0.33));
+				});
+			
+			for each (var p:Point in path)
 			{
-				var glyph:String = " ";
-				var c:Creature = world.getCreature(x, y);
-				if (c != null)
-					glyph = c.glyph;
-				var t:Tile = world.getTile(x, y);
-				if (world.hero.canSeeLocation(x, y))
-					terminal.write(glyph, x, y, magicEffect.secondaryColor, Color.lerp(magicEffect.secondaryColor, t.bg, 0.90));
-				
-				for each (var p:Point in path)
-				{
-					var glyph:String = " ";
-					var c:Creature = world.getCreature(p.x, p.y);
-					if (c != null)
-						glyph = c.glyph;
-					var t:Tile = world.getTile(p.x, p.y);
-					if (world.hero.canSeeLocation(p.x, p.y))
-						terminal.write(glyph, p.x, p.y, magicEffect.primaryColor, Color.lerp(magicEffect.primaryColor, t.bg, 0.25));
-				}
+				if (world.hero.canSeeLocation(p.x, p.y))
+					terminal.withLocation(p.x, p.y, function(c:int, fg:int, bg:int):void {
+						terminal.write(String.fromCharCode(c), p.x, p.y, Color.lerp(magicEffect.secondaryColor, fg, 0.33), Color.lerp(magicEffect.secondaryColor, bg, 0.33));
+					});
 			}
 		}
 	}
