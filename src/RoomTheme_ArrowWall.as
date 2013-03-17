@@ -72,34 +72,10 @@ package
 				trap.check(world);
 			});
 			
-			addBlood(world, room, 5);
+			room.addBlood(world, 5);
 			
 			if (Math.random() < 0.9)
-				addPillar(world, room);
-		}
-		
-		public function addPillar(world:World, room:Room):void
-		{
-			var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 5) + 1;
-			var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 5) + 1;
-			
-			world.setTile(x, y, Tile.wall);
-			
-			if (Math.random() < 0.33)
-				addPillar(world, room);
-		}
-		
-		public function addBlood(world:World, room:Room, amount:int):void
-		{
-			var max:int = world.maxBloodPerTile * 49;
-			var total:int = max * amount / 100.0;
-			for (var i:int = 0; i < total; i++)
-			{
-				var x:int = room.x * 8 + 4 + Math.floor(Math.random() * 9);
-				var y:int = room.y * 8 + 4 + Math.floor(Math.random() * 9);
-				
-				world.addBlood(x, y);
-			}
+				room.addPillar(world);
 		}
 	}
 }

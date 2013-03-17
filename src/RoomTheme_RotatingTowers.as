@@ -20,7 +20,7 @@ package
 			var towers:Array = [];
 			
 			if (Math.random() < 0.75)
-				addPillar(world, room);
+				room.addPillar(world);
 				
 			for (var i:int = 0; i < total; i++)
 			{
@@ -43,31 +43,7 @@ package
 				trap.check(world);
 			});
 			
-			addBlood(world, room, towers.length * 4);
-		}
-		
-		public function addPillar(world:World, room:Room):void
-		{
-			var x:int = room.x * 8 + 5 + Math.floor(Math.random() * 5) + 1;
-			var y:int = room.y * 8 + 5 + Math.floor(Math.random() * 5) + 1;
-			
-			world.setTile(x, y, Tile.wall);
-			
-			if (Math.random() < 0.2)
-				addPillar(world, room);
-		}
-		
-		public function addBlood(world:World, room:Room, amount:int):void
-		{
-			var max:int = world.maxBloodPerTile * 49;
-			var total:int = max * amount / 100.0;
-			for (var i:int = 0; i < total; i++)
-			{
-				var x:int = room.x * 8 + 4 + Math.floor(Math.random() * 9);
-				var y:int = room.y * 8 + 4 + Math.floor(Math.random() * 9);
-				
-				world.addBlood(x, y);
-			}
+			room.addBlood(world, towers.length * 4);
 		}
 	}
 }

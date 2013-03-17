@@ -76,10 +76,10 @@ package
 					trap.check(world);
 			});
 			
-			addBlood(world, room, trapList.length);
+			room.addBlood(world, trapList.length);
 			
 			if (Math.random() < 0.75)
-				addPillar(world, room);
+				room.addPillar(world);
 		}
 		
 		public function addPillar(world:World, room:Room):void

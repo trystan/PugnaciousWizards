@@ -22,7 +22,7 @@ package
 			world.setTile(x, y, Tile.wall);
 			
 			if (Math.random() < 0.2)
-				addPillar(world, room);
+				room.addPillar(world);
 		}
 	}
 }

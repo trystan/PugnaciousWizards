@@ -115,6 +115,7 @@ package
 				
 				themesWaitingToBeApplied[i].apply(world, room);
 				themesWaitingToBeApplied.splice(i, 1);
+				room.addDecor(world);
 			}
 		}
 		
