@@ -16,7 +16,12 @@ package
 				return;
 				
 			events.push(event);
-			RL.enterScreen(new HelpSystemPopupScreen(event + (glyph == null ? "" : " (" + glyph + ")"), details));
+			forceNotify(creature, event, glyph, details);
+		}
+		
+		public static function forceNotify(creature:Creature, event:String, glyph:String, details:String):void
+		{
+			RL.enterScreen(new HelpSystemPopupScreen(event + (glyph == null ? "" : " (" + glyph + ")"), details));	
 		}
 	}
 }

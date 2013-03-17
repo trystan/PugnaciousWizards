@@ -7,7 +7,7 @@ package
 		
 		public static var grass:Tile = new Tile(250, Color.hsv(100, 30, 30), Color.hsv(100, 20, 20), true, true,
 				"grass", null);
-		public static var tree:Tile = new Tile(5, Color.hsv(120, 50, 40), Color.hsv(120, 20, 20), false, false,
+		public static var tree:Tile = new Tile(5, Color.hsv(120, 50, 40), Color.hsv(120, 20, 20), false, true,
 				"a tree", null);
 		public static var burningTree3:Tile = new Tile(5, Color.lerp(Color.fire, Color.hsv(120, 50, 40), 0.3), Color.lerp(Color.fire, Color.hsv(120, 20, 20), 0.2), false, true,
 				"a burning tree", "You can feel the heat from the tree as it burns. Don't get too close.");
@@ -16,7 +16,7 @@ package
 		public static var burningTree1:Tile = new Tile(5, Color.lerp(Color.fire, Color.hsv(120, 50, 40), 0.7), Color.lerp(Color.fire, Color.hsv(120, 20, 20), 0.6), false, true,
 				"a burning tree", "You can feel the heat from the tree as it burns. Don't get too close.");
 		public static var pit:Tile = new Tile(250, Color.hsv(60, 25, 15), Color.hsv(60, 25, 2), false, true,
-				"a bottomless pit", "You can't see any bottom to this - just blackness. Be extra carefull around it.");
+				"a bottomless pit", "You can't see any bottom to this - just blackness.");
 		
 		public static var burntFloor:Tile = new Tile(250, Color.hsv(30, 10, 20), Color.hsv(30, 5, 10), true, true,
 				"burnt floor", null);

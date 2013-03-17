@@ -31,6 +31,7 @@ package
 				var x:int = 81;
 				var y:int = 5;
 				var hpColor:int = Color.lerp(Color.hsv(120, 90, 90), Color.hsv(0, 90, 90), Math.max(1, Math.min(game.hero.hp, 100)) / 100.0);
+				
 				terminal.write(Math.floor((game.hero.hp * 1.0 / game.hero.maximumHp) * 100) + "% health", x, y+=2, hpColor);
 				
 				y++;
@@ -49,13 +50,18 @@ package
 				
 				var fg:int = game.hero.canCastMagic ? 0xffc0c0c0 : 0xff666666;
 				
+				y++;
+				terminal.write("-- help --", x, y += 2);
+				terminal.write("X. examine", x, y += 2);
+				terminal.write("?. help", x, y += 2);
+				
+				y++;
 				terminal.write("-- magic --", x, y += 2);
 				
-				for (var i:int = 0; i < game.hero.magic.length; i++)
-				{
-					var name:String = (i + 1) + ". " + game.hero.magic[i].name;
-					terminal.write(name.substr(0, 99 - x), x, y+=2, fg);
-				}
+				var i:int = 1;
+				for each (var spell:Magic in game.hero.magic)
+					terminal.write(((i++) + ". " + spell.name).substr(0, 19), x, y += 2);
+				
 							
 				if (game.hero.hp < 1)
 					switchToScreen(new DefeatScreen(game));

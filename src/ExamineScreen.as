@@ -1,5 +1,6 @@
 package  
 {
+	import adobe.utils.CustomActions;
 	import com.headchant.asciipanel.AsciiPanel;
 	import org.microrl.architecture.BaseScreen;
 
@@ -95,6 +96,7 @@ package
 					terminal.write(String.fromCharCode(188), lookX + 1, lookY + 1, fg, bg);
 				
 				terminal.write(text, x, y, 0xffc0c0c0);
+				terminal.write("Examine what? (Mouse, movement keys, or 1 through " + (game.hero.magic.length) + ")", 2,78);
 			});
 			
 			bind("h,left", "move w", move, -1,  0);
@@ -109,6 +111,17 @@ package
 				lookX = lastMouseEvent.localX / 8;
 				lookY = lastMouseEvent.localY / 8;
 			});
+			
+			for (var i:int = 0; i < 9; i++)
+			{
+				bind((i+1) +"", "magic " + (i+1), examineMagic, game.hero, i);
+			}
+		}
+		
+		public function examineMagic(c:MagicUser, i:int):void
+		{
+			if (c.magic.length > i)
+				HelpSystem.forceNotify(c, c.magic[i].name, null, c.magic[i].description);
 		}
 		
 		public function move(mx:int, my:int):void

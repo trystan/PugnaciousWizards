@@ -50,7 +50,7 @@ package delivery
 					else
 						addCardinals(nextProjectiles, p);
 				}
-				else if (!world.getTile(p.x, p.y).isWalkable || world.getTile(p.x, p.y) == Tile.closedDoor)
+				else if (!world.getTile(p.x, p.y).allowsVision)
 				{
 					if (p.ox == 0)
 					{
