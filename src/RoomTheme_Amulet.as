@@ -1,9 +1,5 @@
 package  
 {
-	import traps.Trap;
-	import triggers.AndTrigger;
-	import triggers.HeroInRoom;
-	import triggers.NoItemAtLocation;
 	public class RoomTheme_Amulet implements RoomTheme
 	{
 		public function apply(world:World, room:Room):void
