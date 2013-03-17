@@ -8,15 +8,12 @@ package
 		public var world:World;
 		public var hero:MagicUser;
 		
-		public function Game() 
-		{
-			
-		}
-		
 		public function startGame():void
 		{
 			fieldOfView = new FieldOfView();
 			world = new World();
+			world.addItem(new Scroll(3, 26, new MagicMissile()));
+			world.addItem(new Scroll(2, 32, new FieryTeleport()));
 			world.addItem(new Scroll(2, 38, new HealAndBlind()));
 			
 			var maxDistance:int = 0;
@@ -77,7 +74,7 @@ package
 		public function startDemo():void
 		{
 			startGame();
-			hero = new Hero(1, 30);
+			hero = new Hero(2, 12);
 			world.hero = hero;
 			world.addCreature(hero);
 		}
@@ -129,7 +126,8 @@ package
 				new Inferno(),
 				new TimedDeath(),
 				new PullAndFreeze(),
-				new HealingBurst()];
+				new HealingBurst(),
+				new FreezeTrap(),];
 				
 			while (spellList.length > 0)
 			{

@@ -30,7 +30,7 @@ package
 			display(new WorldView(game));
 				
 			display(function(terminal:AsciiPanel):void {
-				terminal.writeCenter("a 2013 7DRL by Trystan Spangler", 3);
+				terminal.writeCenter("a 2013 7DRL about traps and magic. By Trystan Spangler", 3);
 				terminal.writeCenter("-- press enter to begin --", 78);
 			});
 			
@@ -39,12 +39,14 @@ package
 					game.startDemo();
 				else if (game.hero.piecesOfAmulet == 3 && game.hero.x < 5)
 					game.startDemo();
+				else
+				{
+					game.world.update();
 					
-				game.world.update();
-				
-				game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
-					return game.world.getTile(vx, vy).allowsVision;
-				});
+					game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
+						return game.world.getTile(vx, vy).allowsVision;
+					});
+				}
 			});
 			
 			bind("enter", "start", function():void {

@@ -13,9 +13,7 @@ package
 			meleeAttack = 15;
 			hp = 400;
 			maximumHp = 400;
-			this.magic = [
-				new MagicMissile(),
-				new FieryTeleport()];
+			this.magic = [];
 		}
 		
 		override public function doesHate(other:Creature):Boolean 

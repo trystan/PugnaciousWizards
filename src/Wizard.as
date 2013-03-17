@@ -28,7 +28,8 @@ package
 				new Inferno(),
 				new TimedDeath(),
 				new PullAndFreeze(),
-				new HealingBurst()];
+				new HealingBurst(),
+				new FreezeTrap(),];
 			
 			this.magic = [];
 			

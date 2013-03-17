@@ -12,9 +12,7 @@ package
 			hp = 100;
 			maximumHp = 100;
 			baseViewDistance = 12;
-			this.magic = [
-				new MagicMissile(),
-				new FieryTeleport()];
+			this.magic = [];
 		}
 		
 		override public function doesHate(other:Creature):Boolean
