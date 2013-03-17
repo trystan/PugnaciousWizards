@@ -28,11 +28,7 @@ package spells
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
 			return new MagicAction(1, function():void {
-				caster.world.setTile(caster.x, caster.y, Tile.timer5);
-				caster.world.addTriggerForEveryTurn(function():void {
-					if (caster.world.getTile(caster.x, caster.y) == Tile.timer0)
-						caster.world.addAnimation(new EverythingVisibleFrom(caster.world, caster.x, caster.y, 49 * 5, new MagicDamage(33)));
-				})
+				action.castAtLocationCallback(caster.world, caster.x, caster.y);
 			});
 		}
 		

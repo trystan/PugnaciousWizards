@@ -12,7 +12,9 @@ package spells
 		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
-			return targetWith(caster).calculateAiBenefit(caster);
+			return new MagicAction(caster.hp < caster.maximumHp / 2 ? 25 : 0, function():void {
+				caster.world.addAnimation(new EverythingVisible(caster, new BloodToHealth(caster)));
+			});
 		}
 		
 		public function playerCast(creature:Creature):void

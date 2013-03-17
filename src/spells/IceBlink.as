@@ -19,9 +19,24 @@ package spells
 		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
-			return new MagicAction(5, function(c:Creature):void { } );
-				
-			return targetWith(caster).calculateAiBenefit(caster);
+			var dirs:Array = [[ -1, -1], [ -0, -1], [ +1, -1],
+							  [ -1, -0],            [ +1, -0],
+							  [ -1, +1], [ -0, +1], [ +1, +1]];
+			
+			var count:int = 0
+			for each (var dir:Array in dirs)
+			{
+				if (caster.world.getCreature(caster.x + dir[0], caster.y + dir[1]) != null)
+					count++;
+			}
+			
+			return new MagicAction(count * 10, function(c:Creature):void {
+				caster.world.addAnimation(new Composite([
+						new Instant(caster.world, caster.x, caster.y, new Disapear(caster)),
+						new Explosion(caster.world, caster.x, caster.y, 25, new Ice()),
+						new RandomVisibleSpace(caster, new Teleport(caster)),
+					]));
+			} );
 		}
 		
 		public function playerCast(creature:Creature):void

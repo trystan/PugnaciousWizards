@@ -17,7 +17,7 @@ package spells
 			
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
-			return new MagicAction(100 - caster.hp, function():void {
+			return new MagicAction(1.0 - (caster.hp * 1.0 / caster.maximumHp) * 100, function():void {
 				return caster.world.addAnimation(new Explosion(caster.world, caster.x, caster.y, 9, new Heal(5)));
 			});
 		}

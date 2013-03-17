@@ -12,7 +12,9 @@ package spells
 		
 		public function calculateAiBenefit(caster:Creature):MagicAction
 		{
-			return new MagicAction(1, function(c:Creature):void { } );
+			return new MagicAction(1, function(c:Creature):void {
+				caster.world.addAnimation(new ExplodeEveryVisiblePileOfBones(caster, new MagicDamage(10)));
+			} );
 				
 			return targetWith(caster).calculateAiBenefit(caster);
 		}
@@ -25,7 +27,7 @@ package spells
 		private function targetWith(creature:Creature):Self
 		{
 			return new Self(function (world:World, x:int, y:int):ExplodeEveryVisiblePileOfBones {
-					return new ExplodeEveryVisiblePileOfBones(creature, new MagicDamage(15));
+					return new ExplodeEveryVisiblePileOfBones(creature, new MagicDamage(10));
 				});
 		}
 	}
