@@ -92,8 +92,9 @@ package
 				new RoomTheme_ArrowTowers(),
 				new RoomTheme_RotatingTowers(),
 				new RoomTheme_ArrowWall(),
-				new RoomTheme_CheckerTraps(),
-				new RoomTheme_Empty()];
+				new RoomTheme_FloorTraps(),
+				new RoomTheme_Empty(),
+				];
 			
 			for (var i:int = 0; i < 4; i++)
 				themes.push(themes[Math.floor(Math.random() * themes.length)]);

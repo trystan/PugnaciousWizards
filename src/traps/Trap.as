@@ -15,12 +15,13 @@ package traps
 			this.action = action;
 		}
 		
-		public function check(world:World):void
+		public function check(world:World):Boolean
 		{
 			if (!trigger.check(world))
-				return;
+				return false;
 			
 			world.addAnimation(action); 
+			return true;
 		}
 	}
 }

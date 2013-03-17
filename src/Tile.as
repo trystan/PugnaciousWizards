@@ -29,7 +29,7 @@ package
 		public static var portal:Tile = new Tile(177, Color.hsv(100, 0, 14), Color.hsv(100, 0, 14), true, true,
 				"a magic portal", "This magic portal is almost too bright to look at. You can't see where it goes. Maybe if you step closer?");
 		public static var exposedTrap:Tile = new Tile(94, Color.hsv(0, 80, 50), Color.hsv(100, 0, 12), true, true,
-				"an exposed trap", "A hidden trap has gone off and is now exposed and harmless.");
+				"an exposed trap", "A hidden trap has gone off and is now exposed. You probably don't want to step on it.");
 		public static var wall:Tile = new Tile(35, Color.hsv(100, 0, 50), Color.hsv(100, 0, 40), false, false,
 				"wall", null);
 		public static var crumbledWall:Tile = new Tile(35, Color.lerp(Color.ruins, Color.hsv(100, 0, 50), 0.4), Color.lerp(Color.ruins, Color.hsv(100, 0, 40), 0.6), false, false,
