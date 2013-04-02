@@ -1,15 +1,20 @@
 package  
 {
+	import flash.geom.Point;
 	import spells.*;
 	
 	public class Game 
 	{
+		public static var current;
+		
 		public var fieldOfView:FieldOfView;
 		public var world:World;
 		public var hero:MagicUser;
 		
 		public function startGame():void
 		{
+			current = this;
+			
 			fieldOfView = new FieldOfView();
 			world = new World();
 			world.addItem(new Scroll(3, 26, new MagicMissile()));
@@ -145,6 +150,28 @@ package
 				spellList.splice(i, 1);
 				
 				world.addItem(new Scroll(x, y, spell));
+			}
+		}
+		
+		public function checkVisibility():void
+		{
+			fieldOfView.calculateVisibility(hero.x, hero.y, hero.viewDistance, function(vx:int, vy:int):Boolean {
+				return world.getTile(vx, vy).allowsVision;
+			});
+			
+			for each (var p:Point in fieldOfView.currentlyVisiblePoints)
+			{
+				var c:Creature = world.getCreature(p.x, p.y);
+				if (c != null && c.description != null)
+					HelpSystem.notify(hero, "You see a " + c.name, c.glyph, c.description);
+					
+				var i:Item = world.getItem(p.x, p.y);
+				if (i != null && i.description != null)
+					HelpSystem.notify(hero, "You see a " + i.name, i.glyph, i.description);
+					
+				var t:Tile = world.getTile(p.x, p.y);
+				if (t.description != null)
+					HelpSystem.notify(hero, "You see a " + t.name, t.glyph, t.description);
 			}
 		}
 	}

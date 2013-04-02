@@ -20,6 +20,7 @@ package effects
 			{
 				caster.teleportTo(x, y);
 			}
+			Game.current.checkVisibility();
 		}
 		
 		public function applySecondary(world:World, x:int, y:int):void

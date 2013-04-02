@@ -24,10 +24,10 @@ package
 			game.world.addCreature(game.hero);
 			
 			display(new WorldView(game));
-			display(function(terminal:AsciiPanel):void {		
+			display(function(terminal:AsciiPanel):void {
 				var help:String = "Hello there! Since this is your first turn, I'll explain some details. You control the @ symbol on the left of the screen. Your health, status, and magic are all on the right hand side of this screen. You are on a quest to find three pieces of an amulet hidden within this castle. You should first go through the door, it's the brownish thing to the right of your character. At any time, type [X] to examine your surroundings or [?] to see more help.";
 				HelpSystem.notify(game.hero, "First turn", null, help);
-			
+				
 				var x:int = 81;
 				var y:int = 5;
 				var hpColor:int = Color.lerp(Color.hsv(120, 90, 90), Color.hsv(0, 90, 90), Math.max(1, Math.min(game.hero.hp, 100)) / 100.0);
@@ -120,24 +120,7 @@ package
 		private function endTurn():void
 		{
 			game.world.update();
-			game.fieldOfView.calculateVisibility(game.hero.x, game.hero.y, game.hero.viewDistance, function(vx:int, vy:int):Boolean {
-				return game.world.getTile(vx, vy).allowsVision;
-			});
-			
-			for each (var p:Point in game.fieldOfView.currentlyVisiblePoints)
-			{
-				var c:Creature = game.world.getCreature(p.x, p.y);
-				if (c != null && c.description != null)
-					HelpSystem.notify(game.hero, "You see a " + c.name, c.glyph, c.description);
-					
-				var i:Item = game.world.getItem(p.x, p.y);
-				if (i != null && i.description != null)
-					HelpSystem.notify(game.hero, "You see a " + i.name, i.glyph, i.description);
-					
-				var t:Tile = game.world.getTile(p.x, p.y);
-				if (t.description != null)
-					HelpSystem.notify(game.hero, "You see a " + t.name, t.glyph, t.description);
-			}
+			game.checkVisibility();
 		}
 	}
 }
