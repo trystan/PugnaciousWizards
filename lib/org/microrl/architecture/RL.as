@@ -133,13 +133,14 @@ package org.microrl.architecture
 			ignoreInput = false;
 			animatedLastFrame = false;
 			animations = [];
-			paint();
 			
 			if (afterAnmination != null)
 			{
 				afterAnmination();
 				afterAnmination = null;
 			}
+			
+			paint();
 			
 			while (keyboardInputQueue.length > 0)
 			{

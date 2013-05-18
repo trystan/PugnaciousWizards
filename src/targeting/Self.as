@@ -18,8 +18,7 @@ package targeting
 		
 		public function playerCast(creature:Creature):void
 		{
-			creature.world.addAnimation(castAtLocationCallback(creature.world, creature.x, creature.y));
-			Game.current.endTurn();
+			creature.world.addAnimation(castAtLocationCallback(creature.world, creature.x, creature.y), Game.current.endTurn);
 		}
 	}
 }

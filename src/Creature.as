@@ -37,9 +37,9 @@ package
 		public function get color():int 
 		{
 			if (isOnFireCounter > 0)
-				return Color.lerp(this.fg, Color.fire, 0.2);
+				return Color.lerp(this.fg, Color.fire, 0.3);
 			else if (isFrozenCounter > 0)
-				return Color.lerp(this.fg, Color.ice, 0.2);
+				return Color.lerp(this.fg, Color.ice, 0.3);
 			else
 				return this.fg;
 		}

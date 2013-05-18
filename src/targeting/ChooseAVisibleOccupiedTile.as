@@ -62,8 +62,7 @@ package targeting
 		public function playerCast(creature:Creature):void
 		{
 			RL.enterScreen(new TargetVisibleTileScreen(creature.x, creature.y, creature.viewDistance, creature.world, function(x:int, y:int):void {
-				creature.world.addAnimation(castAtLocationCallback(creature.world, x, y));
-				Game.current.endTurn();
+				creature.world.addAnimation(castAtLocationCallback(creature.world, x, y), Game.current.endTurn);
 			}));
 		}
 	}
