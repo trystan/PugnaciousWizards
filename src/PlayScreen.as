@@ -100,7 +100,6 @@ package
 				return;
 			
 			game.hero.magic[i].playerCast(game.hero);
-			endTurn();
 		}
 		
 		public function walk(mx:int, my:int):void
@@ -119,8 +118,7 @@ package
 		
 		private function endTurn():void
 		{
-			game.world.update();
-			game.checkVisibility();
+			game.endTurn();
 		}
 	}
 }

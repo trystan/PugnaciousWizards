@@ -109,8 +109,10 @@ package org.microrl.architecture
 		
 		private var animations:Array = [];
 		
-		public function addAnimation(animation:Animation):void
+		private var afterAnmination:Function;
+		public function addAnimation(animation:Animation, next:Function = null):void
 		{
+			afterAnmination = next;
 			animations.push(animation);
 		}
 		
@@ -132,6 +134,12 @@ package org.microrl.architecture
 			animatedLastFrame = false;
 			animations = [];
 			paint();
+			
+			if (afterAnmination != null)
+			{
+				afterAnmination();
+				afterAnmination = null;
+			}
 			
 			while (keyboardInputQueue.length > 0)
 			{

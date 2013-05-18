@@ -146,9 +146,9 @@ package
 			triggers.push(trigger);
 		}
 		
-		public function addAnimation(animation:Animation):void
+		public function addAnimation(animation:Animation, next:Function = null):void
 		{
-			RL.instance.addAnimation(animation);
+			RL.instance.addAnimation(animation, next);
 		}
 		
 		public function setTile(x:int, y:int, t:Tile):void

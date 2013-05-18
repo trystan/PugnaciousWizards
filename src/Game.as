@@ -174,5 +174,11 @@ package
 					HelpSystem.notify(hero, "You see a " + t.name, t.glyph, t.description);
 			}
 		}
+		
+		public function endTurn():void
+		{
+			world.update();
+			checkVisibility();
+		}
 	}
 }

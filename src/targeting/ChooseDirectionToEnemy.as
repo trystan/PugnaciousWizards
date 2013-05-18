@@ -65,6 +65,7 @@ package targeting
 		{
 			RL.enterScreen(new TargetDirectionScreen(function(mx:int, my:int):void {
 				creature.world.addAnimation(castInDirectionCallback(creature.world, creature.x, creature.y, mx, my));
+				Game.current.endTurn();
 			}));
 		}
 	}
